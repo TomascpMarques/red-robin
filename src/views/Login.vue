@@ -41,11 +41,13 @@
 */
 
 <script>
+import * as helpers from "../helpers/funcs.js";
 export default {
   data() {
     return {
       user: "",
       pass: "",
+      md5_pass: "",
       login: false,
       params_errados: false,
     };
@@ -70,15 +72,20 @@ export default {
         this.params_errados = false;
       }
     },
-    initLogin() {
-      // Se o utilizador e a palavra-passe forem nulas não deixa executar o pedido de login
-      if (this.user.length !== 0 || this.pass.length !== 0) {
+    // Se o utilizador e a palavra-passe forem nulas não deixa executar o pedido de login
+    validarInput(usr, psswd) {
+      if (usr.length > 1 && psswd.length > 1) {
         this.params_errados = false;
         this.login = true;
-        console.log(this.user, this.pass);
-      } else {
-        this.login = false;
-        this.params_errados = true;
+        return true;
+      }
+      this.login = false;
+      this.params_errados = true;
+      return false;
+    },
+    initLogin() {
+      if (this.validarInput(this.user, this.pass)) {
+        this.md5_pass = helpers.toMD5(this.pass);
       }
     },
   },
