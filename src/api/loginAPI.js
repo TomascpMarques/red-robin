@@ -1,6 +1,8 @@
-export function pingEquipamento() {
-  var action = "action:\n\tfunc:\n\t\t\"PingServico\":\n\t\t\t\"Tomás\",";
-  fetch("http://localhost:8000/", {
+export function login(usr, psswd) {
+  var action = "action:\n\t\"Login\":\n\t\t\"" + usr + "\",\n\t\t\"" + psswd + "\",";
+  var url = "http://localhost:8081/auth";
+
+  fetch(url, {
     method: "post",
     mode: "cors",
     body: action,

@@ -42,6 +42,8 @@
 
 <script>
 import * as helpers from "../helpers/funcs.js";
+import * as api from "../api/pingAPI.js";
+import * as apiAuth from "../api/loginAPI.js";
 export default {
   data() {
     return {
@@ -86,6 +88,9 @@ export default {
     initLogin() {
       if (this.validarInput(this.user, this.pass)) {
         this.md5_pass = helpers.toMD5(this.pass);
+        console.log(this.md5_pass);
+        api.pingEquipamento();
+        apiAuth.login(this.user, this.md5_pass);
       }
     },
   },
