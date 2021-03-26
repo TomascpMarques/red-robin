@@ -6,7 +6,13 @@
       <li><router-link to="/login">Login</router-link></li>
     </ul>
   </div>
-  <router-view />
+  <transition
+    mode="in-out"
+    enter-active-class="animate__animated animate__backInDown"
+    leave-active-class="animate__animated animate__backOutLeft"
+  >
+    <router-view />
+  </transition>
 </template>
 
 <script>
@@ -20,21 +26,21 @@ export default {
 <style>
 :root {
   --black: #303030;
+  --drk-blue: #1e3045;
   --white: #efefef;
   --orange: #e1871e;
   --blue: #3882f2;
   --font-color: hsl(0, 0%, 19%);
   --circle-radius: 2.4vh;
   --circle-inner-shadow: inset 3px 5px 3px #00000046;
-  --wrapper-shadow: 0.7rem 1.1rem 12px rgba(0, 0, 0, 0.199);
+  --wrapper-shadow: 6px 6px 6px 0px lightgray;
 }
 
-html,
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #d4d4d4;
+  background-color: #e4e4e4;
 }
 
 #app {
@@ -47,7 +53,7 @@ body {
 }
 
 .nav-bar {
-  width: 100vw;
+  width: 100%;
   margin-top: 0;
   background-color: white;
   display: flex;
@@ -55,6 +61,7 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
   box-shadow: 0px 6px 8px #9797971c;
+  z-index: 10;
 }
 
 .nav-bar h2 {
