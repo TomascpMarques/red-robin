@@ -33,17 +33,11 @@
   </div>
 </template>
 
-/**
-  Função - Ao carregar no butão, verificar o nome de utilizador e pass
-           se dé certo, corre a animção de focus, e de seguida faz o request.
-           Se isso tudo der certo, guarda a token nas cookies e dá redirect ao perfil do usuário.
-           Se não der certo correr animação de falha-login e pedir credeênciais de novo.
-*/
-
 <script>
-import * as helpers from "../helpers/funcs.js";
-import * as api from "../api/pingAPI.js";
-import * as apiAuth from "../api/loginAPI.js";
+import * as helpers from "../api/helperFuncs.js";
+// import * as api from "../api/pingAPI.js";
+import * as api from "../api/apiCalls.js";
+import store from "../store/index.js";
 export default {
   data() {
     return {
@@ -54,6 +48,7 @@ export default {
       params_errados: false,
     };
   },
+  store: store,
   watch: {
     user: {
       immediate: true,
@@ -88,9 +83,29 @@ export default {
     initLogin() {
       if (this.validarInput(this.user, this.pass)) {
         this.md5_pass = helpers.toMD5(this.pass);
-        console.log(this.md5_pass);
-        api.pingEquipamento();
-        apiAuth.login(this.user, this.md5_pass);
+        this.pass = helpers.toMD5(this.pass);
+        api.callEndPoints("http://localhost:8081/auth", {
+          name: "Login",
+          params: [
+            this.user,
+            this.md5_pass
+          ]
+        }).then((obj) => {
+          //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
+          //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
+          obj.Login.forEach(x => {
+            //  Itera por todos as keys do objeto
+            Object.keys(x).forEach(y => {
+              //  Se foi devolvida uma token
+              if (y.toString() === "token") {
+                this.$store.commit("storeJWToken", obj.Login[0].token);
+                console.log("Sucesso");
+              } else {
+                console.log("Erro");
+              }
+            });
+          });
+        });
       }
     },
   },
