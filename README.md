@@ -1,5 +1,9 @@
 # red-robin
 
+## Projeto final de curso
+
+Este projeto é a front-end do projeto robin, é criado com vue.js, e faz queries à back-end através do projeto dynamic-queries-go.
+
 ## Project setup
 ```
 npm install
