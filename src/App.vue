@@ -2,8 +2,13 @@
   <div class="nav-bar">
     <h2>Robin</h2>
     <ul>
-      <li><router-link to="/">Inicío</router-link></li>
-      <li><router-link to="/login">Login</router-link></li>
+      <li><router-link to="/">Login</router-link></li>
+      <li>
+        <router-link v-if="loggedIn" to="/home">Inicío</router-link>
+      </li>
+      <li>
+        <router-link v-if="loggedIn" to="/registar"> Registar </router-link>
+      </li>
     </ul>
   </div>
   <transition
@@ -20,6 +25,24 @@ import store from "./store/index.js";
 export default {
   el: "#app",
   store: store,
+  data() {
+    return {
+      logado: false,
+    };
+  },
+  computed: {
+    loggedIn() {
+      return store.state.usr_token.length;
+    },
+  },
+  watch: {
+    // A func LoggedIn computed busca o tamanho da usr_token
+    // E no grupo watch, ele escuta por mudanças dessa func,
+    // e muda o estado dos links apartir dessa mudança
+    loggedIn(newLen, oldLen) {
+      this.logado = newLen > 0;
+    },
+  },
 };
 </script>
 

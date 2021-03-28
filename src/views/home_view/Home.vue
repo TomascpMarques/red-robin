@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <h2>AAAAAAAAAAAAAAAAAAAA</h2>
-    <img src="../../assets/logo.svg" alt="" />
+    <h2>MEQUIE</h2>
   </div>
 </template>
 

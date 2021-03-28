@@ -11,8 +11,7 @@
           :titulo="log_tit"
           :tipo="log_tip"
         >
-          <br />
-          <span @click="show = !show" class="close-but"> Fechar </span>
+          <section @click="show = !show" class="close-but">Fechar</section>
         </message>
       </transition>
     </div>
