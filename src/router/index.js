@@ -12,24 +12,27 @@ const routes = [
     component: Login
   },
   {
-    path: "/home",
     name: "Home",
-    get component() {
-      if (store.state.usr_token !== 0) {
-        return Home;
-      }
-      return NoPerm;
-    }
+    path: "/home",
+    component: Home,
+    beforeEnter(to, from, next) {
+      if (store.state.usr_token.length > 1) next();
+      else next({ path: "/bey_dab_baddie", name: "NoPerm" });
+    },
   },
   {
-    path: "/registar",
     name: "Registar",
-    get component() {
-      if (store.state.usr_token !== 0) {
-        return RegistarUser;
-      }
-      return NoPerm;
-    }
+    path: "/registar",
+    component: RegistarUser,
+    beforeEnter(to, from, next) {
+      if (store.state.usr_token.length > 1) next();
+      else next({ path: "/bey_dab_baddie", name: "NoPerm" });
+    },
+  },
+  {
+    path: "/bery_bad_baddie",
+    name: "NoPerm",
+    component: NoPerm,
   }
 ];
 
