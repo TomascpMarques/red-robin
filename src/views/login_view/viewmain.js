@@ -70,11 +70,32 @@ export default {
       this.show = true;
       this.log_tip = "good";
     },
+    getPerfilUser(nomeUsr) {
+      api.callEndPoint("http://localhost:8001", {
+        name: "GetInfoUtilizador",
+        params: [this.user],
+      }).then((obj) => {
+        //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
+        //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
+        obj.GetInfoUtilizador.forEach((x) => {
+          //  Itera por todos as keys do objeto
+          Object.keys(x).forEach((y) => {
+            //  Se foi devolvida uma token
+            if (y.toString() === "user") {
+              this.$store.commit("storePerfilUser", x[y]);
+            } else {
+              this.loginErro("Não foi possível buscar o perfil desse utilizador");
+            }
+          });
+        });
+        console.log(this.$store.state.usr_perfil);
+      });
+    },
     initLogin() {
       this.show = false;
       if (this.validarInput(this.user, this.pass)) {
         this.md5_pass = helpers.toMD5(this.pass);
-        api.callEndPoints("http://localhost:8081/auth", {
+        api.callEndPoint("http://localhost:8081/auth", {
           name: "Login",
           params: [this.user, this.md5_pass],
         }).then((obj) => {
@@ -86,6 +107,7 @@ export default {
               //  Se foi devolvida uma token
               if (y.toString() === "token") {
                 this.loginSucesso(obj.Login[0].token);
+                this.getPerfilUser(this.name);
               } else {
                 this.loginErro(obj.Login[0].erro);
               }

@@ -93,7 +93,7 @@ body {
   padding: 0px;
   font-family: "Oleo Script", cursive;
   font-weight: 400;
-  color: #303030;
+  color: #252525;
   font-size: 3.3rem;
   text-shadow: 2px 2px 0px #d8d8d8;
 }
@@ -121,7 +121,7 @@ body {
 }
 
 .nav-bar a:hover {
-  border-radius: 7px;
+  border-radius: 0px;
   box-shadow: 0px 0px 8px 4px #c7c7c7bd;
 }
 </style>

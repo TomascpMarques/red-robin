@@ -4,7 +4,7 @@ import * as helper from "./helperFuncs.js";
  * @param {object} functions Vetor com os objetos das funções a chamar
  * @returns Retorna uma promessa do request feito ao serviço especificado no url
  */
-export function callEndPoints(url, func) {
+export function callEndPoint(url, func) {
   return fetch(url, {
     method: "post",
     mode: "cors",

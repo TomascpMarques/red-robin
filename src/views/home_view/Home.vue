@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>MEQUIE</h2>
+    <h1>Bem vindo, {{ usr_nome }}.</h1>
   </div>
 </template>
 

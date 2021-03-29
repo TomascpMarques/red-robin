@@ -39,3 +39,17 @@ export function gerarAction(func) {
 export function toMD5(str) {
   return crypto.MD5(str).toString();
 };
+
+export function getEndpointValores(respObj, endpoint, retorno, erro) {
+  respObj[endpoint].forEach((func) => {
+    Object.keys(func).forEach((funcReturns) => {
+      if (funcReturns.toString === retorno) {
+        return func[funcReturns];
+      } else if (funcReturns.toString === erro) {
+        return null;
+      } else {
+        return null;
+      }
+    });
+  });
+}
