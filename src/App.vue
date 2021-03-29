@@ -121,7 +121,7 @@ body {
 }
 
 .nav-bar a:hover {
-  border-radius: 0px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px 4px #c7c7c7bd;
 }
 </style>
