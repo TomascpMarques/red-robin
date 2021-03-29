@@ -50,4 +50,4 @@
 </template>
 
 <script src="./viewmain.js"></script>
-<style src="./style.css"></style>
+<style scoped src="./style.css"></style>
