@@ -88,7 +88,6 @@ export default {
             }
           });
         });
-        console.log(this.$store.state.usr_perfil);
       });
     },
     initLogin() {
