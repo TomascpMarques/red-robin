@@ -16,6 +16,15 @@ export default createStore({
     },
     storePerfilUser(state, perfil) {
       state.usr_perfil = perfil;
+    },
+    apagarJWToken(state) {
+      state.usr_token = "";
+    },
+    apagarUserProfile(state) {
+      state.usr_perfil = "";
+    },
+    limparSessionStorage() {
+      window.localStorage.clear();
     }
   },
   actions: {},

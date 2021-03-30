@@ -81,8 +81,10 @@ export default {
           //  Itera por todos as keys do objeto
           Object.keys(x).forEach((y) => {
             //  Se foi devolvida uma token
+            console.log(x[y], y);
             if (y.toString() === "user") {
               this.$store.commit("storePerfilUser", x[y]);
+              console.log("-> ", x[y]);
             } else {
               this.loginErro("Não foi possível buscar o perfil desse utilizador");
             }

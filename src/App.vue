@@ -2,13 +2,13 @@
   <div class="nav-bar">
     <h2>Robin</h2>
     <ul>
-      <li><router-link to="/">Login</router-link></li>
       <li>
         <router-link v-if="loggedIn" to="/home">Inicío</router-link>
       </li>
       <li>
         <router-link v-if="loggedIn" to="/registar"> Registar </router-link>
       </li>
+      <li><router-link to="/">Login</router-link></li>
     </ul>
   </div>
   <transition

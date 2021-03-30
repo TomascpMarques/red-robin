@@ -71,30 +71,33 @@ h3 {
 }
 
 .circle-red {
-	width: var(--circle-radius);
-	height: var(--circle-radius);
+	width: 1.5vh;
+	height: 3.5vh;
 	box-shadow: var(--circle-inner-shadow);
-	background-color: #f33d3d;
+	transform: rotatez(45deg);
 	border-radius: 500px;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
+	background-color: #f33d3d;
 }
 
 .circle-yellow {
-	width: var(--circle-radius);
-	height: var(--circle-radius);
+	width: 1.5vh;
+	height: 3.5vh;
 	box-shadow: var(--circle-inner-shadow);
-	background-color: #dbff00;
 	border-radius: 500px;
-	margin-bottom: 10px;
+	transform: rotatez(45deg);
+	margin-bottom: 0px;
+	background-color: #dbff00;
 }
 
 .circle-green {
-	width: var(--circle-radius);
-	height: var(--circle-radius);
+	width: 1.5vh;
+	height: 3.5vh;
 	box-shadow: var(--circle-inner-shadow);
-	background-color: #24c820;
 	border-radius: 500px;
+	transform: rotatez(45deg);
 	margin-bottom: 15px;
+	background-color: #24c820;
 }
 
 .login-form {
