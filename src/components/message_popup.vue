@@ -44,9 +44,9 @@ export default {
   flex-wrap: nowrap;
   place-items: center;
   margin: 4%;
-  margin-top: 0;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
   z-index: 9;
+  width: max-content;
   max-width: 450px;
 }
 

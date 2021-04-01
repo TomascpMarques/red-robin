@@ -81,3 +81,41 @@
 .link:hover {
     color: #1e6ce1;
 }
+
+.logbutton {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    margin: 1rem;
+    margin-top: 20%;
+}
+
+.logbutton button {
+    margin-left: 0;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: .6rem 1.5rem;
+    border: 3px solid tomato;
+    background-color: tomato;
+    color: white;
+    box-shadow: 6px 6px 3px 0px lightgray;
+    transition: .25s all ease-in-out;
+    outline: red;
+}
+
+.logbutton button:hover {
+    padding: .8rem 1.8rem;
+    border-color: red;
+    break-inside: auto;
+}
+
+.legenda {
+    font-size: .85rem;
+    margin-top: .2rem;
+    color: rgb(189, 189, 189);
+    letter-spacing: 1px;
+    font-weight: bold;
+}

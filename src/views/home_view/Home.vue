@@ -48,8 +48,11 @@
             </ul>
           </div>
         </content-box>
+        <div class="logbutton">
+          <button @click="initLogOut()">Logout</button>
+          <span class="legenda">Terminar Sessão</span>
+        </div>
       </div>
-      <button @click="initLogOut()">Logout</button>
     </div>
   </div>
 </template>
