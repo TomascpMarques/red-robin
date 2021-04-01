@@ -206,7 +206,7 @@ img:hover {
 .status-top-bar {
   width: 100%;
   height: 0.4rem;
-  background-color: #24c820;
+  background-color: tomato;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -232,10 +232,15 @@ img:hover {
   color: white;
   margin-bottom: 0.5rem;
   transition: 0.3s all ease-in-out;
+  outline: blue;
 }
 
 .menss:hover {
   transform: translateY(-3px);
   cursor: pointer;
+}
+
+.menss:active {
+  border: 2px solid blue;
 }
 </style>

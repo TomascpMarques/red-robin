@@ -64,6 +64,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #e4e4e4;
+  scroll-behavior: smooth;
 }
 
 #app {

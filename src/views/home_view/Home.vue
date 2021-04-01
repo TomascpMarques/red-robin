@@ -11,9 +11,32 @@
           :titulo="'Terminar sessão'"
           :tipo="'warn'"
         >
-          <section @click="logOut()" class="close-but" style="color: red">
-            Terminar Sessão
-          </section>
+          <div style="display: flex; justify-content: space-between">
+            <section
+              @click="logOut()"
+              class="close-but"
+              style="
+                color: red;
+                cursor: pointer;
+                font-weight: bold;
+                margin-top: 0.3rem;
+              "
+            >
+              Terminar Sessão
+            </section>
+            <section
+              @click="sess = !sess"
+              class="close-but"
+              style="
+                color: lightgray;
+                cursor: pointer;
+                font-weight: bold;
+                margin-top: 0.3rem;
+              "
+            >
+              X
+            </section>
+          </div>
         </message>
       </transition>
     </div>

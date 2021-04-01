@@ -43,11 +43,11 @@ export default {
   flex-direction: column;
   flex-wrap: nowrap;
   place-items: center;
-  margin: 4%;
   margin-top: 1rem;
-  z-index: 9;
+  margin-bottom: 1rem;
+  z-index: 10;
   width: max-content;
-  max-width: 450px;
+  max-width: 350px;
 }
 
 .top-bar-green {

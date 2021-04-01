@@ -3,6 +3,7 @@ import Home from "../views/home_view/Home.vue";
 import Login from "../views/login_view/Login.vue";
 import NoPerm from "../views/noPerm_view/NoPerm.vue";
 import RegistarUser from "../views/registar_view/RegistarUser.vue";
+import * as api from "../api/apiCalls.js";
 import store from "../store/index.js";
 
 const routes = [
@@ -16,8 +17,16 @@ const routes = [
     path: "/home",
     component: Home,
     beforeEnter(to, from, next) {
-      if (store.state.usr_token.length > 1) next();
-      else next({ path: "/bey_dab_baddie", name: "NoPerm" });
+      api.callEndPoint("http://localhost:8081/auth", {
+        name: "VerificarTokenUser",
+        params: [store.state.usr_token],
+      }).then((obj) => {
+        console.log(obj.VerificarTokenUser[0]);
+        console.log(store.state.usr_token);
+        if (obj.VerificarTokenUser[0] === "OK") {
+          next();
+        } else next({ path: "/bery_bad_baddie", name: "NoPerm" });
+      });
     },
   },
   {
@@ -25,8 +34,16 @@ const routes = [
     path: "/registar",
     component: RegistarUser,
     beforeEnter(to, from, next) {
-      if (store.state.usr_token.length > 1) next();
-      else next({ path: "/bey_dab_baddie", name: "NoPerm" });
+      api.callEndPoint("http://localhost:8081/auth", {
+        name: "VerificarTokenUser",
+        params: [store.state.usr_token],
+      }).then((obj) => {
+        console.log(obj.VerificarTokenUser[0]);
+        console.log(store.state.usr_token);
+        if (obj.VerificarTokenUser[0] === "OK") {
+          next();
+        } else next({ path: "/bery_bad_baddie", name: "NoPerm" });
+      });
     },
   },
   {

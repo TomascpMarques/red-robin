@@ -2,14 +2,11 @@ import store from "../../store/index.js";
 import usrcard from "../../components/usr_card.vue";
 import contentBox from "../../components/content_box.vue";
 import message from "../../components/message_popup.vue";
+// import * as api from "../../api/apiCalls.js";
 import { Object } from "core-js";
 export default {
   name: "Home",
   store: store,
-  beforeRouteEnter(to, from, next) {
-    if (store.state.usr_token.length > 1) next();
-    else next({ path: "/bey_dab_baddie", name: "NoPerm" });
-  },
   components: {
     usrcard,
     contentBox,
