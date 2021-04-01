@@ -21,8 +21,6 @@ const routes = [
         name: "VerificarTokenUser",
         params: [store.state.usr_token],
       }).then((obj) => {
-        console.log(obj.VerificarTokenUser[0]);
-        console.log(store.state.usr_token);
         if (obj.VerificarTokenUser[0] === "OK") {
           next();
         } else next({ path: "/bery_bad_baddie", name: "NoPerm" });
@@ -38,8 +36,6 @@ const routes = [
         name: "VerificarTokenUser",
         params: [store.state.usr_token],
       }).then((obj) => {
-        console.log(obj.VerificarTokenUser[0]);
-        console.log(store.state.usr_token);
         if (obj.VerificarTokenUser[0] === "OK") {
           next();
         } else next({ path: "/bery_bad_baddie", name: "NoPerm" });

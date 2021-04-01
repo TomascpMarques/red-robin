@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>E permissões bro...?</h1>
+    <h1>Não tens permissões sufecientes para aceder a esta página.</h1>
   </div>
 </template>
 
