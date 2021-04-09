@@ -29,16 +29,6 @@ export default {
       anim: false,
     };
   },
-  watch: {
-    anim: {
-      immediate: true,
-      handler() {
-        if (this.anim === false) {
-          console.log(this.anim);
-        }
-      },
-    },
-  },
 };
 </script>
 

@@ -21,10 +21,11 @@
           <span class="nome"> {{ nome }}</span>
           <span class="nome_sis"> {{ user }}</span>
         </div>
+        <span class="correio">{{ email }}</span>
         <div class="status">
           <div class="status-top-bar"></div>
           <div class="status-menss">
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <p>{{ status }}</p>
           </div>
         </div>
         <button class="menss">Mensagem</button>
@@ -41,11 +42,20 @@ export default {
     user: String,
     nome: String,
     status: String,
+    email: String,
   },
 };
 </script>
 
 <style scoped>
+.correio {
+  margin: 0;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: rgb(192, 192, 192);
+  font-weight: bold;
+}
+
 .usr-perfil {
   display: flex;
   flex-direction: column;

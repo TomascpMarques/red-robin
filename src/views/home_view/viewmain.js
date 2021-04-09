@@ -16,6 +16,8 @@ export default {
     return {
       user: this.$store.state.usr_perfil.user,
       nome: this.$store.state.usr_perfil.nome,
+      status: this.$store.state.usr_perfil.status,
+      email: this.$store.state.usr_perfil.email,
       items: {},
       especialidades: this.$store.state.usr_perfil.especialidades,
       sess: false

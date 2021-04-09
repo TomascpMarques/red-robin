@@ -44,7 +44,7 @@
       Bem vindo,<span class="nome-tit">{{ nome }}</span>
     </h1>
     <div class="disposicao">
-      <usrcard :nome="nome" :user="user" />
+      <usrcard :nome="nome" :user="user" :status="status" :email="email" />
       <div class="side-content">
         <contentBox :titulo="'Contribuições'">
           <div class="contribuicoes-valores">

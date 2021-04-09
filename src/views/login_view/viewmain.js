@@ -114,6 +114,9 @@ export default {
               }
             });
           });
+        }).catch((error) => {
+          this.loginErro("Erro ao fazer login, o servidor pode estar em baixo");
+          return error;
         });
       }
     },
