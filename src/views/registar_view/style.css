@@ -1,0 +1,83 @@
+.pagina {
+    margin-top: 1.5rem;
+}
+
+h2 {
+    font-family: "Roboto", cursive;
+    letter-spacing: 2px;
+    padding: 5px;
+    margin-top: .6rem;
+    margin-bottom: 0rem;
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-weight: 650;
+    font-size: 1.4rem;
+    font-family: "Nunito", cursive;
+    margin: .5rem 0rem;
+    margin-top: .7rem;
+}
+
+.registar-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0rem 1.3rem;
+    padding-bottom: 1.5rem;
+    background-color: var(--white);
+}
+
+.titulo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    place-items: center;
+    margin-top: 1rem;
+}
+
+.user-auth {
+    justify-content: left;
+}
+
+.user-profile {
+    justify-content: left;
+}
+
+.inner {
+    margin-left: .3rem;
+    padding: .05rem 0;
+    transition: .25s all ease-in-out;
+}
+
+.submit {
+    width: 100%;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+
+.submit button {
+    padding: .4rem .8rem;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-family: "Oleo Script";
+    color: #fefefe;
+    background-color: var(--orange);
+    border: none;
+    border: 3px solid var(--orange);
+    box-shadow: var(--wrapper-shadow);
+    border-radius: 4px;
+    transition: .3s all ease-in-out;
+    width: 40%;
+}
+
+.submit button:hover {
+    cursor: pointer;
+    width: 90%;
+}
+
+button:focus {
+    outline: none;
+}
