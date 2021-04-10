@@ -13,11 +13,8 @@
 
 <script>
 export default {
-  props: {
-    titulo: String,
-    menssagem: String,
-    tipo: String,
-  },
+  name: "messagePopUp",
+  props: ["titulo", "menssagem", "tipo"],
   methods: {
     checkTipo() {
       if (this.tipo === "good") {

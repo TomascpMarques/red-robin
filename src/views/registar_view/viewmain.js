@@ -8,4 +8,18 @@ export default {
   },
   name: "RegistarUser",
   store: store,
+  data() {
+    return {
+      usrName: "",
+      password: "",
+      nome: "",
+      email: "",
+      especialidades: ""
+    };
+  },
+  methods: {
+    init() {
+      console.log(this.usrName, this.password, this.nome, this.email, this.especialidades);
+    },
+  },
 };

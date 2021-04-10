@@ -9,6 +9,7 @@ h2 {
     margin-top: .6rem;
     margin-bottom: 0rem;
     font-size: 1.8rem;
+    text-align: center;
 }
 
 h3 {
@@ -26,6 +27,7 @@ h3 {
     padding: 0rem 1.3rem;
     padding-bottom: 1.5rem;
     background-color: var(--white);
+    min-width: 33vw;
 }
 
 .titulo {

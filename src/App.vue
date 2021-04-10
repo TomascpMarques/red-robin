@@ -1,6 +1,9 @@
 <template>
   <div class="nav-bar">
-    <h2>Robin</h2>
+    <div class="tit">
+      <h2>Robin</h2>
+      <img src="./assets/logo.svg" alt="" />
+    </div>
     <ul>
       <li>
         <router-link v-if="loggedIn" to="/home">Inicío</router-link>
@@ -74,6 +77,17 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   place-items: center;
+}
+
+.tit {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  margin-left: 1rem;
+}
+
+.tit img {
+  width: 7vh;
 }
 
 .nav-bar {

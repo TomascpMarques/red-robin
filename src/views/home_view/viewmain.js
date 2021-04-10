@@ -24,10 +24,10 @@ export default {
     };
   },
   mounted() {
-    var xx = this.$store.state.usr_perfil.contribuicoes;
-    for (var x = 0; x < xx.length; x++) {
-      console.log(Object.keys(xx[x]).toString());
-      this.items[Object.keys(xx[x]).toString()] = xx[x];
+    var contribuicoes = this.$store.state.usr_perfil.contribuicoes;
+    for (var x = 0; x < contribuicoes.length; x++) {
+      console.log(Object.keys(contribuicoes[x]).toString());
+      this.items[Object.keys(contribuicoes[x]).toString()] = contribuicoes[x];
     };
   },
   methods: {

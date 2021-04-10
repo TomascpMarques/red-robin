@@ -14,16 +14,16 @@
       @blur="anim = false"
       type="text"
       :placeholder="[[place]]"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    input_tit: String,
-    place: String,
-  },
+  name: "inputCombo",
+  props: ["input_tit", "place", "modelValue"],
   data() {
     return {
       anim: false,

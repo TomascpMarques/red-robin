@@ -37,13 +37,9 @@
 <script>
 import store from "../store/index.js";
 export default {
+  name: "usrCard",
   store: store,
-  props: {
-    user: String,
-    nome: String,
-    status: String,
-    email: String,
-  },
+  props: ["user", "nome", "status", "email"],
 };
 </script>
 

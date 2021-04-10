@@ -12,9 +12,8 @@
 
 <script>
 export default {
-  props: {
-    titulo: String,
-  },
+  name: "cntBox",
+  props: ["titulo:"],
 };
 </script>
 
