@@ -17,7 +17,7 @@ const routes = [
     path: "/home",
     component: Home,
     beforeEnter(to, from, next) {
-      api.callEndPoint("http://localhost:8081/auth", {
+      api.callEndPoint("http://localhost:8081", {
         name: "VerificarTokenUser",
         params: [store.state.usr_token],
       }).then((obj) => {
@@ -32,7 +32,7 @@ const routes = [
     path: "/registar",
     component: RegistarUser,
     beforeEnter(to, from, next) {
-      api.callEndPoint("http://localhost:8081/auth", {
+      api.callEndPoint("http://localhost:8081", {
         name: "VerificarTokenUser",
         params: [store.state.usr_token],
       }).then((obj) => {

@@ -83,3 +83,7 @@ h3 {
 button:focus {
     outline: none;
 }
+
+.bad-pass {
+    border-color: tomato;
+}

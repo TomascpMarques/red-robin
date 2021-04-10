@@ -96,7 +96,7 @@ export default {
       this.show = false;
       if (this.validarInput(this.user, this.pass)) {
         this.md5_pass = helpers.toMD5(this.pass);
-        api.callEndPoint("http://localhost:8081/auth", {
+        api.callEndPoint("http://localhost:8081", {
           name: "Login",
           params: [this.user, this.md5_pass],
         }).then((obj) => {

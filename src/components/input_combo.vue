@@ -12,21 +12,24 @@
     <input
       @focus="anim = true"
       @blur="anim = false"
+      @input="$emit('update:modelValue', $event.target.value)"
       type="text"
       :placeholder="[[place]]"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      v-bind:class="{ bad: tt }"
     />
+    {{ estado }}
   </div>
 </template>
 
 <script>
 export default {
   name: "inputCombo",
-  props: ["input_tit", "place", "modelValue"],
+  props: ["input_tit", "place", "modelValue", "estado"],
   data() {
     return {
       anim: false,
+      tt: this.estado,
     };
   },
 };
@@ -80,5 +83,18 @@ input:hover {
 
 .input-comobo input::placeholder {
   color: lightgray;
+}
+
+.bad {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid tomato;
+  padding: 0.5rem;
+  transition: 0.3s all ease-in;
+  font-size: 0.95rem;
+  font-family: "Nunito";
+  font-weight: 700;
+  transition: 0.3s all ease-in-out;
 }
 </style>

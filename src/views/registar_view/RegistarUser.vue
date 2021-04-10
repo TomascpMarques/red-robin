@@ -17,8 +17,11 @@
               :place="'Palavra Passe'"
             />
             <inpCombo
+              @keypress="verificarPasseCoincide()"
+              v-model="repPassword"
               :input_tit="'Repetir a Palavra Passe'"
               :place="'Repetir a Palavra Passe'"
+              :estado="true"
             />
           </div>
           <div class="user-profile">

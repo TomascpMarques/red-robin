@@ -12,14 +12,23 @@ export default {
     return {
       usrName: "",
       password: "",
+      repPassword: "",
       nome: "",
       email: "",
       especialidades: ""
     };
   },
   methods: {
+    verificarPasseCoincide() {
+      console.log("test da PasseCoincide");
+      return this.repPassword === this.password;
+    },
+    verificarDadosBase() {
+      console.log("test da VerDadosBase");
+      return !this.usrName || !this.password;
+    },
     init() {
-      console.log(this.usrName, this.password, this.nome, this.email, this.especialidades);
+      console.log(this.usrName, this.password, this.repPassword, this.nome, this.email, this.especialidades);
     },
   },
 };
