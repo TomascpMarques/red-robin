@@ -13,7 +13,7 @@
 <script>
 export default {
   name: "cntBox",
-  props: ["titulo:"],
+  props: ["titulo"],
 };
 </script>
 

@@ -24,18 +24,42 @@
       </div>
       <div class="login-form">
         <div class="inner-log-form">
-          <input
-            type="text"
-            v-bind:class="[params_errados === true ? 'erro' : 'user']"
-            placeholder="Utilizador"
-            v-model="user"
-          />
-          <input
-            type="password"
-            v-bind:class="[params_errados === true ? 'erro' : 'paswwd']"
-            placeholder="Password"
-            v-model="pass"
-          />
+          <div class="inputs">
+            <transition
+              mode="in-out"
+              enter-active-class="animate__animated animate__fadeInUp"
+              leave-active-class="animate__animated animate__fadeOutDown"
+            >
+              <div v-if="anim">
+                <span> Utilizador: </span>
+              </div>
+            </transition>
+            <input
+              type="text"
+              v-bind:class="[params_errados === true ? 'erro' : 'user']"
+              placeholder="Utilizador"
+              v-model="user"
+              @click="anim = true"
+            />
+          </div>
+          <div class="inputs">
+            <transition
+              mode="in-out"
+              enter-active-class="animate__animated animate__fadeInUp"
+              leave-active-class="animate__animated animate__fadeOutDown"
+            >
+              <div v-if="anim">
+                <span> Password: </span>
+              </div>
+            </transition>
+            <input
+              type="password"
+              v-bind:class="[params_errados === true ? 'erro' : 'paswwd']"
+              placeholder="Password"
+              v-model="pass"
+              @click="anim = true"
+            />
+          </div>
           <button
             :class="{ login: login, 'login-button': true }"
             @click.prevent="initLogin()"

@@ -17,6 +17,7 @@ export default {
       log_tit: "",
       log_mss: "",
       log_tip: "",
+      anim: false,
     };
   },
   store: store,

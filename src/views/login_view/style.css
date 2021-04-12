@@ -1,3 +1,18 @@
+.inputs {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	width: 100%;
+	gap: .4rem;
+}
+
+.inputs span {
+	color: lightgray;
+	font-weight: 600;
+	letter-spacing: 1px;
+	font-family: "Roboto";
+}
+
 .erro {
 	width: 93%;
 	padding: 10px;

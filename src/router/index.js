@@ -17,9 +17,10 @@ const routes = [
     path: "/home",
     component: Home,
     beforeEnter(to, from, next) {
-      api.callEndPoint("http://localhost:8081", {
+      api.callEndPoint("http://localhost:8081/", {
         name: "VerificarTokenUser",
-        params: [store.state.usr_token],
+        // assim envia a string "empty", se o utilizador não estiver autenticado
+        params: [store.state.usr_token ? store.state.usr_token : "empty"],
       }).then((obj) => {
         if (obj.VerificarTokenUser[0] === "OK") {
           next();
@@ -32,9 +33,10 @@ const routes = [
     path: "/registar",
     component: RegistarUser,
     beforeEnter(to, from, next) {
-      api.callEndPoint("http://localhost:8081", {
+      api.callEndPoint("http://localhost:8081/", {
         name: "VerificarTokenUser",
-        params: [store.state.usr_token],
+        // assim envia a string "empty", se o utilizador não estiver autenticado
+        params: [store.state.usr_token ? store.state.usr_token : "empty"],
       }).then((obj) => {
         if (obj.VerificarTokenUser[0] === "OK") {
           next();

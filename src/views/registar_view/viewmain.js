@@ -15,12 +15,18 @@ export default {
       repPassword: "",
       nome: "",
       email: "",
-      especialidades: ""
+      especialidades: "",
+      usrErro: false,
+      passErro: false,
+      repErro: false,
+      nomeErro: false,
+      emailErro: false,
+      especErro: false,
     };
   },
   methods: {
     verificarPasseCoincide() {
-      console.log("test da PasseCoincide");
+      /* Se as passes não coincidirem, devolve false */
       return this.repPassword === this.password;
     },
     verificarDadosBase() {
@@ -29,6 +35,7 @@ export default {
     },
     init() {
       console.log(this.usrName, this.password, this.repPassword, this.nome, this.email, this.especialidades);
+      this.repErro = !this.verificarPasseCoincide();
     },
   },
 };

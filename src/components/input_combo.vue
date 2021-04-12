@@ -13,29 +13,100 @@
       @focus="anim = true"
       @blur="anim = false"
       @input="$emit('update:modelValue', $event.target.value)"
-      type="text"
+      :type="[[tipo]]"
       :placeholder="[[place]]"
       :value="modelValue"
-      v-bind:class="{ bad: tt }"
+      v-bind:class="['input-comobo-input', tt ? 'bad' : '']"
+      autocomplete="off"
     />
-    {{ estado }}
+    <div class="mostrar-pass tooltip" v-if="field === 'password'">
+      <label @click="[[tipo]] = 'text'"> Ver Password </label>
+      <div class="tooltiptext">
+        {{ passInp }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "inputCombo",
-  props: ["input_tit", "place", "modelValue", "estado"],
+  props: ["input_tit", "place", "modelValue", "estado", "tipo", "passInp"],
   data() {
     return {
       anim: false,
-      tt: this.estado,
+      tt: null,
+      field: this.tipo,
     };
+  },
+  watch: {
+    estado: {
+      immediate: true,
+      handler() {
+        this.estado ? (this.tt = true) : (this.tt = false);
+      },
+    },
   },
 };
 </script>
 
 <style scoped>
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  opacity: 0;
+  width: 40%;
+  background-color: #d3d3d3;
+  color: #323232;
+  text-align: left;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 3px solid #d0d0d0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: "Nunito";
+  letter-spacing: 1px;
+  line-height: 0.95rem;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  transition: 0.3s all ease-in-out;
+  opacity: 1;
+  top: -5px;
+  left: 103%;
+}
+
+.mostrar-pass {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: center;
+  place-items: center;
+  gap: 0.4em;
+}
+
+.mostrar-pass label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  transition: 0.14s all ease-in;
+  user-select: none;
+}
+
+.mostrar-pass label:hover {
+  color: var(--orange);
+}
+
 .input-comobo {
   padding-left: 0.5rem;
   font-family: "Roboto";
@@ -56,7 +127,7 @@ export default {
   margin-bottom: 0.2rem;
 }
 
-.input-comobo input {
+.input-comobo-input {
   background-color: transparent;
   outline: none;
   border: none;
@@ -69,19 +140,19 @@ export default {
   transition: 0.3s all ease-in-out;
 }
 
-input:hover {
+.input-comobo-input:hover {
   border-color: #95c7ff;
 }
 
-.input-comobo input:focus {
+.input-comobo-input:focus {
   border-bottom: 2px solid var(--blue);
 }
 
-.input-comobo input:focus::placeholder {
+.input-comobo-input:focus::placeholder {
   color: transparent;
 }
 
-.input-comobo input::placeholder {
+.input-comobo-input::placeholder {
   color: lightgray;
 }
 
