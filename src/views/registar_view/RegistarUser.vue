@@ -11,6 +11,8 @@
               :input_tit="'Nome de Utilizador:'"
               :place="'Nome de Utilizador'"
               :estado="usrErro"
+              :erro="'O user já existe ou é inválido.'"
+              @keyup="verificarUsrNameAval()"
             />
             <inpCombo
               v-model="password"

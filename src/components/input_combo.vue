@@ -16,9 +16,14 @@
       :type="[[tipo]]"
       :placeholder="[[place]]"
       :value="modelValue"
-      v-bind:class="['input-comobo-input', tt ? 'bad' : '']"
+      v-bind:class="['input-comobo-input', inputErro ? 'bad' : '']"
       autocomplete="off"
     />
+    <div v-if="estado" class="error-message">
+      <p>
+        {{ erro }}
+      </p>
+    </div>
     <div class="mostrar-pass tooltip" v-if="field === 'password'">
       <label @click="[[tipo]] = 'text'"> Ver Password </label>
       <div class="tooltiptext">
@@ -31,11 +36,19 @@
 <script>
 export default {
   name: "inputCombo",
-  props: ["input_tit", "place", "modelValue", "estado", "tipo", "passInp"],
+  props: [
+    "input_tit",
+    "place",
+    "modelValue",
+    "estado",
+    "tipo",
+    "passInp",
+    "erro",
+  ],
   data() {
     return {
       anim: false,
-      tt: null,
+      inputErro: null,
       field: this.tipo,
     };
   },
@@ -43,7 +56,7 @@ export default {
     estado: {
       immediate: true,
       handler() {
-        this.estado ? (this.tt = true) : (this.tt = false);
+        this.estado ? (this.inputErro = true) : (this.inputErro = false);
       },
     },
   },
@@ -51,6 +64,24 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  margin: 0.3rem;
+}
+
+.error-message p {
+  padding: 0.2rem;
+  margin: 0;
+  background-color: tomato;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  color: white;
+  font-family: consolas;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  place-items: center;
+}
+
 /* Tooltip container */
 .tooltip {
   position: relative;
@@ -59,7 +90,7 @@ export default {
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-  opacity: 0;
+  display: none;
   width: 40%;
   background-color: #d3d3d3;
   color: #323232;
@@ -72,18 +103,16 @@ export default {
   font-family: "Nunito";
   letter-spacing: 1px;
   line-height: 0.95rem;
-
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-  transition: 0.3s all ease-in-out;
-  opacity: 1;
+  display: inline-block;
   top: -5px;
   left: 103%;
+  transition: 0.3s all ease-in-out;
 }
 
 .mostrar-pass {
