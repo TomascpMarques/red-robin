@@ -15,21 +15,24 @@
               @keyup="verificarUsrNameAval()"
             />
             <inpCombo
+              @keyup="verificarPasseValida()"
+              :erro="'A palavra-passe não é válida.'"
               v-model="password"
               :input_tit="'Palavra Passe'"
               :place="'Palavra Passe'"
               :estado="passErro"
               :tipo="'password'"
-              :passInp="'Ao mudares a palavra passe ela volta a ficar escondida.'"
+              :passInp="'A passe deve ter 8 caracteres ou mais e conter números e caracteres especiais'"
             />
             <inpCombo
-              @keyup="init()"
+              @keyup="verificarPasseCoincide()"
               v-model="repPassword"
               :tipo="'password'"
               :input_tit="'Repetir a Palavra Passe'"
               :place="'Repetir a Palavra Passe'"
               :estado="repErro"
-              :passInp="'Ao mudares a palavra passe ela volta a ficar escondida.'"
+              :erro="'Não coincide com a palavra-passe.'"
+              :passInp="' A passe deve ter 8 caracteres ou mais e conter números e caracteres especiais'"
             />
           </div>
           <div class="user-profile">

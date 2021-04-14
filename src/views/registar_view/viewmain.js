@@ -23,7 +23,8 @@ export default {
       nomeErro: false,
       emailErro: false,
       especErro: false,
-      timeoutUsrName: null
+      timeoutUsrName: null,
+      timeoutPassword: null
     };
   },
   methods: {
@@ -43,9 +44,22 @@ export default {
         });
       }, 1750);
     },
+    verificarPasseValida() {
+      clearTimeout(this.timeoutPassword);
+      this.timeoutPassword = setTimeout(() => {
+        if (this.password.match(/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/gm)) {
+          this.passErro = false;
+        } else {
+          this.passErro = true;
+        }
+      }, 1000);
+    },
     verificarPasseCoincide() {
-      /* Se as passes não coincidirem, devolve false */
-      return this.repPassword === this.password;
+      if (this.repPassword !== this.password) {
+        this.repErro = true;
+      } else {
+        this.repErro = false;
+      }
     },
     verificarDadosBase() {
       console.log("test da VerDadosBase");
@@ -53,7 +67,6 @@ export default {
     },
     init() {
       console.log(this.usrName, this.password, this.repPassword, this.nome, this.email, this.especialidades);
-      this.repErro = !this.verificarPasseCoincide();
     },
   },
 };

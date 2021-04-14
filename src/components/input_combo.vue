@@ -3,7 +3,7 @@
     <transition
       mode="in-out"
       enter-active-class="animate__animated animate__fadeInUp"
-      leave="animate__animated animate__fadeOutDown"
+      leave-active-class="animate__animated animate__fadeOutDown"
     >
       <div v-if="anim">
         <span> {{ input_tit }} </span>
@@ -13,21 +13,31 @@
       @focus="anim = true"
       @blur="anim = false"
       @input="$emit('update:modelValue', $event.target.value)"
-      :type="[[tipo]]"
+      :type="fieldTipo"
       :placeholder="[[place]]"
       :value="modelValue"
       v-bind:class="['input-comobo-input', inputErro ? 'bad' : '']"
       autocomplete="off"
     />
-    <div v-if="estado" class="error-message">
+    <div class="error-message" v-if="estado">
       <p>
         {{ erro }}
       </p>
     </div>
-    <div class="mostrar-pass tooltip" v-if="field === 'password'">
-      <label @click="[[tipo]] = 'text'"> Ver Password </label>
+    <div class="mostrar-pass tooltip" v-if="fieldDefault === 'password'">
+      <label
+        @click="
+          pass = !pass;
+          test();
+        "
+      >
+        Ver Password
+      </label>
+      <div :class="[fieldTipo === 'password' ? 'norm' : 'pass']"></div>
       <div class="tooltiptext">
-        {{ passInp }}
+        <p>
+          {{ passInp }}
+        </p>
       </div>
     </div>
   </div>
@@ -49,8 +59,15 @@ export default {
     return {
       anim: false,
       inputErro: null,
-      field: this.tipo,
+      fieldDefault: this.tipo,
+      fieldTipo: this.tipo,
+      pass: true,
     };
+  },
+  methods: {
+    test() {
+      this.pass ? (this.fieldTipo = "password") : (this.fieldTipo = "text");
+    },
   },
   watch: {
     estado: {
@@ -64,34 +81,31 @@ export default {
 </script>
 
 <style scoped>
-.error-message {
-  margin: 0.3rem;
+.pass {
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: var(--orange);
+  border-radius: 100px;
+  transition: 0.15s all ease-in-out;
 }
 
-.error-message p {
-  padding: 0.2rem;
-  margin: 0;
-  background-color: tomato;
-  border: 2px solid transparent;
-  border-radius: 4px;
-  color: white;
-  font-family: consolas;
-  font-weight: bold;
-  text-align: center;
-  justify-content: center;
-  place-items: center;
+.norm {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: lightgray;
+  border-radius: 100px;
+  transition: 0.15s all ease-in-out;
 }
 
 /* Tooltip container */
 .tooltip {
   position: relative;
-  display: inline-block;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
   display: none;
-  width: 40%;
+  width: 52%;
   background-color: #d3d3d3;
   color: #323232;
   text-align: left;
@@ -105,6 +119,10 @@ export default {
   line-height: 0.95rem;
   position: absolute;
   z-index: 1;
+}
+
+.tooltiptext p {
+  margin: 0 0.5rem;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
@@ -196,5 +214,21 @@ export default {
   font-family: "Nunito";
   font-weight: 700;
   transition: 0.3s all ease-in-out;
+}
+
+.error-message {
+  margin: 0.3rem;
+}
+
+.error-message p {
+  padding: 0.2rem;
+  margin: 0;
+  background-color: tomato;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  color: white;
+  font-family: consolas;
+  font-weight: bold;
+  text-align: center;
 }
 </style>
