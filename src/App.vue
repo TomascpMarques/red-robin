@@ -239,7 +239,7 @@ body {
 .item-menu {
   display: flex;
   place-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: row;
   min-width: 11.5vh;
 }

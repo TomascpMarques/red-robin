@@ -1,5 +1,6 @@
 import cntboxside from "../../components/content_box_side.vue";
 import inpCombo from "../../components/input_combo.vue";
+import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
 import store from "../../store/index.js";
 export default {
@@ -14,12 +15,14 @@ export default {
       usrName: "",
       password: "",
       repPassword: "",
+      permissoes: 3,
       nome: "",
       email: "",
       especialidades: "",
       usrErro: false,
       passErro: false,
       repErro: false,
+      permsErro: false,
       nomeErro: false,
       emailErro: false,
       especErro: false,
@@ -35,10 +38,9 @@ export default {
           name: "VerificarUserExiste",
           params: [this.usrName ? this.usrName : "*", store.state.usr_token],
         }).then((obj) => {
-          console.log(obj.VerificarUserExiste[0].existe);
           if (obj.VerificarUserExiste[0].existe) {
             this.usrErro = true;
-          } else {
+          } else if (this.usrName.length > 4) {
             this.usrErro = false;
           }
         });
@@ -57,19 +59,35 @@ export default {
     verificarPasseCoincide() {
       clearTimeout(this.timeoutPassword);
       this.timeoutPassword = setTimeout(() => {
-        if (this.repPassword !== this.password) {
-          this.repErro = true;
-        } else {
-          this.repErro = false;
-        }
+        this.passeCoincide();
       }, 500);
     },
+    passeCoincide() {
+      if (this.repPassword !== this.password) {
+        this.repErro = true;
+      } else {
+        this.repErro = false;
+      }
+    },
     verificarDadosBase() {
-      console.log("test da VerDadosBase");
-      return !this.usrName || !this.password;
+      this.passeCoincide();
+      return !((this.passErro || this.usrErro || this.repErro));
     },
     init() {
-      console.log(this.usrName, this.password, this.repPassword, this.nome, this.email, this.especialidades);
+      if (this.verificarDadosBase()) {
+        const passHash = helpers.toMD5(this.password);
+
+        api.callEndPoint("http://localhost:8081", {
+          name: "Registar",
+          params: [this.usrName, passHash, this.permissoes, store.state.usr_token],
+        }).then((obj) => {
+          if (obj.Registar[0].token) {
+            console.log("SUCCESS!!!");
+          } else {
+            console.log("ERRO!!!");
+          }
+        });
+      }
     },
   },
 };

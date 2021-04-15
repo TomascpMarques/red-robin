@@ -14,6 +14,7 @@
               :estado="usrErro"
               :erro="'O user já existe ou é inválido.'"
               @keyup="verificarUsrNameAval()"
+              spellcheck="none"
             />
             <inpCombo
               @keyup="verificarPasseValida()"
@@ -24,6 +25,7 @@
               :estado="passErro"
               :tipo="'password'"
               :passInp="'A passe deve ter 8 caracteres ou mais e conter números e caracteres especiais'"
+              spellcheck="none"
             />
             <inpCombo
               @keyup="verificarPasseCoincide()"
@@ -34,6 +36,20 @@
               :estado="repErro"
               :erro="'Não coincide com a palavra-passe.'"
               :passInp="' A passe deve ter 8 caracteres ou mais e conter números e caracteres especiais'"
+              spellcheck="none"
+            />
+            <inpCombo
+              @keyup="verificarPerms()"
+              v-model="permissoes"
+              :tipo="'number'"
+              :step="1"
+              :max="3"
+              :min="2"
+              :input_tit="'Nivél de permissões'"
+              :place="'Nivél de permissões'"
+              :estado="permsErro"
+              :erro="'O nivél de permissão está entre 2 e 3'"
+              spellcheck="none"
             />
           </div>
           <div class="user-profile">

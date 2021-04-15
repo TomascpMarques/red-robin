@@ -16,6 +16,9 @@
       :type="fieldTipo"
       :placeholder="[[place]]"
       :value="modelValue"
+      :step="[[step]]"
+      :min="[[min]]"
+      :max="[[max]]"
       v-bind:class="['input-comobo-input', inputErro ? 'bad' : '']"
       autocomplete="off"
     />
@@ -57,6 +60,9 @@ export default {
     "tipo",
     "passInp",
     "erro",
+    "max",
+    "min",
+    "step",
   ],
   data() {
     return {

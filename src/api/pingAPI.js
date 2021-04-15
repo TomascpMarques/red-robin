@@ -5,8 +5,6 @@ export function pingEquipamento() {
     mode: "cors",
     body: action,
     headers: { "content-type": "text/plain" }
-  }).then((response) => {
-    console.log(response.json());
   });
   return true;
 };
