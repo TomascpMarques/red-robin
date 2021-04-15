@@ -24,7 +24,10 @@
         {{ erro }}
       </p>
     </div>
-    <div class="mostrar-pass tooltip" v-if="fieldDefault === 'password'">
+    <div
+      class="mostrar-pass tooltip"
+      v-if="fieldDefault === 'password' && modelValue"
+    >
       <label
         @click="
           pass = !pass;

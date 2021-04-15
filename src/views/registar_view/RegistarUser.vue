@@ -2,11 +2,12 @@
   <div class="pagina">
     <cntboxside>
       <div class="registar-user">
-        <h2>Criar Novo Utilizador</h2>
+        <h2>Novo Utilizador</h2>
         <div class="user-auth">
           <h3>Dados da Plataforma:</h3>
           <div class="inner">
             <inpCombo
+              id="usrName"
               v-model="usrName"
               :input_tit="'Nome de Utilizador:'"
               :place="'Nome de Utilizador'"

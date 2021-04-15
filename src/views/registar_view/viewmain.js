@@ -55,11 +55,14 @@ export default {
       }, 1000);
     },
     verificarPasseCoincide() {
-      if (this.repPassword !== this.password) {
-        this.repErro = true;
-      } else {
-        this.repErro = false;
-      }
+      clearTimeout(this.timeoutPassword);
+      this.timeoutPassword = setTimeout(() => {
+        if (this.repPassword !== this.password) {
+          this.repErro = true;
+        } else {
+          this.repErro = false;
+        }
+      }, 500);
     },
     verificarDadosBase() {
       console.log("test da VerDadosBase");
