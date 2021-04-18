@@ -90,12 +90,30 @@ export default {
 
         api.callEndPoint("http://localhost:8081", {
           name: "Registar",
-          params: [this.usrName, passHash, this.permissoes, store.state.usr_token],
+          params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
         }).then((obj) => {
           if (obj.Registar[0].token) {
-            console.log("SUCCESS!!!");
+            console.log("SUCCESS!!! USER");
           } else {
-            console.log("ERRO!!!");
+            console.log("ERRO!!! USER");
+          }
+        });
+
+        api.callEndPoint("http://localhost:8001", {
+          name: "CriarRegistoUser",
+          params: [{
+            nome: this.nome,
+            status_mss: "offline",
+            user: this.usrName,
+            email: this.email,
+            especialidades: this.especialidades.split(", ")
+          }, store.state.usr_token],
+        }).then((obj) => {
+          console.log(obj);
+          if (obj.CriarRegistoUser[0].insserido) {
+            console.log("SUCCESS!!! INFO");
+          } else {
+            console.log("ERRO!!! INFO");
           }
         });
       }

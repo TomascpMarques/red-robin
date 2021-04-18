@@ -38,7 +38,6 @@
               spellcheck="none"
             />
             <inpCombo
-              @keyup="verificarPerms()"
               v-model="permissoes"
               :tipo="'number'"
               :step="1"
