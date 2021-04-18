@@ -14,7 +14,6 @@
               :estado="usrErro"
               :erro="'O user já existe ou é inválido.'"
               @keyup="verificarUsrNameAval()"
-              spellcheck="none"
             />
             <inpCombo
               @keyup="verificarPasseValida()"
@@ -35,7 +34,7 @@
               :place="'Repetir a Palavra Passe'"
               :estado="repErro"
               :erro="'Não coincide com a palavra-passe.'"
-              :passInp="' A passe deve ter 8 caracteres ou mais e conter números e caracteres especiais'"
+              :passInp="'A passe deve ter 8 caracteres ou mais e conter números e caracteres especiais'"
               spellcheck="none"
             />
             <inpCombo

@@ -15,7 +15,7 @@ export default {
       usrName: "",
       password: "",
       repPassword: "",
-      permissoes: 3,
+      permissoes: null,
       nome: "",
       email: "",
       especialidades: "",
@@ -32,10 +32,13 @@ export default {
   },
   methods: {
     verificarUsrNameAval() {
+      // 1,75 segundos depois do user parar de escrever, fza um request ao user_server,
+      // para verificar se o username é válido.
       clearTimeout(this.timeoutUsrName);
       this.timeoutUsrName = setTimeout(() => {
         api.callEndPoint("http://localhost:8081", {
           name: "VerificarUserExiste",
+          // envia uma token vazia simbolizada por "*", ou a token se esta existir
           params: [this.usrName ? this.usrName : "*", store.state.usr_token],
         }).then((obj) => {
           if (obj.VerificarUserExiste[0].existe) {
@@ -47,8 +50,14 @@ export default {
       }, 1750);
     },
     verificarPasseValida() {
+      // 1s depois do usr parar de escrever verifica se a palavra-passe é válida
       clearTimeout(this.timeoutPassword);
       this.timeoutPassword = setTimeout(() => {
+        /**
+         * 8 caracteres+
+         * simbolos
+         * digitos
+        */
         if (this.password.match(/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/gm)) {
           this.passErro = false;
         } else {
@@ -57,6 +66,7 @@ export default {
       }, 1000);
     },
     verificarPasseCoincide() {
+      // a cada .5s o sistema verifica se as palavras-passe coincidem
       clearTimeout(this.timeoutPassword);
       this.timeoutPassword = setTimeout(() => {
         this.passeCoincide();
@@ -71,6 +81,7 @@ export default {
     },
     verificarDadosBase() {
       this.passeCoincide();
+      // Se algum dado contiver erros, a func devolve falsso
       return !((this.passErro || this.usrErro || this.repErro));
     },
     init() {
