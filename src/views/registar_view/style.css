@@ -1,6 +1,10 @@
 .pagina {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
 }
 
 h2 {
@@ -87,4 +91,12 @@ button:focus {
 
 .bad-pass {
     border-color: tomato;
+}
+
+.close-but {
+    font-size: 0.9rem;
+    padding: 0.2rem;
+    margin-top: .4rem;
+    color: lightgray;
+    font-style: italic;
 }

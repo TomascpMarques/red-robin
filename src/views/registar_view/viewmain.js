@@ -1,12 +1,14 @@
 import cntboxside from "../../components/content_box_side.vue";
 import inpCombo from "../../components/input_combo.vue";
+import popup from "../../components/message_popup.vue";
+import store from "../../store/index.js";
 import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
-import store from "../../store/index.js";
 export default {
   components: {
     cntboxside,
-    inpCombo
+    inpCombo,
+    popup
   },
   name: "RegistarUser",
   store: store,
@@ -27,7 +29,15 @@ export default {
       emailErro: false,
       especErro: false,
       timeoutUsrName: null,
-      timeoutPassword: null
+      timeoutPassword: null,
+      showUserAcc: false,
+      showUserInfo: false,
+      log_mssUserAcc: "",
+      log_titUserAcc: "",
+      log_tipUserAcc: "",
+      log_mssUserInf: "",
+      log_titUserInf: "",
+      log_tipUserInf: ""
     };
   },
   methods: {
@@ -86,35 +96,45 @@ export default {
     },
     init() {
       if (this.verificarDadosBase()) {
-        const passHash = helpers.toMD5(this.password);
-
-        api.callEndPoint("http://localhost:8081", {
-          name: "Registar",
-          params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
-        }).then((obj) => {
-          if (obj.Registar[0].token) {
-            console.log("SUCCESS!!! USER");
-          } else {
-            console.log("ERRO!!! USER");
-          }
-        });
-
         api.callEndPoint("http://localhost:8001", {
           name: "CriarRegistoUser",
           params: [{
             nome: this.nome,
-            status_mss: "offline",
+            statusmss: "offline",
             user: this.usrName,
             email: this.email,
             especialidades: this.especialidades.split(", ")
           }, store.state.usr_token],
         }).then((obj) => {
           console.log(obj);
-          if (obj.CriarRegistoUser[0].insserido) {
-            console.log("SUCCESS!!! INFO");
+          if (!obj.CriarRegistoUser[0].insserido) {
+            this.showUserInfo = true;
+            this.log_mssUserInf = "A informação do utilizador não foi insserida com sucesso, devido a sobreposição de dados";
+            this.log_titUserInf = "Informação de User";
+            this.log_tipUserInf = "bad";
           } else {
-            console.log("ERRO!!! INFO");
-          }
+            this.showUserInfo = true;
+            this.log_mssUserInf = "A informação do utilizador foi insserida com sucesso";
+            this.log_titUserInf = "Informação de User";
+            this.log_tipUserInf = "good";
+            const passHash = helpers.toMD5(this.password);
+            api.callEndPoint("http://localhost:8081", {
+              name: "Registar",
+              params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
+            }).then((obj) => {
+              if (obj.Registar[0].token) {
+                this.showUserAcc = true;
+                this.log_mssUserAcc = "O utilizador foi criado com sucesso";
+                this.log_titUserAcc = "Utilizador";
+                this.log_tipUserAcc = "good";
+              } else {
+                this.showUserAcc = true;
+                this.log_mssUserAcc = "O utilizador não foi criado, utilizador já existente ou maus dados";
+                this.log_titUserAcc = "Erro";
+                this.log_tipUserAcc = "bad";
+              }
+            });
+          };
         });
       }
     },

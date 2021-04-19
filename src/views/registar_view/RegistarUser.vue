@@ -1,5 +1,39 @@
 <template>
   <div class="pagina">
+    <div>
+      <transition
+        enter-active-class="animate__animated animate__bounceInDown"
+        leave-active-class="animate__animated animate__bounceOut"
+      >
+        <popup
+          v-if="showUserAcc"
+          :menssagem="log_mssUserAcc"
+          :titulo="log_titUserAcc"
+          :tipo="log_tipUserAcc"
+        >
+          <div @click="showUserAcc = !showUserAcc" class="close-but">
+            Fechar
+          </div>
+        </popup>
+      </transition>
+    </div>
+    <div>
+      <transition
+        enter-active-class="animate__animated animate__bounceInDown"
+        leave-active-class="animate__animated animate__bounceOut"
+      >
+        <popup
+          v-if="showUserInfo"
+          :menssagem="log_mssUserInf"
+          :titulo="log_titUserInf"
+          :tipo="log_tipUserInf"
+        >
+          <div @click="showUserInfo = !showUserInfo" class="close-but">
+            Fechar
+          </div>
+        </popup>
+      </transition>
+    </div>
     <cntboxside>
       <div class="registar-user">
         <h2>Novo Utilizador</h2>
