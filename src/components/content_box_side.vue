@@ -7,7 +7,9 @@
         <div class="circle-green"></div>
         <h3>Robin</h3>
       </div>
-      <slot></slot>
+      <div class="cont">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +29,11 @@ h3 {
   margin: 0;
   padding: 3px;
   transform: rotateZ(180deg);
+}
+
+.cont {
+  background-color: var(--white);
+  padding: 0rem 1.2vw;
 }
 
 .root-box {

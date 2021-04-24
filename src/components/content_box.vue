@@ -31,7 +31,6 @@ export default {
   flex-direction: column;
   flex-wrap: nowrap;
   margin: 1rem;
-  margin-left: 0rem;
   margin-bottom: 0;
   height: min-content;
   box-shadow: 8px 8px 5px 0px lightgray;

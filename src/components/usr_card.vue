@@ -28,7 +28,10 @@
             <p>{{ status }}</p>
           </div>
         </div>
-        <button class="menss">Mensagem</button>
+        <router-link to="/usermod">
+          <button class="menss">Modificar</button>
+        </router-link>
+        <span class="legenda">Alterar e Modificar Dados</span>
       </div>
     </div>
   </div>
@@ -236,7 +239,7 @@ img:hover {
   background-color: #1e6ce1;
   box-shadow: 0px 5px 3px 0px lightgray;
   color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   transition: 0.3s all ease-in-out;
   outline: blue;
 }
@@ -248,5 +251,13 @@ img:hover {
 
 .menss:active {
   border: 2px solid blue;
+}
+
+.legenda {
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  color: rgb(189, 189, 189);
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 </style>

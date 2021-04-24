@@ -10,18 +10,20 @@
         <div class="links-menu">
           <div class="item-menu">
             <span>
-              <router-link class="span-link" to="/">Login</router-link>
+              <router-link class="span-link" to="/">Iniciar Sessão</router-link>
             </span>
           </div>
           <div class="item-menu" v-if="loggedIn">
             <span>
-              <router-link class="span-link" to="/home"> Inicío </router-link>
+              <router-link class="span-link" to="/home">
+                Perfíl de Utlizador
+              </router-link>
             </span>
           </div>
           <div class="item-menu" v-if="loggedIn">
             <span>
               <router-link class="span-link" to="/registar">
-                Registar
+                Registar Novo Utilizador
               </router-link>
             </span>
           </div>
@@ -37,15 +39,6 @@
   >
     <router-view />
   </transition>
-  <!-- <ul>
-      <li>
-        <router-link v-if="loggedIn" to="/home">Inicío</router-link>
-      </li>
-      <li>
-        <router-link v-if="loggedIn" to="/registar"> Registar </router-link>
-      </li>
-      <li><router-link to="/">Login</router-link></li>
-    </ul> -->
 </template>
 
 <script>
@@ -110,8 +103,9 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #e4e4e4;
+  background-color: #e7e7e7;
   scroll-behavior: smooth;
+  background-image: url("./assets/logo.svg");
 }
 
 #app {
@@ -211,9 +205,9 @@ body {
   margin: 0.6rem;
   margin-top: 0.7rem;
   margin-right: 0;
-  border-radius: 7px;
+  border-radius: 3px;
   background-color: var(--white);
-  border: 2px solid lightgray;
+  border: 2px solid #e2e2e2;
   box-shadow: var(--wrapper-shadow);
   transition: 0.3s all ease-in-out;
 }
@@ -229,11 +223,10 @@ body {
   text-align: right;
   padding: 0.7rem;
   margin-top: 0.7rem;
-  border-radius: 7px;
-  border-left: none;
-  border-bottom: none;
+  border-radius: 3px;
   background-color: #ffff;
-  border: 2px solid lightgray;
+  border: 2px solid #e2e2e2;
+  border-top-color: var(--orange);
 }
 
 .item-menu {
@@ -266,7 +259,7 @@ body {
 .span-link {
   text-decoration: none;
   font-weight: bold;
-  color: var(--orange);
+  color: var(--font-color);
   letter-spacing: 1px;
   font-family: "Nunito";
   font-size: 1.1rem;
