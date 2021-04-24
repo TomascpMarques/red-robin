@@ -2,7 +2,16 @@
   <div class="nav-bar">
     <div class="tit">
       <h2>Robin</h2>
-      <img src="./assets/logo.svg" alt="" />
+      <transition
+        enter-active-class="animate__animated animate__fadeInLeft"
+        leave-active-class="animate__animated animate__fadeOutLeft"
+      >
+        <img
+          src="./assets/logo.svg"
+          alt="./assets/useravatar.svg"
+          v-if="loggedIn"
+        />
+      </transition>
     </div>
     <div class="menu">
       <div class="arrow-wrapper">
@@ -10,7 +19,9 @@
         <div class="links-menu">
           <div class="item-menu">
             <span>
-              <router-link class="span-link" to="/">Iniciar Sessão</router-link>
+              <router-link class="span-link" to="/">
+                Iniciar Sessão
+              </router-link>
             </span>
           </div>
           <div class="item-menu" v-if="loggedIn">
@@ -30,12 +41,21 @@
         </div>
       </div>
       <div class="wrapper-title">MENU</div>
+      <div class="path">
+        <span></span>
+        <p>{{ $route.name }}</p>
+      </div>
     </div>
   </div>
   <transition
+    enter-active-class="animate__animated animate__zoomIn"
+    leave-active-class="animate__animated animate__zoomOutDown"
+  >
+    <div class="bg" v-if="loggedIn"></div>
+  </transition>
+  <transition
     mode="in-out"
-    enter-active-class="animate__animated animate__backInDown"
-    leave-active-class="animate__animated animate__backOutLeft"
+    enter-active-class="animate__animated animate__fadeInRight"
   >
     <router-view />
   </transition>
@@ -68,6 +88,35 @@ export default {
 </script>
 
 <style >
+.path {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 1.5rem;
+  justify-content: center;
+  place-items: center;
+}
+
+.path span {
+  border: 2px dashed #d8d8d8;
+  width: 0.8rem;
+  height: 0.8rem;
+  transform: rotateZ(-45deg);
+  margin-right: 0.9rem;
+}
+
+.path p {
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  font-family: "Nunito";
+  margin: 0;
+  margin-right: 0.9rem;
+  padding: 0;
+  letter-spacing: 1px;
+  color: lightgray;
+  transition: 0.2s all ease-out;
+}
+
 *::-webkit-scrollbar {
   width: 0.75rem;
   transition: 0.3s all ease-in-out;
@@ -105,7 +154,21 @@ body {
   padding: 0;
   background-color: #e7e7e7;
   scroll-behavior: smooth;
-  background-image: url("./assets/logo.svg");
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.bg {
+  z-index: -3;
+  position: fixed;
+  top: calc(100vh - 47vh);
+  left: 0.7vw;
+  opacity: 0.35;
+  background-image: url("./assets/useravatar.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 47vh;
+  height: 47vh;
 }
 
 #app {
@@ -119,6 +182,9 @@ body {
 
 .tit {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  place-items: center;
   flex-wrap: nowrap;
   flex-direction: row-reverse;
   margin-left: 1rem;

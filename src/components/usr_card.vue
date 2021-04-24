@@ -13,7 +13,7 @@
         <div class="icon">
           <div class="outer">
             <div class="inner">
-              <img src="../assets/useravatar.svg" alt="" />
+              <img src="../assets/logo.svg" alt="" />
             </div>
           </div>
         </div>
