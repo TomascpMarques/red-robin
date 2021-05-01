@@ -55,7 +55,7 @@
   </transition>
   <transition
     mode="in-out"
-    enter-active-class="animate__animated animate__fadeInRight"
+    enter-active-class="animate__animated animate__zoomIn"
   >
     <router-view />
   </transition>
@@ -102,6 +102,7 @@ export default {
   height: 0.8rem;
   transform: rotateZ(-45deg);
   margin-right: 0.9rem;
+  z-index: -3;
 }
 
 .path p {
@@ -164,6 +165,7 @@ body {
   top: calc(100vh - 47vh);
   left: 0.7vw;
   opacity: 0.35;
+  filter: blur(1px);
   background-image: url("./assets/useravatar.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -281,7 +283,7 @@ body {
 .arrow-wrapper:hover .links-menu {
   opacity: 1;
   visibility: visible;
-  position: fixed;
+  position: absolute;
   top: 6%;
   display: flex;
   flex-direction: column;
@@ -309,16 +311,12 @@ body {
   margin-left: 0.6rem;
   border: 2px dashed white;
   transform: rotateZ(-45deg);
-}
-
-.item-menu:hover .icon {
-  animation: spin 5s linear infinite normal;
+  z-index: -5;
 }
 
 .links-menu span {
   padding: 0.3rem;
   width: fit-content;
-  text-align: right;
   transition: 0.3s border ease-in-out, 0.35s transform ease-in-out;
 }
 
@@ -330,7 +328,7 @@ body {
   font-family: "Nunito";
   font-size: 1.1rem;
   border-bottom: 2px solid transparent;
-  transition: 0.2s all ease-in-out;
+  transition: 0.3s all ease-in-out;
 }
 
 .span-link:hover {

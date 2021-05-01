@@ -5,7 +5,7 @@ import message from "../../components/message_popup.vue";
 // import * as api from "../../api/apiCalls.js";
 import { Object } from "core-js";
 export default {
-  name: "Home",
+  name: "Perfil de Utilizador",
   store: store,
   components: {
     usrcard,

@@ -9,12 +9,12 @@ import store from "../store/index.js";
 
 const routes = [
   {
+    name: "Iniciar Sessão",
     path: "/",
-    name: "Login",
     component: Login
   },
   {
-    name: "Home",
+    name: "Perfil de Utilizador",
     path: "/home",
     component: Home,
     beforeEnter(to, from, next) {
@@ -30,7 +30,7 @@ const routes = [
     },
   },
   {
-    name: "Registar",
+    name: "Registar Novo User",
     path: "/registar",
     component: RegistarUser,
     beforeEnter(to, from, next) {
@@ -46,7 +46,7 @@ const routes = [
     },
   },
   {
-    name: "ModificarUser",
+    name: "Modificar Utilizador",
     path: "/usermod",
     component: ModUser,
     beforeEnter(to, from, next) {

@@ -3,6 +3,7 @@ import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
 import store from "../../store/index.js";
 export default {
+  name: "Iniciar Sessão",
   components: {
     message,
   },

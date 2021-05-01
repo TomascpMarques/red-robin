@@ -53,7 +53,7 @@
               @keyup="verificarPasseValida()"
               :erro="'A palavra-passe não é válida.'"
               v-model="password"
-              :input_tit="'Palavra Passe'"
+              :input_tit="'Palavra Passe: '"
               :place="'Palavra Passe'"
               :estado="passErro"
               :tipo="'password'"
@@ -64,7 +64,7 @@
               @keyup="verificarPasseCoincide()"
               v-model="repPassword"
               :tipo="'password'"
-              :input_tit="'Repetir a Palavra Passe'"
+              :input_tit="'Repetir a Palavra Passe: '"
               :place="'Repetir a Palavra Passe'"
               :estado="repErro"
               :erro="'Não coincide com a palavra-passe.'"
@@ -101,7 +101,7 @@
               />
               <inpCombo
                 v-model="especialidades"
-                :input_tit="'Especialidades '"
+                :input_tit="'Especialidades: '"
                 :place="'Especialidades'"
                 :estado="especErro"
               />

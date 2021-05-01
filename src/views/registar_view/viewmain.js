@@ -10,7 +10,7 @@ export default {
     inpCombo,
     popup
   },
-  name: "RegistarUser",
+  name: "Registar Novo User",
   store: store,
   data() {
     return {
