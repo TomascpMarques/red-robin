@@ -17,6 +17,10 @@ module.exports = {
     'semi': ['error', 'always'],
     'comma-dangle': ['error', 'only-multiline'],
     'eol-last': ['error', 'always'],
-    'space-before-function-paren': ['error', 'never']
+    'space-before-function-paren': ['error', {
+      'anonymous': 'always',
+      'named': 'ignore',
+      'asyncArrow': 'ignore'
+    }],
   }
 }

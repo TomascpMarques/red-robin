@@ -32,9 +32,10 @@
                 cursor: pointer;
                 font-weight: bold;
                 margin-top: 0.3rem;
+                margin-left: 1rem;
               "
             >
-              X
+              Cancelar
             </section>
           </div>
         </message>

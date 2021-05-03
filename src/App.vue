@@ -2,7 +2,7 @@
   <div class="nav-bar">
     <div class="tit">
       <h2>Robin</h2>
-      <transition
+      <!-- <transition
         enter-active-class="animate__animated animate__fadeInLeft"
         leave-active-class="animate__animated animate__fadeOutLeft"
       >
@@ -11,7 +11,7 @@
           alt="./assets/useravatar.svg"
           v-if="loggedIn"
         />
-      </transition>
+      </transition> -->
     </div>
     <div class="menu">
       <div class="arrow-wrapper">
@@ -157,6 +157,8 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: scroll;
+  max-width: 100vw;
+  min-height: 100vh;
 }
 
 .bg {
@@ -275,7 +277,7 @@ body {
   margin-right: 0;
   border-radius: 3px;
   background-color: var(--white);
-  border: 2px solid #e2e2e2;
+  border-top: 3px solid #e2e2e2;
   box-shadow: var(--wrapper-shadow);
   transition: 0.3s all ease-in-out;
 }
@@ -293,7 +295,7 @@ body {
   margin-top: 0.7rem;
   border-radius: 3px;
   background-color: #ffff;
-  border: 2px solid #e2e2e2;
+  border-top: 3px solid #e2e2e2;
   border-top-color: var(--orange);
 }
 
@@ -323,7 +325,7 @@ body {
 .span-link {
   text-decoration: none;
   font-weight: bold;
-  color: var(--font-color);
+  color: rgb(187, 187, 187);
   letter-spacing: 1px;
   font-family: "Nunito";
   font-size: 1.1rem;
@@ -332,6 +334,6 @@ body {
 }
 
 .span-link:hover {
-  border-bottom: 2px solid var(--blue);
+  color: var(--blue);
 }
 </style>

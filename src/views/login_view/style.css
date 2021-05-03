@@ -248,3 +248,9 @@ input:focus::placeholder {
 	transform: scale(1.03);
 	cursor: pointer;
 }
+
+.login-button:focus {
+	transform: scale(1.1);
+	background-color: var(--orange);
+	border-color: var(--orange);
+}

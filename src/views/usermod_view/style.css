@@ -20,6 +20,16 @@ h2 {
     text-align: center;
 }
 
+.user-tit h2 {
+    color: var(--blue);
+    font-family: "Oleo Script", cursive;
+    letter-spacing: 1px;
+    font-size: 2.2rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: 500;
+}
+
 h3 {
     font-weight: 650;
     font-size: 1.4rem;

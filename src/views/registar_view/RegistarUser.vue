@@ -44,6 +44,7 @@
               id="usrName"
               v-model="usrName"
               :input_tit="'Nome de Utilizador:'"
+              :tipo="'text'"
               :place="'Nome de Utilizador'"
               :estado="usrErro"
               :erro="'O user já existe ou é inválido.'"
@@ -91,18 +92,21 @@
                 v-model="nome"
                 :input_tit="'Nome próprio: '"
                 :place="'Nome próprio'"
+                :tipo="'text'"
                 :estado="nomeErro"
               />
               <inpCombo
                 v-model="email"
                 :input_tit="'Email: '"
                 :place="'Email'"
+                :tipo="'email'"
                 :estado="emailErro"
               />
               <inpCombo
                 v-model="especialidades"
                 :input_tit="'Especialidades: '"
                 :place="'Especialidades'"
+                :tipo="'text'"
                 :estado="especErro"
               />
             </div>

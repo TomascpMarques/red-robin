@@ -73,7 +73,7 @@ export default {
       this.log_tip = "good";
     },
     getPerfilUser(nomeUsr) {
-      api.callEndPoint("http://localhost:8001", {
+      api.callEndPoint("http://localhost:8001/", {
         name: "GetInfoUtilizador",
         params: [this.user],
       }).then((obj) => {
@@ -96,7 +96,7 @@ export default {
       this.show = false;
       if (this.validarInput(this.user, this.pass)) {
         this.md5_pass = helpers.toMD5(this.pass);
-        api.callEndPoint("http://localhost:8081", {
+        api.callEndPoint("http://localhost:8081/", {
           name: "Login",
           params: [this.user, this.md5_pass],
         }).then((obj) => {
