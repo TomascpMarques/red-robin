@@ -5,7 +5,7 @@ import NoPerm from "../views/noPerm_view/NoPerm.vue";
 import RegistarUser from "../views/registar_view/RegistarUser.vue";
 import ModUser from "../views/usermod_view/UserMod.vue";
 import * as api from "../api/apiCalls.js";
-import * as knownHosts from "../api/knownHosts.js";
+import * as apiServices from "../api/apiServices.js";
 import store from "../store/index.js";
 
 const routes = [
@@ -19,7 +19,7 @@ const routes = [
     path: "/home",
     component: Home,
     beforeEnter(to, from, next) {
-      api.callEndPoint(knownHosts.hosts.autenticacao, {
+      api.callEndPoint(apiServices.hosts.autenticacao, {
         name: "VerificarTokenUser",
         // assim envia a string "empty", se o utilizador não estiver autenticado
         params: [store.state.usr_token ? store.state.usr_token : "empty"],
@@ -35,7 +35,7 @@ const routes = [
     path: "/registar",
     component: RegistarUser,
     beforeEnter(to, from, next) {
-      api.callEndPoint(knownHosts.hosts.autenticacao, {
+      api.callEndPoint(apiServices.hosts.autenticacao, {
         name: "VerificarTokenUser",
         // assim envia a string "empty", se o utilizador não estiver autenticado
         params: [store.state.usr_token ? store.state.usr_token : "empty"],
@@ -51,7 +51,7 @@ const routes = [
     path: "/usermod",
     component: ModUser,
     beforeEnter(to, from, next) {
-      api.callEndPoint("http://localhost:8081/", {
+      api.callEndPoint(apiServices.hosts.autenticacao, {
         name: "VerificarTokenUser",
         // assim envia a string "empty", se o utilizador não estiver autenticado
         params: [store.state.usr_token ? store.state.usr_token : "empty"],

@@ -4,7 +4,7 @@ import popup from "../../components/message_popup.vue";
 import store from "../../store/index.js";
 import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
-import * as knownHosts from "../../api/knownHosts";
+import * as apiServices from "../../api/apiServices";
 export default {
   components: {
     cntboxside,
@@ -47,7 +47,7 @@ export default {
       // para verificar se o username é válido.
       clearTimeout(this.timeoutUsrName);
       this.timeoutUsrName = setTimeout(() => {
-        api.callEndPoint("http://localhost:8081", {
+        api.callEndPoint(apiServices.hosts.autenticacao, {
           name: "VerificarUserExiste",
           // envia uma token vazia simbolizada por "*", ou a token se esta existir
           params: [this.usrName ? this.usrName : "*", store.state.usr_token],
@@ -97,7 +97,7 @@ export default {
     },
     init() {
       if (this.verificarDadosBase()) {
-        api.callEndPoint(knownHosts.hosts.userinfo, {
+        api.callEndPoint(apiServices.hosts.userinfo, {
           name: "CriarRegistoUser",
           params: [{
             nome: this.nome,
@@ -119,7 +119,7 @@ export default {
             this.log_titUserInf = "Informação de User";
             this.log_tipUserInf = "good";
             const passHash = helpers.toMD5(this.password);
-            api.callEndPoint(knownHosts.hosts.autenticacao, {
+            api.callEndPoint(apiServices.hosts.autenticacao, {
               name: "Registar",
               params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
             }).then((obj) => {
