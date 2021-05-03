@@ -5,7 +5,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 h2 {
@@ -44,4 +44,35 @@ h3 {
     justify-content: center;
     place-items: center;
     gap: 1.3rem;
+}
+
+.submit {
+    width: 100%;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+
+.submit button {
+    padding: .4rem .8rem;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-family: "Oleo Script";
+    color: #fefefe;
+    background-color: var(--orange);
+    border: none;
+    border: 3px solid var(--orange);
+    box-shadow: var(--wrapper-shadow);
+    border-radius: 4px;
+    transition: .3s all ease-in-out;
+    width: 40%;
+}
+
+.submit button:hover {
+    cursor: pointer;
+    width: 90%;
+}
+
+button:focus {
+    outline: none;
 }

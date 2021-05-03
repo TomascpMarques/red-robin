@@ -2,7 +2,7 @@
   <div class="nav-bar">
     <div class="tit">
       <h2>Robin</h2>
-      <!-- <transition
+      <transition
         enter-active-class="animate__animated animate__fadeInLeft"
         leave-active-class="animate__animated animate__fadeOutLeft"
       >
@@ -11,7 +11,7 @@
           alt="./assets/useravatar.svg"
           v-if="loggedIn"
         />
-      </transition> -->
+      </transition>
     </div>
     <div class="menu">
       <div class="arrow-wrapper">
@@ -101,13 +101,14 @@ export default {
   width: 0.8rem;
   height: 0.8rem;
   transform: rotateZ(-45deg);
-  margin-right: 0.9rem;
+  margin-right: 0.8rem;
   z-index: -3;
 }
 
 .path p {
+  width: max-content;
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: bolder;
   font-family: "Nunito";
   margin: 0;
@@ -155,7 +156,6 @@ body {
   padding: 0;
   background-color: #e7e7e7;
   scroll-behavior: smooth;
-  overflow-x: hidden;
   overflow-y: scroll;
   max-width: 100vw;
   min-height: 100vh;
