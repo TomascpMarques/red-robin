@@ -4,6 +4,7 @@ import popup from "../../components/message_popup.vue";
 import store from "../../store/index.js";
 import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
+import * as knownHosts from "../../api/knownHosts";
 export default {
   components: {
     cntboxside,
@@ -96,7 +97,7 @@ export default {
     },
     init() {
       if (this.verificarDadosBase()) {
-        api.callEndPoint("http://localhost:8001", {
+        api.callEndPoint(knownHosts.hosts.userinfo, {
           name: "CriarRegistoUser",
           params: [{
             nome: this.nome,
@@ -118,7 +119,7 @@ export default {
             this.log_titUserInf = "Informação de User";
             this.log_tipUserInf = "good";
             const passHash = helpers.toMD5(this.password);
-            api.callEndPoint("http://localhost:8081", {
+            api.callEndPoint(knownHosts.hosts.autenticacao, {
               name: "Registar",
               params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
             }).then((obj) => {

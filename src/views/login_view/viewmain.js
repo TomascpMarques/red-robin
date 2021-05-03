@@ -1,6 +1,7 @@
 import message from "../../components/message_popup.vue";
 import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
+import * as knownHosts from "../../api/knownHosts.js";
 import store from "../../store/index.js";
 export default {
   name: "Iniciar Sessão",
@@ -73,7 +74,7 @@ export default {
       this.log_tip = "good";
     },
     getPerfilUser(nomeUsr) {
-      api.callEndPoint("http://localhost:8001/", {
+      api.callEndPoint(knownHosts.hosts.userinfo, {
         name: "GetInfoUtilizador",
         params: [this.user],
       }).then((obj) => {
@@ -96,7 +97,7 @@ export default {
       this.show = false;
       if (this.validarInput(this.user, this.pass)) {
         this.md5_pass = helpers.toMD5(this.pass);
-        api.callEndPoint("http://localhost:8081/", {
+        api.callEndPoint(knownHosts.hosts.autenticacao, {
           name: "Login",
           params: [this.user, this.md5_pass],
         }).then((obj) => {
