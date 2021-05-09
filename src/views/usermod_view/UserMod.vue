@@ -67,17 +67,19 @@
           />
         </cntboxside>
       </div>
-      <contentBox :titulo="'Contribuições do Utilizador'">
-        <listSimple
-          :titulo="'Especialidades'"
-          :lista="$store.state.usr_perfil.especialidades"
-        />
-        <listDisplay
-          :titulo="'Contribuições'"
-          :list="$store.state.usr_perfil.contribuicoes"
-        >
-        </listDisplay>
-      </contentBox>
+      <div class="info-mudar">
+        <contentBox :titulo="'Contribuições do Utilizador'">
+          <listSimple
+            :titulo="'Especialidades'"
+            :lista="$store.state.usr_perfil.especialidades"
+          />
+          <listDisplay
+            :titulo="'Contribuições'"
+            :list="$store.state.usr_perfil.contribuicoes"
+          >
+          </listDisplay>
+        </contentBox>
+      </div>
     </div>
   </div>
 </template>

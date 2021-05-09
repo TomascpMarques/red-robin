@@ -80,7 +80,7 @@ export default {
     // A func LoggedIn computed busca o tamanho da usr_token
     // E no grupo watch, ele escuta por mudanças dessa func,
     // e muda o estado dos links apartir dessa mudança
-    loggedIn(newLen, oldLen) {
+    loggedIn(newLen) {
       this.logado = newLen > 0;
     },
   },
