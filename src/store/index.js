@@ -4,7 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 // Use sessionStorage.clear(); when user logs out manually
 export default createStore({
   plugins: [createPersistedState({
-    storage: window.localStorage,
+    storage: window.sessionStorage,
   })],
   state: {
     usr_token: "",
@@ -24,7 +24,7 @@ export default createStore({
       state.usr_perfil = "";
     },
     limparSessionStorage() {
-      window.localStorage.clear();
+      window.sessionStorage.clear();
     }
   },
   actions: {},

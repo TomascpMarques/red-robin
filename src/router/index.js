@@ -4,6 +4,7 @@ import Login from "../views/login_view/Login.vue";
 import NoPerm from "../views/noPerm_view/NoPerm.vue";
 import RegistarUser from "../views/registar_view/RegistarUser.vue";
 import ModUser from "../views/usermod_view/UserMod.vue";
+import Docs from "../views/docs_view/Docs.vue";
 import * as api from "../api/apiCalls.js";
 import * as apiServices from "../api/apiServices.js";
 import store from "../store/index.js";
@@ -50,6 +51,22 @@ const routes = [
     name: "Modificar Utilizador",
     path: "/usermod",
     component: ModUser,
+    beforeEnter(to, from, next) {
+      api.callEndPoint(apiServices.hosts.autenticacao, {
+        name: "VerificarTokenUser",
+        // assim envia a string "empty", se o utilizador não estiver autenticado
+        params: [store.state.usr_token ? store.state.usr_token : "empty"],
+      }).then((obj) => {
+        if (obj.VerificarTokenUser[0] === "OK") {
+          next();
+        } else next({ path: "/bery_bad_baddie", name: "Sem permissões" });
+      });
+    },
+  },
+  {
+    name: "Documentação",
+    path: "/docs",
+    component: Docs,
     beforeEnter(to, from, next) {
       api.callEndPoint(apiServices.hosts.autenticacao, {
         name: "VerificarTokenUser",

@@ -38,6 +38,13 @@
               </router-link>
             </span>
           </div>
+          <div class="item-menu" v-if="loggedIn">
+            <span>
+              <router-link class="span-link" to="/docs">
+                Documentação & Notas
+              </router-link>
+            </span>
+          </div>
         </div>
       </div>
       <div class="wrapper-title">MENU</div>
@@ -141,13 +148,13 @@ export default {
 :root {
   --black: #303030;
   --drk-blue: #1e3045;
-  --white: #efefef;
+  --white: #f2f2f2;
   --orange: #e1871e;
   --blue: #3882f2;
   --font-color: hsl(0, 0%, 19%);
   --circle-radius: 2.4vh;
   --circle-inner-shadow: inset 3px 5px 3px #00000046;
-  --wrapper-shadow: 6px 6px 6px 0px lightgray;
+  --wrapper-shadow: 6px 6px 8px 0px #e2e2e2;
 }
 
 body {

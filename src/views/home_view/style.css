@@ -47,8 +47,6 @@
 }
 
 .contribuicoes-valores ul {
-    margin-top: .3rem;
-    margin-left: .6rem;
     list-style: none;
     padding: .3rem 0;
     padding-left: .45rem;
@@ -59,7 +57,7 @@
 
 .contribuicoes-valores li {
     font-size: 1.05rem;
-    padding-bottom: .25rem;
+    padding: .2rem 0;
     transition: .21s all ease-in-out;
 }
 
@@ -118,4 +116,19 @@
     color: rgb(189, 189, 189);
     letter-spacing: 1px;
     font-weight: bold;
+}
+
+.listing {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-list {
+    margin-top: .1rem;
+    margin-left: .55rem;
+}
+
+.doc-list li {
+    padding: .4rem 0rem;
+    font-size: .9rem;
 }

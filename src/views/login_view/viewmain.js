@@ -73,19 +73,20 @@ export default {
       this.show = true;
       this.log_tip = "good";
     },
-    getPerfilUser(nomeUsr) {
+    getPerfilUser() {
       api.callEndPoint(apiServices.hosts.userinfo, {
         name: "GetInfoUtilizador",
-        params: [this.user],
+        params: [this.user, this.$store.state.usr_token],
       }).then((obj) => {
         //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
         //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
-        obj.GetInfoUtilizador.forEach((x) => {
+        obj.GetInfoUtilizador.forEach((result) => {
           //  Itera por todos as keys do objeto
-          Object.keys(x).forEach((y) => {
+          console.log(result);
+          Object.keys(result).forEach((value) => {
             //  Se foi devolvida uma token
-            if (y.toString() === "user") {
-              this.$store.commit("storePerfilUser", x[y]);
+            if (value.toString() === "user") {
+              this.$store.commit("storePerfilUser", result[value]);
             } else {
               this.loginErro("Não foi possível buscar o perfil desse utilizador");
             }

@@ -167,7 +167,8 @@ h2 {
 }
 
 img:hover {
-  transform: rotatey(180deg);
+  filter: blur(2px);
+  opacity: 0.7;
 }
 
 .user {

@@ -50,7 +50,7 @@
         <contentBox :titulo="'Contribuições'">
           <div class="contribuicoes-valores">
             <h3>Documentação:</h3>
-            <div v-for="item in items" :key="item[0]">
+            <!-- <div v-for="item in items" :key="item[0]">
               <div class="titulo-pasta">
                 <img src="../../assets/folder.svg" alt="" />
                 <span class="pasta">{{ Object.keys(item).toString() }} </span>
@@ -59,6 +59,17 @@
                 <li v-for="item in it" :key="item">
                   {{ item }} <span class="link">[link]</span>
                 </li>
+              </ul>
+            </div> -->
+            <div v-for="item in items" :key="item" class="listing">
+              <div class="titulo-pasta">
+                <img src="../../assets/folder.svg" alt="" />
+                <span class="pasta">{{ item["reponome"] }} </span>
+              </div>
+              <ul class="doc-list">
+                <div v-for="it in item.ficheiros" :key="it">
+                  <li>{{ it }} <span class="link">[link]</span></li>
+                </div>
               </ul>
             </div>
           </div>
