@@ -75,3 +75,11 @@ h1 {
     padding: .15rem 1.5rem;
     gap: 2rem;
 }
+
+.repo-files {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: .4rem;
+}

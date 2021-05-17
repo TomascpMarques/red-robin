@@ -9,17 +9,20 @@
     <span class="hrzl"></span>
     <div class="repos">
       <div v-for="cntrb in repos" :key="cntrb.nome">
-        <repo
-          :criacao="cntrb.criacao"
-          :tema="cntrb.tema"
-          :contrib="
-            cntrb.contribuidores.lenght <= 0
-              ? cntrb.contribuidores
-              : 'Sem contribuidores'
-          "
-          :autor="cntrb.autor"
-          :titulo="cntrb.nome"
-        />
+        <div class="repo-files">
+          <repo
+            :criacao="cntrb.criacao"
+            :tema="cntrb.tema"
+            :contrib="
+              cntrb.contribuidores.lenght <= 0
+                ? cntrb.contribuidores
+                : 'Sem contribuidores'
+            "
+            :autor="cntrb.autor"
+            :titulo="cntrb.nome"
+          />
+          <repoFiles :repo="cntrb.ficheiros" />
+        </div>
       </div>
     </div>
   </div>

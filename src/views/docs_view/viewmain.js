@@ -1,6 +1,7 @@
 import store from "../../store/index.js";
 import message from "../../components/message_popup.vue";
 import repo from "../../components/repo.vue";
+import repoFiles from "../../components/repo_files.vue";
 
 import * as api from "../../api/apiCalls.js";
 import * as apiServices from "../../api/apiServices.js";
@@ -9,8 +10,9 @@ export default {
   name: "Documentação & Notas",
   store: store,
   components: {
+    repoFiles,
     message,
-    repo
+    repo,
   },
   data() {
     return {
