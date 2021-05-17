@@ -5,79 +5,27 @@
       <h1>Repositórios</h1>
     </div>
     <span class="hrzl"></span>
+    <!-- {{ test.contribuicoes }} -->
     <div class="repos">
-      <repo
+      <div v-for="cntrb in repos" :key="cntrb.nome">
+        <repo
+          :criacao="cntrb.criacao"
+          :tema="cntrb.tema"
+          :contrib="
+            cntrb.contribuidores.lenght <= 0
+              ? cntrb.contribuidores
+              : 'Sem contribuidores'
+          "
+          :autor="cntrb.autor"
+          :titulo="cntrb.nome"
+        />
+      </div>
+      <!-- <repo
         :criacao="'asdasd'"
         :tema="'adawad'"
         :contrib="'contrib'"
         :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
-      <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      />
+      /> -->
     </div>
   </div>
 </template>

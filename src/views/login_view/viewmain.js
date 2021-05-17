@@ -3,6 +3,8 @@ import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
 import * as apiServices from "../../api/apiServices.js";
 import store from "../../store/index.js";
+import router from "../../router/index.js";
+
 export default {
   name: "Iniciar Sessão",
   components: {
@@ -69,7 +71,7 @@ export default {
       this.$store.commit("storeJWToken", token);
       this.log_tit = "Login";
       this.log_mss =
-        "O login teve sucesso, podes aceder à plataforma agora :)";
+        "O login teve sucesso, a redirecionar em 4 segundos... ";
       this.show = true;
       this.log_tip = "good";
     },
@@ -111,6 +113,9 @@ export default {
               if (y.toString() === "token") {
                 this.loginSucesso(obj.Login[0].token);
                 this.getPerfilUser(this.name);
+                setTimeout(function () {
+                  router.push("/home");
+                }, 4000);
               } else {
                 this.loginErro(obj.Login[0].erro);
               }

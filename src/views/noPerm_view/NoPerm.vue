@@ -1,8 +1,23 @@
 <template>
   <div>
-    <h1>Não tens permissões sufecientes para aceder a esta página.</h1>
+    <h1>
+      Não tens permissões sufecientes para aceder a esta página. <br /><br />
+      A redirecionar...
+    </h1>
   </div>
 </template>
+
+<script>
+import router from "../../router/index.js";
+export default {
+  name: "No Perms",
+  created() {
+    setTimeout(function () {
+      router.push("/");
+    }, 4000);
+  },
+};
+</script>
 
 <style scoped>
 h1 {

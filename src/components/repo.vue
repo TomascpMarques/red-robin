@@ -2,7 +2,7 @@
   <div class="repo">
     <div class="titulo">
       <!-- <img src="../assets/files.svg" alt="" /> -->
-      <h2>MegalooBox</h2>
+      <h2>{{ titulo }}</h2>
       <h4>Repo Nome</h4>
     </div>
     <div class="descr">
@@ -35,7 +35,7 @@
 <script>
 export default {
   name: "repo",
-  props: ["criacao", "contrib", "autor", "tema"],
+  props: ["criacao", "contrib", "autor", "tema", "titulo"],
 };
 </script>
 
@@ -114,7 +114,7 @@ h4 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 0.4rem 2.1rem;
+  gap: 0.4rem 1rem;
   grid-template-areas:
     "Autor aut-val"
     "Tema tem-val"
@@ -155,11 +155,11 @@ h4 {
   flex-direction: row;
   place-items: center;
   gap: 0.35rem;
-  width: 120%;
+  width: 105%;
 }
 
 .hr-guide {
   width: 100%;
-  border-top: 6px dotted #e0e0e0;
+  border-top: 5px dotted #e0e0e0;
 }
 </style>
