@@ -114,7 +114,10 @@ export default {
                 this.loginSucesso(obj.Login[0].token);
                 this.getPerfilUser(this.name);
                 setTimeout(function () {
-                  router.push("/home");
+                  // Previne mudar de route se o user já mudou antes do timer
+                  if (!(router.currentRoute.value.path !== "/")) {
+                    router.push("/home");
+                  }
                 }, 4000);
               } else {
                 this.loginErro(obj.Login[0].erro);

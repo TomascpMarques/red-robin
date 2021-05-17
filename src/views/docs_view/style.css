@@ -11,7 +11,6 @@
 h1 {
     font-size: 1.55rem;
     letter-spacing: 1px;
-    color: var(--blue);
     padding: 0;
     margin: 0;
 }
@@ -24,7 +23,7 @@ h1 {
     gap: .8rem;
     padding: .5rem 1rem;
     border-radius: 5px;
-    border-left: 6px solid var(--orange);
+    border-left: 10px solid var(--orange);
     background-color: var(--white);
     box-shadow: var(--wrapper-shadow);
     margin-bottom: 1.2rem;
@@ -32,6 +31,33 @@ h1 {
 
 .page-tit img {
     width: 2.1rem;
+}
+
+.refresh {
+    color: var(--black);
+    border-radius: 3px;
+    border: 0px solid transparent;
+    border-left: 7px solid var(--blue);
+    background-color: var(--white);
+    padding: .2rem .4rem;
+    margin: 0;
+    width: fit-content;
+    font-size: 1.08rem;
+    font-family: "Consolas";
+    margin-left: 1.5%;
+    font-weight: bold;
+    box-shadow: 5px 5px 2px 0px #d3d3d36c;
+    transition: .3s all ease-out, .18s scale ease-out;
+}
+
+.refresh:hover {
+    transform: translateX(5px);
+    box-shadow: 5px 5px 2px 0px #d3d3d3;
+    cursor: pointer;
+}
+
+.refresh:active {
+    transform: scale(.96);
 }
 
 .hrzl {

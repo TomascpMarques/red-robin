@@ -4,8 +4,9 @@
       <img src="../../assets/fldrfiles.svg" alt="" />
       <h1>Repositórios</h1>
     </div>
+    <button class="refresh" @click="reload()">Atualizar Lista</button>
+    <br />
     <span class="hrzl"></span>
-    <!-- {{ test.contribuicoes }} -->
     <div class="repos">
       <div v-for="cntrb in repos" :key="cntrb.nome">
         <repo
@@ -20,12 +21,6 @@
           :titulo="cntrb.nome"
         />
       </div>
-      <!-- <repo
-        :criacao="'asdasd'"
-        :tema="'adawad'"
-        :contrib="'contrib'"
-        :autor="'adwadawd'"
-      /> -->
     </div>
   </div>
 </template>

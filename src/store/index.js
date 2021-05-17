@@ -8,7 +8,8 @@ export default createStore({
   })],
   state: {
     usr_token: "",
-    usr_perfil: {}
+    usr_perfil: {},
+    usr_repos: []
   },
   mutations: {
     storeJWToken(state, token) {

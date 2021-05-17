@@ -18,6 +18,9 @@ export default {
     };
   },
   methods: {
+    reload() {
+      this.getRepos();
+    },
     getRepos() {
       api.callEndPoint(apiServices.hosts.documentacao, {
         name: "BuscarUserRepos",

@@ -1,8 +1,13 @@
+// Vue e componentes
 import store from "../../store/index.js";
 import usrcard from "../../components/usr_card.vue";
 import contentBox from "../../components/content_box.vue";
 import message from "../../components/message_popup.vue";
-// import * as api from "../../api/apiCalls.js";
+
+// Api helpers
+import * as api from "../../api/apiCalls.js";
+import * as apiServices from "../../api/apiServices.js";
+
 import { Object } from "core-js";
 export default {
   name: "Perfil de Utilizador",
@@ -24,6 +29,7 @@ export default {
     };
   },
   mounted() {
+    this.getPerfilUser();
     var contribuicoes = this.$store.state.usr_perfil.contribuicoes;
     for (var x = 0; x < contribuicoes.length; x++) {
       this.items[Object.keys(contribuicoes[x]).toString()] = contribuicoes[x];
@@ -38,6 +44,27 @@ export default {
       store.commit("apagarJWToken");
       store.commit("limparSessionStorage");
       location.reload();
+    },
+    getPerfilUser() {
+      api.callEndPoint(apiServices.hosts.userinfo, {
+        name: "GetInfoUtilizador",
+        params: [this.user, this.$store.state.usr_token],
+      }).then((obj) => {
+        //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
+        //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
+        obj.GetInfoUtilizador.forEach((result) => {
+          //  Itera por todos as keys do objeto
+          console.log(result);
+          Object.keys(result).forEach((value) => {
+            //  Se foi devolvida uma token
+            if (value.toString() === "user") {
+              this.$store.commit("storePerfilUser", result[value]);
+            } else {
+              this.loginErro("Não foi possível buscar o perfil desse utilizador");
+            }
+          });
+        });
+      });
     },
   },
 };

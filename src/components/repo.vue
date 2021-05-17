@@ -2,8 +2,9 @@
   <div class="repo">
     <div class="titulo">
       <!-- <img src="../assets/files.svg" alt="" /> -->
+      <span class="decor"></span>
       <h2>{{ titulo }}</h2>
-      <h4>Repo Nome</h4>
+      <h4>Nome Repositório</h4>
     </div>
     <div class="descr">
       <div class="grid-container">
@@ -23,10 +24,10 @@
           Contribuidores
           <div class="hr-guide"></div>
         </div>
-        <div class="cri-val">{{ criacao }}</div>
-        <div class="tem-val">{{ tema }}</div>
-        <div class="aut-val">{{ autor }}</div>
-        <div class="cnt-val">{{ contrib }}</div>
+        <div class="cri-val val">{{ criacao }}</div>
+        <div class="tem-val val">{{ tema }}</div>
+        <div class="aut-val val">{{ autor }}</div>
+        <div class="cnt-val val">{{ contrib }}</div>
       </div>
     </div>
   </div>
@@ -57,6 +58,7 @@ export default {
   border-top: 10px solid var(--orange);
   box-shadow: 8px 8px 18px 0px #d1d1d1;
   transform: translateY(3px);
+  cursor: pointer;
 }
 
 .repo:hover h4 {
@@ -65,14 +67,32 @@ export default {
   text-decoration-color: lightgray;
 }
 
+/* .repo:hover .decor {
+  border-color: var(--blue);
+}
+.repo:hover .descr {
+  border-color: var(--blue);
+} */
+
 .titulo {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  place-items: center;
   padding: 0.6rem 0.6rem;
+  padding-bottom: 0;
   margin-top: auto;
   gap: 0.7rem;
   margin-right: 0.5rem;
+}
+
+.decor {
+  margin-left: 0.06rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 100%;
+  border: 3px solid lightgray;
+  transition: 0.3s all ease-in-out;
 }
 
 h2 {
@@ -102,19 +122,20 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  border-left: 2px solid tomato;
-  padding: 0.1rem 0.7rem;
-  padding-top: 0.8rem;
-  padding-bottom: 0.15rem;
-  margin-left: 1rem;
+  border-left: 3px solid lightgray;
+  padding: 0.5rem 0.7rem;
+  margin-top: 0.6rem;
+  margin-right: 0.7rem;
+  margin-left: 1.35rem;
   width: fit-content;
+  transition: 0.3s all ease-in-out;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 0.4rem 1rem;
+  gap: 0.65rem 1rem;
   grid-template-areas:
     "Autor aut-val"
     "Tema tem-val"
@@ -156,6 +177,18 @@ h4 {
   place-items: center;
   gap: 0.35rem;
   width: 105%;
+  transition: 0.2s all ease-out;
+  color: black;
+}
+
+.val {
+  font-family: consolas;
+  font-weight: 600;
+  color: #282828;
+}
+
+.nv:hover {
+  color: var(--blue);
 }
 
 .hr-guide {
