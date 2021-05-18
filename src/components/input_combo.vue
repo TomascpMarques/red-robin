@@ -101,7 +101,7 @@ export default {
 .norm {
   width: 0.5rem;
   height: 0.5rem;
-  background-color: lightgray;
+  background-color: transparent;
   border-radius: 100px;
   transition: 0.15s all ease-in-out;
 }
@@ -184,7 +184,7 @@ export default {
 }
 
 .input-comobo-input {
-  background-color: transparent;
+  background-color: white;
   outline: none;
   border: none;
   border-bottom: 2px solid #d3d3d3;
@@ -213,7 +213,7 @@ export default {
 }
 
 .bad {
-  background-color: transparent;
+  background-color: white;
   outline: none;
   border: none;
   border-bottom: 2px solid tomato;

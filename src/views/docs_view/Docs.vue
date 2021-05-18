@@ -4,13 +4,21 @@
       <img src="../../assets/fldrfiles.svg" alt="" />
       <h1>Repositórios</h1>
     </div>
-    <button class="refresh" @click="reload()">Atualizar Lista</button>
+    <transition
+      enter-active-class="animate__animated animate__fadeInLeft"
+      leave-active-class="animate__animated animate__fadeOutLeft"
+    >
+      <button class="refresh" v-if="disabledButton" @click="reload()">
+        Atualizar Lista
+      </button>
+    </transition>
     <br />
     <span class="hrzl"></span>
     <div class="repos">
       <div v-for="cntrb in repos" :key="cntrb.nome">
         <div class="repo-files">
           <repo
+            @click="noMouseOver(cntrb.nome)"
             :criacao="cntrb.criacao"
             :tema="cntrb.tema"
             :contrib="
@@ -21,7 +29,15 @@
             :autor="cntrb.autor"
             :titulo="cntrb.nome"
           />
-          <repoFiles :repo="cntrb.ficheiros" />
+          <transition
+            enter-active-class="animate__animated animate__backInUp"
+            leave-active-class="animate__animated animate__fadeOut"
+          >
+            <repoFiles
+              :repo="cntrb.ficheiros"
+              v-if="reposShowOBJ[cntrb.nome]"
+            />
+          </transition>
         </div>
       </div>
     </div>

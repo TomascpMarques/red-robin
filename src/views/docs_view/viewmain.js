@@ -17,11 +17,27 @@ export default {
   data() {
     return {
       repos: Array,
+      reposShowOBJ: {},
+      disabledButton: true
     };
   },
   methods: {
+    noMouseOver(repoNome) {
+      console.log(this.reposShowOBJ);
+      console.log(this.reposShowOBJ[repoNome]);
+      this.reposShowOBJ[repoNome] = !this.reposShowOBJ[repoNome];
+    },
     reload() {
+      this.disabledButton = !this.disabledButton;
       this.getRepos();
+      setTimeout(() => {
+        this.disabledButton = !this.disabledButton;
+      }, 5000);
+    },
+    test(repo) {
+      repo.forEach((x) => {
+        this.reposShowOBJ[x.nome] = false;
+      });
     },
     getRepos() {
       api.callEndPoint(apiServices.hosts.documentacao, {
@@ -40,6 +56,7 @@ export default {
             // Atribui o valor dos repos encontrados a uma local variable
             if (value.toString() === "repos") {
               this.repos = result[value];
+              this.test(result[value]);
             }
           });
         });
@@ -48,5 +65,5 @@ export default {
   },
   created() {
     this.getRepos();
-  }
+  },
 };

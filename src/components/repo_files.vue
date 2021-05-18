@@ -6,7 +6,6 @@
       <h4>Notas e documentos do repo</h4>
     </div>
     <br />
-    {{ repo }}
     <div class="body">
       <div v-for="file in repo" :key="file">
         <div class="file">
@@ -17,18 +16,14 @@
             <span class="hr-guide"></span>
             <div class="sub-body">
               <div class="legendas">
-                <span class="legenda">Autor</span>
+                <span class="legenda">Mini-Hash</span>
                 <span class="fich-autor">{{ file.hash.slice(0, 12) }}</span>
               </div>
             </div>
           </div>
           <div class="inner-body">
             <div class="combo">
-              <span class="titl">Criação: </span>
-              <span class="valr">{{ file.criacao }}</span>
-            </div>
-            <div class="combo">
-              <span class="titl">Caminho: </span>
+              <span class="titl">Localização: </span>
               <span class="valr">{{ file.path.join("/") }}</span>
             </div>
           </div>

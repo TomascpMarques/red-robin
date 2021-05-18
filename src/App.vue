@@ -158,7 +158,7 @@ export default {
 :root {
   --black: #303030;
   --drk-blue: #1e3045;
-  --white: #f2f2f2;
+  --white: #ffffff;
   --orange: #e1871e;
   --blue: #3882f2;
   --font-color: hsl(0, 0%, 19%);
