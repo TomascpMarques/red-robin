@@ -101,7 +101,7 @@ export default {
 .norm {
   width: 0.5rem;
   height: 0.5rem;
-  background-color: transparent;
+  background-color: white;
   border-radius: 100px;
   transition: 0.15s all ease-in-out;
 }

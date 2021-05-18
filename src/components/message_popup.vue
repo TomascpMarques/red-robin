@@ -76,6 +76,7 @@ export default {
   box-shadow: 6px 6px 6px 0px lightgray;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .info span {
