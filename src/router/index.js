@@ -82,7 +82,7 @@ const routes = [
   },
   {
     name: "Vizualisar Ficheiro(s)",
-    path: "/file",
+    path: "/file/:tipo/:valor",
     component: EditFiles,
     beforeEnter(to, from, next) {
       api.callEndPoint(apiServices.hosts.autenticacao, {

@@ -18,7 +18,8 @@
       <div v-for="cntrb in repos" :key="cntrb.nome">
         <div class="repo-files">
           <repo
-            @click="noMouseOver(cntrb.nome)"
+            class="el-repo"
+            @click="repoShowChange(cntrb.nome)"
             :criacao="cntrb.criacao"
             :tema="cntrb.tema"
             :contrib="
@@ -30,7 +31,7 @@
             :titulo="cntrb.nome"
           />
           <transition
-            enter-active-class="animate__animated animate__backInUp"
+            enter-active-class="animate__animated animate__fadeInLeft"
             leave-active-class="animate__animated animate__fadeOut"
           >
             <repoFiles

@@ -18,6 +18,9 @@ export default createStore({
     storePerfilUser(state, perfil) {
       state.usr_perfil = perfil;
     },
+    storeUrsRepos(state, repo) {
+      state.usr_repos = repo;
+    },
     apagarJWToken(state) {
       state.usr_token = "";
     },

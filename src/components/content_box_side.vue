@@ -5,7 +5,7 @@
         <div class="circle-red"></div>
         <div class="circle-yellow"></div>
         <div class="circle-green"></div>
-        <h3>Robin</h3>
+        <h3>{{ titulo }}</h3>
       </div>
       <div class="cont">
         <slot></slot>
@@ -17,6 +17,7 @@
 <script>
 export default {
   name: "cntBoxSideBar",
+  props: ["titulo"],
 };
 </script>
 
@@ -33,7 +34,7 @@ h3 {
 
 .cont {
   background-color: var(--white);
-  padding: 0rem 1.2vw;
+  padding: 0.7rem 1.1vw;
 }
 
 .root-box {

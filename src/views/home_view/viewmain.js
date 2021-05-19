@@ -23,17 +23,12 @@ export default {
       nome: this.$store.state.usr_perfil.nome,
       status: this.$store.state.usr_perfil.status,
       email: this.$store.state.usr_perfil.email,
-      items: {},
       especialidades: this.$store.state.usr_perfil.especialidades,
       sess: false
     };
   },
   mounted() {
     this.getPerfilUser();
-    var contribuicoes = this.$store.state.usr_perfil.contribuicoes;
-    for (var x = 0; x < contribuicoes.length; x++) {
-      this.items[Object.keys(contribuicoes[x]).toString()] = contribuicoes[x];
-    };
   },
   methods: {
     initLogOut() {

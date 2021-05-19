@@ -58,7 +58,7 @@ export default {
   flex-direction: row;
   place-items: center;
   background-color: #1e3045;
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   width: 100%;
@@ -66,11 +66,13 @@ export default {
 
 .contribuicoes-titulo h2 {
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin: 0 0.7rem;
+  letter-spacing: 0.8px;
 }
 
 .contribuicoes-conteudo {
   background-color: white;
+  padding: 0.5rem 0.5rem;
 }
 </style>

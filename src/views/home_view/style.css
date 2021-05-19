@@ -67,13 +67,14 @@
 
 .link {
     font-style: italic;
-    font-size: .95rem;
+    font-size: .91rem;
     font-weight: bold;
     font-family: Consolas;
     margin-left: .3rem;
     letter-spacing: 1px;
     color: lightgray;
     transition: .2s all ease-out;
+    text-decoration: none;
 }
 
 .link:hover {

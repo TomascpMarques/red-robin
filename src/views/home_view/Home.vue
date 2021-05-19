@@ -47,6 +47,7 @@
     <div class="disposicao">
       <usrcard :nome="nome" :user="user" :status="status" :email="email" />
       <div class="side-content">
+        <!-- {{ $store.state.usr_repos }} -->
         <contentBox :titulo="'Contribuições'">
           <div class="contribuicoes-valores">
             <h3>Documentação:</h3>
@@ -61,14 +62,44 @@
                 </li>
               </ul>
             </div> -->
-            <div v-for="item in items" :key="item" class="listing">
+            <div
+              v-for="item in $store.state.usr_repos"
+              :key="item"
+              class="listing"
+            >
               <div class="titulo-pasta">
                 <img src="../../assets/folder.svg" alt="" />
-                <span class="pasta">{{ item["reponome"] }} </span>
+                <span class="pasta">{{ item.nome }} </span>
+                <router-link
+                  class="link"
+                  :to="{
+                    name: 'Vizualisar Ficheiro(s)',
+                    params: {
+                      tipo: 'Repo',
+                      valor: '/repo/' + item.nome,
+                    },
+                  }"
+                >
+                  repo
+                </router-link>
               </div>
               <ul class="doc-list">
                 <div v-for="it in item.ficheiros" :key="it">
-                  <li>{{ it }} <span class="link">[link]</span></li>
+                  <li>
+                    {{ it.nome }}
+                    <router-link
+                      class="link"
+                      :to="{
+                        name: 'Vizualisar Ficheiro(s)',
+                        params: {
+                          tipo: 'Ficheiro',
+                          valor: it.path.join(' / '),
+                        },
+                      }"
+                    >
+                      [LINK]
+                    </router-link>
+                  </li>
                 </div>
               </ul>
             </div>

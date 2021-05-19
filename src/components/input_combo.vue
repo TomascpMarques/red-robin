@@ -90,6 +90,10 @@ export default {
 </script>
 
 <style scoped>
+input[type="text"] {
+  background-color: white;
+}
+
 .pass {
   width: 0.8rem;
   height: 0.8rem;
@@ -115,7 +119,7 @@ export default {
 .tooltip .tooltiptext {
   display: none;
   width: 60%;
-  background-color: #d3d3d3;
+  background-color: #dbdbdb;
   color: #323232;
   text-align: left;
   padding: 0.5rem;

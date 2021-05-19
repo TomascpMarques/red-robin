@@ -48,14 +48,13 @@ export default {
   justify-content: center;
   background-color: var(--white);
   border-radius: 7px;
-  border-top: 10px solid var(--blue);
+  border-left: 10px solid var(--blue);
   padding-bottom: 1rem;
   box-shadow: 8px 8px 18px 0px #dfdfdf;
   transition: 0.33s all ease-in-out, 0.2s translateY ease-in-out;
 }
 
 .repo:hover {
-  border-top: 10px solid var(--orange);
   box-shadow: 8px 8px 18px 0px #d1d1d1;
   transform: translateY(3px);
   cursor: pointer;

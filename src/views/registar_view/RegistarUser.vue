@@ -34,7 +34,7 @@
         </popup>
       </transition>
     </div>
-    <cntboxside>
+    <cntboxside :titulo="'Robin'">
       <div class="registar-user">
         <h2>Novo Utilizador</h2>
         <div class="user-auth">

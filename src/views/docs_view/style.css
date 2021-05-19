@@ -81,5 +81,10 @@ h1 {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: .4rem;
+    gap: .6rem;
+    transition: .3s all ease-out;
+}
+
+.el-repo {
+    z-index: 2;
 }

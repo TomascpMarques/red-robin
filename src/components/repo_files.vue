@@ -16,7 +16,7 @@
             <span class="hr-guide"></span>
             <div class="sub-body">
               <div class="legendas">
-                <span class="legenda">Mini-Hash</span>
+                <span class="legenda">Hash</span>
                 <span class="fich-autor">{{ file.hash.slice(0, 12) }}</span>
               </div>
             </div>
@@ -44,6 +44,23 @@ export default {
 </script>
 
 <style scoped>
+.main-wrapp::-webkit-scrollbar {
+  width: 0.3rem;
+  transition: 0.3s all ease-in-out;
+}
+
+/* Track */
+.main-wrapp::-webkit-scrollbar-track {
+  background-color: lightgray;
+}
+
+/* Handle */
+
+.main-wrapp::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd;
+  margin-top: 10px;
+}
+
 h2 {
   margin: 0;
   padding: 0;
@@ -57,16 +74,19 @@ h4 {
   font-size: 0.9rem;
   color: lightgray;
   letter-spacing: 1px;
-  border-bottom: 2px dashed lightgray;
+  border-bottom: 2px solid lightgray;
 }
 
 .main-wrapp {
   z-index: 1;
-  border-radius: 5px;
-  border-top: 10px solid tomato;
+  border-radius: 7px;
+  border-left: 10px solid lightgray;
   background-color: var(--white);
   padding: 0.5rem 1rem;
   padding-bottom: 1rem;
+  max-height: 40vh;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .titulo {
@@ -115,8 +135,7 @@ h4 {
 
 .hr-guide {
   width: 100%;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
+  border-top: 6px dotted #e0e0e0;
   margin-right: 0.8rem;
   margin-left: 0.8rem;
 }
@@ -171,5 +190,13 @@ h4 {
   font-weight: bold;
   letter-spacing: 0.8px;
   margin-right: 0.2rem;
+}
+
+.fich-autor {
+  font-family: consolas;
+  letter-spacing: 0.1px;
+  font-weight: bold;
+  color: gray;
+  font-size: 0.9rem;
 }
 </style>
