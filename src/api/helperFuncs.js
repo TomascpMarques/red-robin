@@ -29,6 +29,7 @@ export function gerarAction(func) {
     templateBase += parseParametros(param) + ",\n";
   });
 
+  console.log(templateBase);
   return templateBase;
 };
 
@@ -36,8 +37,9 @@ export function gerarAction(func) {
  * @param {string} str Uma string a encriptar
  * @returns Uma string enciptada sem salt em MD5
  */
-export function toMD5(str) {
-  return crypto.MD5(str).toString();
+export function toSHA256(str) {
+  console.log(crypto.SHA256(str).toString());
+  return crypto.SHA256(str).toString();
 };
 
 export function getEndpointValores(respObj, endpoint, retorno, erro) {

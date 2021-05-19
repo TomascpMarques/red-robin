@@ -14,7 +14,7 @@ export default {
     return {
       user: "",
       pass: "",
-      md5_pass: "",
+      encrypt_pass: "",
       login: false,
       params_errados: false,
       show: false,
@@ -123,10 +123,10 @@ export default {
     initLogin() {
       this.show = false;
       if (this.validarInput(this.user, this.pass)) {
-        this.md5_pass = helpers.toMD5(this.pass);
+        this.encrypt_pass = helpers.toSHA256(this.pass);
         api.callEndPoint(apiServices.hosts.autenticacao, {
           name: "Login",
-          params: [this.user, this.md5_pass],
+          params: [this.user, this.encrypt_pass],
         }).then((obj) => {
           //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
           //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
