@@ -66,11 +66,10 @@ h2 {
 
 .page-body {
     display: grid;
-    grid-template-columns: .45fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 1rem .4rem;
+    grid-template-columns: .44fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem 0rem;
     grid-template-areas: "explorador Editor";
-    grid-auto-flow: column;
     padding: 0 .3rem;
 }
 
@@ -78,8 +77,8 @@ h2 {
     .page-body {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        gap: 1.2rem 0px;
+        grid-template-rows: repeat(2, auto);
+        gap: 1rem 0px;
         grid-template-areas: "explorador" "editor";
         padding: .5rem .3rem;
     }
@@ -91,4 +90,57 @@ h2 {
 
 .Editor {
     grid-area: editor;
+}
+
+.info-repo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+    gap: .3rem;
+    margin-left: .4rem;
+    padding: 0rem .5rem;
+    transition: .3s all ease-in-out;
+    margin-bottom: .7rem;
+}
+
+.info-repo h3 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: .3rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .23rem;
+    margin-left: .5rem;
+    padding: .35rem;
+    padding-left: .6rem;
+    border-left: 5px dotted lightgray;
+    transition: .3s all ease-in-out;
+}
+
+.title {
+    font-weight: bold;
+    letter-spacing: .2px;
+    margin-right: .5rem;
+}
+
+.info-repo:hover .info {
+    border-color: var(--orange);
+}
+
+.hrzl {
+    width: 100%;
+    height: 2px;
+    background-color: darkgray;
+    opacity: 0.4;
+    margin: 1rem 0rem;
+}
+
+.text {
+    word-wrap: break-word;
+    word-break: break-all;
 }

@@ -24,26 +24,33 @@
     </div>
     <div class="page-body">
       <div class="explorador">
-        <cntboxside :titulo="'Explorador de Ficheiros'">
-          <span
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-            natus officiis temporibus accusantium nam cupiditate quo quas labore
-            odit ducimus ullam accusamus qui earum similique ut repellat dolores
-            eveniet eaque commodi. Eligendi corporis, quo asperiores pariatur
-            nostrum assumenda ea fugit dolorem illo minima delectus neque facere
-            error veritatis odit animi quas saepe quia?
-          </span>
-        </cntboxside>
+        <content-box :titulo="'Explorador de Ficheiros'">
+          <div class="info-repo">
+            <div>
+              <h3>Informação Repo:</h3>
+              <div class="info">
+                <section class="info-repo-val">
+                  <span class="title">Autor:</span>
+                  <span class="value">{{ repo.autor }}</span>
+                </section>
+                <section class="info-repo-val">
+                  <span class="title">Tema:</span>
+                  <span class="value">{{ repo.tema }}</span>
+                </section>
+                <section class="info-repo-val">
+                  <span class="title">Criado:</span>
+                  <span class="value">{{ repo.criacao }}</span>
+                </section>
+              </div>
+            </div>
+            <span class="hrzl"></span>
+          </div>
+        </content-box>
       </div>
       <div class="editor">
         <content-box :titulo="'Editor'">
-          <span
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-            natus officiis temporibus accusantium nam cupiditate quo quas labore
-            odit ducimus ullam accusamus qui earum similique ut repellat dolores
-            eveniet eaque commodi. Eligendi corporis, quo asperiores pariatur
-            nostrum assumenda ea fugit dolorem illo minima delectus neque facere
-            error veritatis odit animi quas saepe quia?
+          <span class="text">
+            {{ repo }}
           </span>
         </content-box>
       </div>

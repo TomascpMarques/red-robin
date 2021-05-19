@@ -33,7 +33,7 @@ export default {
   margin: 1rem;
   margin-bottom: 0;
   height: min-content;
-  box-shadow: 8px 8px 5px 0px lightgray;
+  box-shadow: 7px 7px 5px 0px gainsboro;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }

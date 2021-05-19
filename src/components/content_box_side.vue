@@ -40,7 +40,8 @@ h3 {
 .root-box {
   display: grid;
   grid-template-columns: auto auto auto;
-  box-shadow: var(--wrapper-shadow);
+  box-shadow: 7px 7px 5px 0px gainsboro;
+  background-color: var(--white);
   transition: 0.3s all ease-in-out;
   margin: 0.5rem;
 }
@@ -56,6 +57,7 @@ h3 {
   padding-top: 23px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
+  max-width: min-content;
 }
 
 .circle-red {
