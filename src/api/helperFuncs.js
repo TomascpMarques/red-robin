@@ -29,7 +29,6 @@ export function gerarAction(func) {
     templateBase += parseParametros(param) + ",\n";
   });
 
-  console.log(templateBase);
   return templateBase;
 };
 
@@ -38,7 +37,6 @@ export function gerarAction(func) {
  * @returns Uma string enciptada sem salt em MD5
  */
 export function toSHA256(str) {
-  console.log(crypto.SHA256(str).toString());
   return crypto.SHA256(str).toString();
 };
 
