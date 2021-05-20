@@ -34,8 +34,7 @@ h4 {
     margin: 0;
     padding: 0;
     color: blueviolet;
-    font-size: 1.5rem;
-    font-variant: small-caps;
+    font-size: 1.3rem;
     word-spacing: -2.3px;
 }
 
@@ -124,6 +123,13 @@ h4 {
     margin-bottom: .3rem;
 }
 
+.side-bar {
+    border: 4px solid lightgray;
+    background-color: lightgray;
+    border-radius: 50px;
+    transition: .3s all ease-out;
+}
+
 .info {
     display: flex;
     flex-direction: column;
@@ -143,6 +149,11 @@ h4 {
 }
 
 .info-repo:hover .info {
+    border-color: var(--orange);
+}
+
+.selected {
+    background-color: var(--orange);
     border-color: var(--orange);
 }
 
@@ -223,13 +234,6 @@ h4 {
     place-items: center;
 }
 
-.side-bar {
-    border: 4px solid lightgray;
-    background-color: lightgray;
-    border-radius: 50px;
-    transition: .3s all ease-out;
-}
-
 ul {
     list-style: none;
     padding: .2rem;
@@ -251,8 +255,8 @@ ul {
 }
 
 .file:hover .side-bar {
-    background-color: var(--orange);
-    border-color: var(--orange);
+    background-color: salmon;
+    border-color: salmon;
     transition: .3s all ease-out;
 }
 
@@ -305,8 +309,8 @@ li {
     border-top: 5px dotted lightgray;
     padding: .4rem .6rem;
     margin-left: .7rem;
-    font-family: "nunito";
-    font-size: 1.1rem;
+    font-family: "Roboto";
+    font-size: 1rem;
     letter-spacing: .3px;
     word-spacing: 1px;
     width: 90%;
@@ -347,7 +351,12 @@ li {
 
 .butt:hover {
     border-color: var(--orange);
-    padding: .2rem 1rem;
+    transform: translatey(2px);
+}
+
+.butt:active {
+    background-color: var(--orange);
+    color: var(--white);
 }
 
 .close-but {

@@ -75,7 +75,12 @@
                 <div class="files">
                   <ul v-for="file in fileStruct[path]" :key="file">
                     <div class="file">
-                      <div class="side-bar"></div>
+                      <div
+                        v-bind:class="{
+                          'side-bar': true,
+                          selected: fileEscolhidoPath === file.path,
+                        }"
+                      ></div>
                       <li @click="log(file.path, file.nome)">
                         {{ file.nome }}
                       </li>

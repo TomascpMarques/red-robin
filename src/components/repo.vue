@@ -1,6 +1,6 @@
 <template>
   <div class="repo">
-    <div class="titulo">
+    <div class="titulo" @click="toRepo(titulo)">
       <!-- <img src="../assets/files.svg" alt="" /> -->
       <span class="decor"></span>
       <h2>{{ titulo }}</h2>
@@ -34,9 +34,19 @@
 </template>
 
 <script>
+import router from "../router/index.js";
+
 export default {
   name: "repo",
   props: ["criacao", "contrib", "autor", "tema", "titulo"],
+  methods: {
+    toRepo(nome) {
+      router.push({
+        name: "Vizualisar Ficheiro(s)",
+        params: { tipo: "Repo", valor: "/repo/" + nome },
+      });
+    },
+  },
 };
 </script>
 
@@ -83,6 +93,7 @@ export default {
   margin-top: auto;
   gap: 0.7rem;
   margin-right: 0.5rem;
+  width: fit-content;
 }
 
 .decor {

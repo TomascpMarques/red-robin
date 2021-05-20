@@ -2,8 +2,8 @@
   <div class="main-wrapp" v-if="repo.length > 0">
     <div class="titulo">
       <div class="decor"></div>
-      <h2>Pastas e Ficheiros</h2>
-      <h4>Notas e documentos do repo</h4>
+      <h2>Ficheiros</h2>
+      <h4>Documentos do repo</h4>
     </div>
     <br />
     <div class="body">
