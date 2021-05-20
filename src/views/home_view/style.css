@@ -122,14 +122,22 @@
 .listing {
     display: flex;
     flex-direction: column;
+    margin-bottom: .8rem;
 }
 
 .doc-list {
     margin-top: .1rem;
     margin-left: .55rem;
+    margin-bottom: 0;
 }
 
 .doc-list li {
     padding: .4rem 0rem;
     font-size: .9rem;
+}
+
+.etc {
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 1rem;
 }

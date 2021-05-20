@@ -83,24 +83,13 @@
                   repo
                 </router-link>
               </div>
-              <ul class="doc-list">
-                <div v-for="it in item.ficheiros" :key="it">
+              <ul class="doc-list" v-if="item.ficheiros.length > 0">
+                <div v-for="it in item.ficheiros.slice(0, 3)" :key="it">
                   <li>
                     {{ it.nome }}
-                    <router-link
-                      class="link"
-                      :to="{
-                        name: 'Vizualisar Ficheiro(s)',
-                        params: {
-                          tipo: 'Ficheiro',
-                          valor: it.path.join(' / '),
-                        },
-                      }"
-                    >
-                      [LINK]
-                    </router-link>
                   </li>
                 </div>
+                <li v-if="item.ficheiros.length >= 4" class="etc">etc...</li>
               </ul>
             </div>
           </div>

@@ -25,6 +25,11 @@ h2 {
     letter-spacing: 0px;
 }
 
+h3 {
+    padding: 0;
+    margin: 0;
+}
+
 h4 {
     margin: 0;
     padding: 0;
@@ -157,11 +162,27 @@ h4 {
 .select {
     margin-top: .5rem;
     padding-left: 0;
-    margin-bottom: .7rem;
+    margin-bottom: 1rem;
 }
 
 .paths-cont {
     margin-left: 1rem;
+    transition: .3s all ease-in;
+    max-height: 25vh;
+    overflow-y: scroll;
+}
+
+.paths-cont::-webkit-scrollbar-track {
+    background-color: gainsboro;
+}
+
+.paths-cont::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: #cecece;
+}
+
+.paths-cont::-webkit-scrollbar {
+    width: 5px;
 }
 
 .path-titl {
@@ -200,13 +221,13 @@ h4 {
     justify-content: flex-start;
     align-content: flex-start;
     place-items: center;
-    height: max-content
 }
 
 .side-bar {
     border: 4px solid lightgray;
     background-color: lightgray;
     border-radius: 50px;
+    transition: .3s all ease-out;
 }
 
 ul {
@@ -227,13 +248,12 @@ ul {
     align-content: flex-start;
     place-items: center;
     gap: .45rem;
-    transition: .3s all ease-in-out;
 }
 
 .file:hover .side-bar {
     background-color: var(--orange);
     border-color: var(--orange);
-    transition: .3s all ease-in-out;
+    transition: .3s all ease-out;
 }
 
 li {
@@ -242,10 +262,68 @@ li {
     font-family: "Nunito";
     font-weight: bold;
     color: #404040;
-    transition: .3s all ease-in-out;
 }
 
 .paths-title {
     padding: 0;
     margin: 0;
+    margin-left: 1rem;
+    margin-bottom: .3rem;
+}
+
+.empty {
+    font-size: 1.5rem;
+    font-variant: small-caps;
+    font-weight: bold;
+    padding: 0;
+    margin: 1rem auto;
+    text-align: center;
+    border-top: 2px solid gainsboro;
+    border-bottom: 2px solid gainsboro;
+    padding-bottom: .25rem;
+    width: fit-content;
+    color: gainsboro;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.edit-file-title {
+    margin-bottom: .5rem;
+    padding: .24rem .4rem;
+    border-bottom: 2px dashed var(--orange);
+    width: fit-content;
+    letter-spacing: .5px;
+}
+
+.cont textarea {
+    border: none;
+    border-left: 3px solid lightgray;
+    padding: .4rem .6rem;
+    margin-left: .7rem;
+    font-family: "nunito";
+    font-size: 1.1rem;
+    letter-spacing: .3px;
+    word-spacing: 1px;
+    width: 90%;
+    height: 50vh;
+    resize: none;
+    margin-bottom: .7rem;
+    outline: none;
+}
+
+.cont textarea::-webkit-scrollbar-track {
+    background-color: gainsboro;
+}
+
+.cont textarea::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: #cecece;
+}
+
+.cont textarea::-webkit-scrollbar {
+    width: 5px;
 }

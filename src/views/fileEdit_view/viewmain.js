@@ -12,11 +12,14 @@ export default {
     return {
       repo: {},
       fileStruct: {},
+      editorContent: Object,
+      fileEscolhido: ""
     };
   },
   methods: {
-    log(str) {
-      console.log(str);
+    log(str, nome) {
+      this.fileEscolhido = nome;
+      this.editorContent = str;
     },
     getRepoFromList() {
       this.repo = this.$store.state.usr_repos.filter((x) => {
@@ -44,7 +47,6 @@ export default {
         };
         this.fileStruct[ficheiroPathNoName].push(filePathCombo);
       });
-      console.log(this.fileStruct);
     }
   },
   created() {

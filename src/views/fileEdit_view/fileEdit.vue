@@ -45,8 +45,8 @@
             </div>
           </div>
           <div class="hrzl"></div>
+          <h3 class="paths-title">Listagem de Conteudo:</h3>
           <div class="paths-cont">
-            <h3 class="paths-title">Listagem de Conteudo:</h3>
             <div
               class="select"
               v-for="path in Object.keys(fileStruct)"
@@ -72,7 +72,9 @@
                   <ul v-for="file in fileStruct[path]" :key="file">
                     <div class="file">
                       <div class="side-bar"></div>
-                      <li @click="log(file.path)">{{ file.nome }}</li>
+                      <li @click="log(file.path, file.nome)">
+                        {{ file.nome }}
+                      </li>
                     </div>
                   </ul>
                 </div>
@@ -83,9 +85,21 @@
       </div>
       <div class="editor">
         <content-box :titulo="'Editor'">
-          <span class="text">
-            {{ repo }}
-          </span>
+          <transition
+            enter-active-class="animate__animated animate__fadeIn"
+            leave-active-class="animate__animated animate__fadeOut"
+          >
+            <div class="cont" v-if="fileEscolhido">
+              <h3 class="edit-file-title">File: {{ fileEscolhido }}</h3>
+              <textarea
+                class="text"
+                :value="editorContent"
+                @input="editorContent = $event.target.value"
+              >
+              </textarea>
+            </div>
+          </transition>
+          <p class="empty" v-if="!fileEscolhido">wow such empty</p>
         </content-box>
       </div>
     </div>
