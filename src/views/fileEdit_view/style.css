@@ -307,14 +307,14 @@ li {
     border: none;
     border-bottom: 5px dotted lightgray;
     border-top: 5px dotted lightgray;
-    padding: .4rem .6rem;
+    padding: .6rem .6rem;
     margin-left: .7rem;
     font-family: "Roboto";
     font-size: 1rem;
     letter-spacing: .3px;
     word-spacing: 1px;
     width: 90%;
-    max-height: 50vh;
+    height: 50vh;
     min-height: 10vh;
     overflow: auto;
     overflow-y: scroll;

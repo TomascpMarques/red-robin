@@ -33,10 +33,6 @@ export function gerarAction(func) {
   return templateBase;
 };
 
-/**
- * @param {string} str Uma string a encriptar
- * @returns Uma string enciptada sem salt em MD5
- */
 export function toSHA256(str) {
   return crypto.SHA256(str).toString();
 };

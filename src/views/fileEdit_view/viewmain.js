@@ -1,4 +1,5 @@
 import store from "../../store/index.js";
+import router from "../../router/index.js";
 
 import * as api from "../../api/apiCalls.js";
 import * as apiServices from "../../api/apiServices.js";
@@ -92,7 +93,8 @@ export default {
                 if (result[value].hash !== helpers.toSHA256(result[value].conteudo)) {
                   this.editorContent = "O conteudo chegou currompido";
                 } else {
-                  this.editorContent = result[value].conteudo;
+                  this.editorContent = result[value].conteudo.replace(/%20/gm, "\n")
+                    .replace(/%21/gm, "\\").replace(/%22/gm, "\"");
                 }
               }
             }
@@ -114,15 +116,23 @@ export default {
       this.show = true;
       this.log_tip = "good";
     },
+    fileWriteSucesso(mss) {
+      this.log_tit = "Ficheiros";
+      this.log_mss = mss;
+      this.show = true;
+      this.log_tip = "good";
+    },
     SetupFileWrite() {
       try {
         this.refreshToken();
       } finally {
+        var tempContent = this.editorContent.replace(/\n/gm, "%20")
+          .replace(/\\/gm, "%21").replace(/"/gm, "%22");
         var file = {
-          hash: helpers.toSHA256(this.editorContent),
+          hash: helpers.toSHA256(tempContent),
           path: this.fileEscolhidoPath,
           nome: this.fileEscolhido,
-          conteudo: this.editorContent
+          conteudo: tempContent
         };
         console.log(file);
         this.escreverConteudoFile(file);
@@ -136,9 +146,16 @@ export default {
         //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
         //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
         obj.InserirConteudoFicheiro.forEach((result) => {
+          console.log("-> ", result);
           //  Itera por todos as keys do objeto
           Object.keys(result).forEach((value) => {
-            console.log(result[value]);
+            console.log("result[value] -<>", result[value]);
+            console.log("value -<>", value);
+            if (value.toString() === "erro") {
+              this.loginErro(obj.InserirConteudoFicheiro[0].erro);
+            } else if (value.toString() === "sucesso") {
+              this.fileWriteSucesso("O ficheiro foi atualizado");
+            }
           });
         });
       });
@@ -156,7 +173,6 @@ export default {
           Object.keys(x).forEach((y) => {
             //  Se foi devolvida uma token
             if (y.toString() === "token") {
-              this.loginSucesso(obj.Login[0].token);
               console.log("Sucesso");
             } else {
               this.loginErro(obj.Login[0].erro);
@@ -169,12 +185,9 @@ export default {
       });
     },
     reload() {
-      this.getRepos();
-      this.disabledButton = !this.disabledButton;
-      this.getRepos();
-      setTimeout(() => {
-        this.disabledButton = !this.disabledButton;
-      }, 5000);
+      router.push({
+        name: "Documentação",
+      });
     },
     getRepos() {
       api.callEndPoint(apiServices.hosts.documentacao, {
