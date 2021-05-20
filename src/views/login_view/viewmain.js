@@ -68,7 +68,12 @@ export default {
       this.params_errados = true;
     },
     loginSucesso(token) {
+      var creds = {
+        pass: this.encrypt_pass,
+        user: this.user,
+      };
       this.$store.commit("storeJWToken", token);
+      this.$store.commit("storeUsrCreds", creds);
       this.log_tit = "Login";
       this.log_mss =
         "O login teve sucesso, a redirecionar em 4 segundos... ";

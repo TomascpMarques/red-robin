@@ -38,10 +38,7 @@ export default {
       });
     },
     setUpUsrRepos() {
-      console.log("AAA", this.repos);
       this.repos.forEach((repo) => {
-        console.log("<>", repo);
-        console.log("<>", repo.nome);
         this.$store.commit("storeUrsRepos", repo);
       });
     },

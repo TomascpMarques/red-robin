@@ -29,6 +29,7 @@ export function gerarAction(func) {
     templateBase += parseParametros(param) + ",\n";
   });
 
+  console.log(templateBase);
   return templateBase;
 };
 

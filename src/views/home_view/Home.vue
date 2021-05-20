@@ -80,11 +80,12 @@
                     },
                   }"
                 >
-                  repo
+                  <span>repo</span>
+                  <span v-if="item.ficheiros.length < 1">(vazio)</span>
                 </router-link>
               </div>
               <ul class="doc-list" v-if="item.ficheiros.length > 0">
-                <div v-for="it in item.ficheiros.slice(0, 3)" :key="it">
+                <div v-for="it in item.ficheiros.slice(0, 4)" :key="it">
                   <li>
                     {{ it.nome }}
                   </li>

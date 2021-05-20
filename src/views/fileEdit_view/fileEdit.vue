@@ -4,7 +4,6 @@
       <div class="tit-left">
         <img src="../../assets/files.svg" alt="" />
         <h1>Gestor de documentos</h1>
-        <h2>v1.2</h2>
       </div>
       <div class="route-info">
         <h2>{{ $route.params.tipo }}:</h2>
@@ -22,9 +21,17 @@
         </div>
       </div>
     </div>
+    <transition
+      enter-active-class="animate__animated animate__fadeInLeft"
+      leave-active-class="animate__animated animate__fadeOutLeft"
+    >
+      <button class="refresh" v-if="disabledButton" @click="reload()">
+        Atualizar Lista
+      </button>
+    </transition>
     <div class="page-body">
       <div class="explorador">
-        <content-box :titulo="'Explorador de Ficheiros'">
+        <content-box :titulo="'Explorador'">
           <div class="info-repo">
             <div>
               <h3>Informação Repo:</h3>
@@ -54,17 +61,14 @@
             >
               <div class="path-titl">
                 <img src="../../assets/folder.svg" alt="" />
-                <div
-                  class="root-dir"
-                  v-if="path.split('/').slice(1).length < 2"
-                >
+                <div class="root-dir" v-if="lenLessThanTwo(path)">
                   <h4>
-                    {{ path.split("/").slice(1).join("/") }}
+                    {{ setUpDirName(path) }}
                   </h4>
-                  <span> root dir</span>
+                  <span>root dir</span>
                 </div>
-                <h4 v-if="path.split('/').slice(1).length >= 2">
-                  {{ path.split("/").slice(1).join(" / ") }}
+                <h4 v-if="lenGreaterOrEqualThanTwo(path)">
+                  {{ setUpFileNameFromPath(path) }}
                 </h4>
               </div>
               <div class="side-content">
@@ -82,6 +86,21 @@
             </div>
           </div>
         </content-box>
+        <div>
+          <transition
+            enter-active-class="animate__animated animate__fadeIn"
+            leave-active-class="animate__animated animate__fadeOut"
+          >
+            <message
+              v-if="show"
+              :menssagem="log_mss"
+              :titulo="log_tit"
+              :tipo="log_tip"
+            >
+              <section @click="show = !show" class="close-but">Fechar</section>
+            </message>
+          </transition>
+        </div>
       </div>
       <div class="editor">
         <content-box :titulo="'Editor'">
@@ -91,6 +110,7 @@
           >
             <div class="cont" v-if="fileEscolhido">
               <h3 class="edit-file-title">File: {{ fileEscolhido }}</h3>
+              <p class="empty" v-if="!editorContent">wow such empty</p>
               <textarea
                 class="text"
                 :value="editorContent"
@@ -100,6 +120,9 @@
             </div>
           </transition>
           <p class="empty" v-if="!fileEscolhido">wow such empty</p>
+          <button class="butt" v-if="fileEscolhido" @click="SetupFileWrite()">
+            Commit
+          </button>
         </content-box>
       </div>
     </div>

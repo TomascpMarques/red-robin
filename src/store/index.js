@@ -9,9 +9,13 @@ export default createStore({
   state: {
     usr_token: "",
     usr_perfil: {},
-    usr_repos: []
+    usr_repos: [],
+    usr_creds: {}
   },
   mutations: {
+    storeUsrCreds(state, creds) {
+      state.usr_creds = creds;
+    },
     storeJWToken(state, token) {
       state.usr_token = token;
     },

@@ -301,7 +301,8 @@ li {
 
 .cont textarea {
     border: none;
-    border-left: 3px solid lightgray;
+    border-bottom: 5px dotted lightgray;
+    border-top: 5px dotted lightgray;
     padding: .4rem .6rem;
     margin-left: .7rem;
     font-family: "nunito";
@@ -309,7 +310,10 @@ li {
     letter-spacing: .3px;
     word-spacing: 1px;
     width: 90%;
-    height: 50vh;
+    max-height: 50vh;
+    min-height: 10vh;
+    overflow: auto;
+    overflow-y: scroll;
     resize: none;
     margin-bottom: .7rem;
     outline: none;
@@ -326,4 +330,51 @@ li {
 
 .cont textarea::-webkit-scrollbar {
     width: 5px;
+}
+
+.butt {
+    border-radius: 5px;
+    border: 2px solid var(--blue);
+    background-color: transparent;
+    padding: .2rem .5rem;
+    margin: .4rem .5rem;
+    font-family: "Roboto";
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 5px 5px 4px 0px lightgray;
+    transition: .2s all ease-in-out;
+}
+
+.butt:hover {
+    border-color: var(--orange);
+    padding: .2rem 1rem;
+}
+
+.close-but {
+    font-size: 0.9rem;
+    padding: 0.2rem;
+    margin-top: .4rem;
+    color: lightgray;
+    font-style: italic;
+}
+
+.close-but:hover {
+    cursor: pointer;
+}
+
+.refresh {
+    color: var(--black);
+    border-radius: 3px;
+    border: 0px solid transparent;
+    border-left: 7px solid var(--blue);
+    background-color: var(--white);
+    padding: .2rem .4rem;
+    margin: 0;
+    width: fit-content;
+    font-size: 1.08rem;
+    font-family: "Consolas";
+    margin-left: 1.5%;
+    font-weight: bold;
+    box-shadow: 5px 5px 2px 0px #d3d3d36c;
+    transition: .3s all ease-out, .18s scale ease-out;
 }
