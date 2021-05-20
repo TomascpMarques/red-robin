@@ -43,7 +43,41 @@
                 </section>
               </div>
             </div>
-            <span class="hrzl"></span>
+          </div>
+          <div class="hrzl"></div>
+          <div class="paths-cont">
+            <h3 class="paths-title">Listagem de Conteudo:</h3>
+            <div
+              class="select"
+              v-for="path in Object.keys(fileStruct)"
+              :key="path"
+            >
+              <div class="path-titl">
+                <img src="../../assets/folder.svg" alt="" />
+                <div
+                  class="root-dir"
+                  v-if="path.split('/').slice(1).length < 2"
+                >
+                  <h4>
+                    {{ path.split("/").slice(1).join("/") }}
+                  </h4>
+                  <span> root dir</span>
+                </div>
+                <h4 v-if="path.split('/').slice(1).length >= 2">
+                  {{ path.split("/").slice(1).join(" / ") }}
+                </h4>
+              </div>
+              <div class="side-content">
+                <div class="files">
+                  <ul v-for="file in fileStruct[path]" :key="file">
+                    <div class="file">
+                      <div class="side-bar"></div>
+                      <li @click="log(file.path)">{{ file.nome }}</li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </content-box>
       </div>
