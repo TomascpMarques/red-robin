@@ -119,7 +119,7 @@ export default {
             this.log_mssUserInf = "A informação do utilizador foi insserida com sucesso";
             this.log_titUserInf = "Informação de User";
             this.log_tipUserInf = "good";
-            const passHash = helpers.toMD5(this.password);
+            const passHash = helpers.toSHA256(this.password);
             api.callEndPoint(apiServices.hosts.autenticacao, {
               name: "Registar",
               params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
@@ -131,7 +131,7 @@ export default {
                 this.log_tipUserAcc = "good";
               } else {
                 this.showUserAcc = true;
-                this.log_mssUserAcc = "O utilizador não foi criado, utilizador já existente ou maus dados";
+                this.log_mssUserAcc = "O utilizador não foi criado, utilizador existente ou dados mal-formados";
                 this.log_titUserAcc = "Erro";
                 this.log_tipUserAcc = "bad";
               }
