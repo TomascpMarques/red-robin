@@ -26,7 +26,7 @@
       leave-active-class="animate__animated animate__fadeOutLeft"
     >
       <button class="refresh" v-if="disabledButton" @click="reload()">
-        Atualizar Lista
+        Vista Geral
       </button>
     </transition>
     <div class="page-body">
@@ -52,7 +52,10 @@
             </div>
           </div>
           <div class="hrzl"></div>
-          <h3 class="paths-title">Conteudo do repositório:</h3>
+          <div class="cont-novo">
+            <h3 class="paths-title">Conteudo do repositório:</h3>
+            <span>Novo Ficheiro</span>
+          </div>
           <div class="paths-cont">
             <div
               class="select"
@@ -126,7 +129,7 @@
           </transition>
           <p class="empty" v-if="!fileEscolhido">wow such empty</p>
           <button class="butt" v-if="fileEscolhido" @click="SetupFileWrite()">
-            Submeter
+            Escrever no Ficheiro
           </button>
         </content-box>
       </div>

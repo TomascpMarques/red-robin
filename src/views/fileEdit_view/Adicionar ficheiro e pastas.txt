@@ -1,0 +1,9 @@
+Adicionar ficheiro e pastas
+
+# botão para esconder as opções
+-> tipo uma global var, que cada dir está ligada, e que se for verdadeira
+   mostra as opções de criar ficheiros e pastas
+
+# Aparecer um pop up para inserir o ficheiro e/ou a pasta nova
+    com o path novo, para criar pastas novas se forem pedidas
+    e o nome do ficheiro a inserir
