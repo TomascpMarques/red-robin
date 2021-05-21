@@ -67,7 +67,6 @@ export default {
 .repo:hover {
   box-shadow: 8px 8px 18px 0px #d1d1d1;
   transform: translateY(3px);
-  cursor: pointer;
 }
 
 .repo:hover h4 {
@@ -75,13 +74,6 @@ export default {
   text-decoration-thickness: 2px;
   text-decoration-color: lightgray;
 }
-
-/* .repo:hover .decor {
-  border-color: var(--blue);
-}
-.repo:hover .descr {
-  border-color: var(--blue);
-} */
 
 .titulo {
   display: flex;
@@ -94,6 +86,15 @@ export default {
   gap: 0.7rem;
   margin-right: 0.5rem;
   width: fit-content;
+  transition: 0.2s all ease-in;
+}
+
+.titulo:hover {
+  color: blueviolet;
+  cursor: pointer;
+}
+.titulo:hover h4 {
+  cursor: pointer;
 }
 
 .decor {

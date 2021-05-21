@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="hrzl"></div>
-          <h3 class="paths-title">Listagem de Conteudo:</h3>
+          <h3 class="paths-title">Conteudo do repositório:</h3>
           <div class="paths-cont">
             <div
               class="select"
@@ -114,7 +114,7 @@
             leave-active-class="animate__animated animate__fadeOut"
           >
             <div class="cont" v-if="fileEscolhido">
-              <h3 class="edit-file-title">File: {{ fileEscolhido }}</h3>
+              <h3 class="edit-file-title">Ficheiro: {{ fileEscolhido }}</h3>
               <p class="empty" v-if="!editorContent">wow such empty</p>
               <textarea
                 class="text"
@@ -126,7 +126,7 @@
           </transition>
           <p class="empty" v-if="!fileEscolhido">wow such empty</p>
           <button class="butt" v-if="fileEscolhido" @click="SetupFileWrite()">
-            Commit
+            Submeter
           </button>
         </content-box>
       </div>

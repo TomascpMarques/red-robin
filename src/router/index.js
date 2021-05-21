@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/home_view/Home.vue";
 import Login from "../views/login_view/Login.vue";
 import NoPerm from "../views/noPerm_view/NoPerm.vue";
+import NoRepo from "../views/norepo/NoRepo.vue";
 import RegistarUser from "../views/registar_view/RegistarUser.vue";
 import ModUser from "../views/usermod_view/UserMod.vue";
 import Docs from "../views/docs_view/Docs.vue";
@@ -90,11 +91,18 @@ const routes = [
         // assim envia a string "empty", se o utilizador não estiver autenticado
         params: [store.state.usr_token ? store.state.usr_token : "empty"],
       }).then((obj) => {
-        if (obj.VerificarTokenUser[0] === "OK") {
+        /* const repoSearched = to.params.valor.split("/").lastItem;
+        const repos = store.state.usr_perfil.contribuicoes.map(x => x.reponome); */
+        if (obj.VerificarTokenUser[0] === "OK"/*  && repos.find(x => x === repoSearched) */) {
           next();
-        } else next({ path: "/bery_bad_baddie", name: "Sem permissões" });
+        } else next({ path: "/no_repo", name: "O Repositório Não Existe" });
       });
     },
+  },
+  {
+    path: "/no_repo",
+    name: "O Repositório Não Existe",
+    component: NoRepo
   },
   {
     path: "/bery_bad_baddie",
