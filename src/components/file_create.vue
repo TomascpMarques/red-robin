@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="['wrap', !result ? 'wrap-good' : 'wrap-erro']">
+  <div v-bind:class="['wrap', result === true ? 'wrap-good' : 'wrap-erro']">
     <div class="padd">
       <div class="title">
         <h2>Ficheiro</h2>
@@ -25,7 +25,7 @@
           :tipo="'text'"
         />
         <div class="buttons">
-          <button @click="$emit('update:modelValue', false)">Cancelar</button>
+          <button @click="$emit('update:modelValue', false)">Saír</button>
           <button @click="verifFileExiste(localFicheiro)">
             Criar Ficheiro
           </button>
@@ -91,6 +91,8 @@ export default {
                 console.log("Sucesso ao criar o ficheiro");
                 this.operacao = "Sucesso";
                 this.result = false;
+                this.nomeFile = "";
+                this.localFicheiro = "";
               }
               if (value.toString() === "erro") {
                 this.operacao = result[value];
@@ -157,7 +159,7 @@ export default {
   border-left: 12px solid tomato;
 }
 .wrap-good {
-  border-left: 12px solid tomato;
+  border-left: 12px solid limegreen;
 }
 
 h2 {

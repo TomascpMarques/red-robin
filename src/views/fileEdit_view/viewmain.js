@@ -193,7 +193,7 @@ export default {
     },
     reload() {
       router.push({
-        name: "Documentação",
+        path: "/docs",
       });
     },
     getRepos() {
