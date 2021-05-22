@@ -41,7 +41,7 @@
           <div class="item-menu" v-if="loggedIn">
             <span>
               <router-link class="span-link" to="/docs">
-                Documentação & Notas
+                Repositórios
               </router-link>
             </span>
           </div>

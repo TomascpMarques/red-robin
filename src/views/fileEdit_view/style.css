@@ -424,3 +424,38 @@ li {
     padding: .3rem .4rem;
     border-radius: 5px;
 }
+
+.blur {
+    filter: blur(3.3px);
+}
+
+.nrml {
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+}
+
+.bkg {
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(220, 220, 220, 0.5);
+}
+
+.file-create {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    z-index: 3;
+}
+
+.wrapping {
+    z-index: 5;
+}

@@ -7,6 +7,7 @@ import * as helpers from "../../api/helperFuncs.js";
 
 import contentBox from "../../components/content_box.vue";
 import message from "../../components/message_popup.vue";
+import fileCreate from "../../components/file_create.vue";
 
 export default {
   name: "Editar Ficheiro",
@@ -14,6 +15,7 @@ export default {
   components: {
     contentBox,
     message,
+    fileCreate,
   },
   data() {
     return {
@@ -26,7 +28,8 @@ export default {
       log_tit: "",
       log_mss: "",
       log_tip: "",
-      disabledButton: true
+      disabledButton: true,
+      pop_up: true
     };
   },
   methods: {
