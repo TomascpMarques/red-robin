@@ -29,7 +29,7 @@ export default {
       log_mss: "",
       log_tip: "",
       disabledButton: true,
-      pop_up: true
+      pop_up: false,
     };
   },
   methods: {
@@ -92,12 +92,16 @@ export default {
           //  Itera por todos as keys do objeto
           Object.keys(result).forEach((value) => {
             if (value.toString() === "conteudo") {
-              if (!(result[value] === null)) {
+              if (result[value] !== null) {
                 if (result[value].hash !== helpers.toSHA256(result[value].conteudo)) {
-                  this.editorContent = "O conteudo chegou currompido";
+                  this.editorContent = "O conteudo chegou currompido. Repe-te o pedido";
                 } else {
-                  this.editorContent = result[value].conteudo.replace(/%20/gm, "\n")
-                    .replace(/%21/gm, "\\").replace(/%22/gm, "\"");
+                  try {
+                    this.editorContent = result[value].conteudo.replace(/%20/gm, "\n")
+                      .replace(/%21/gm, "\\").replace(/%22/gm, "\"");
+                  } catch {
+                    console.log("Sêm conteudo");
+                  }
                 }
               }
             }

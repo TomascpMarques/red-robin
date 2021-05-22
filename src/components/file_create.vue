@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div v-bind:class="['wrap', !result ? 'wrap-good' : 'wrap-erro']">
     <div class="padd">
       <div class="title">
         <h2>Ficheiro</h2>
@@ -19,14 +19,17 @@
 
         <inpCombo
           :input_tit="'Localização do Ficheiro'"
-          :place="'Localização do Ficheiro'"
-          :tipo="'text'"
+          :place="localFicheiro"
           v-model="localFicheiro"
+          :spell="false"
+          :tipo="'text'"
         />
-        {{ nomeFile }}
         <div class="buttons">
           <button @click="$emit('update:modelValue', false)">Cancelar</button>
-          <button>Criar Ficheiro</button>
+          <button @click="verifFileExiste(localFicheiro)">
+            Criar Ficheiro
+          </button>
+          <span class="opMessage">{{ operacao }}</span>
         </div>
       </div>
     </div>
@@ -36,17 +39,105 @@
 <script>
 import inpCombo from "../components/input_combo.vue";
 
+import store from "../store/index.js";
+
+import * as api from "../api/apiCalls.js";
+import * as apiServices from "../api/apiServices.js";
+
 export default {
   name: "fileCreate",
   components: {
     inpCombo,
   },
+  store: store,
   props: ["repoNome", "path", "modelValue"],
   data() {
     return {
       nomeFile: "",
       localFicheiro: this.path,
+      operacao: "",
+      result: Boolean,
     };
+  },
+  methods: {
+    criarFicheiroMeta() {
+      var file = {
+        nome: this.nomeFile,
+        autor: this.$store.state.usr_perfil.user,
+        reponome: this.localFicheiro.split("/")[2],
+        path: (this.localFicheiro += "/" + this.nomeFile).split("/").slice(1),
+      };
+      console.log(file);
+      api
+        .callEndPoint(apiServices.hosts.documentacao, {
+          name: "CriarFicheiroMetaData",
+          params: [
+            file,
+            this.$store.state.usr_token.length > 1
+              ? this.$store.state.usr_token
+              : "noToken",
+          ],
+        })
+        .then((obj) => {
+          //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
+          //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
+          obj.CriarFicheiroMetaData.forEach((result) => {
+            console.log("-> ", result);
+            //  Itera por todos as keys do objeto
+            Object.keys(result).forEach((value) => {
+              console.log("result[value] -<>", result[value]);
+              console.log("value -<>", value);
+              if (result[value] === true && value.toString() === "sucesso") {
+                console.log("Sucesso ao criar o ficheiro");
+                this.operacao = "Sucesso";
+                this.result = false;
+              }
+              if (value.toString() === "erro") {
+                this.operacao = result[value];
+                this.result = true;
+              }
+            });
+          });
+        });
+    },
+    verifFileExiste(str) {
+      if (!this.nomeFile) {
+        this.operacao = "O nome é inválido";
+        this.result = true;
+        return;
+      }
+      var file = {
+        path: (str += "/" + this.nomeFile).split("/").slice(1),
+      };
+      api
+        .callEndPoint(apiServices.hosts.documentacao, {
+          name: "VerificarFicheiroExiste",
+          params: [
+            file,
+            this.$store.state.usr_token.length > 1
+              ? this.$store.state.usr_token
+              : "noToken",
+          ],
+        })
+        .then((obj) => {
+          //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
+          //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
+          obj.VerificarFicheiroExiste.forEach((result) => {
+            console.log("-> ", result);
+            //  Itera por todos as keys do objeto
+            Object.keys(result).forEach((value) => {
+              console.log("result[value] -<>", result[value]);
+              console.log("value -<>", value);
+              if (value.toString() !== "erro") {
+                console.log("Sucesso");
+                this.criarFicheiroMeta();
+              } else {
+                console.log("Erro");
+              }
+            });
+          });
+        });
+    },
   },
 };
 </script>
@@ -60,6 +151,13 @@ export default {
   background-color: var(--white);
   box-shadow: 6px 6px 6px 0px lightgray;
   min-width: 30vw;
+}
+
+.wrap-error {
+  border-left: 12px solid tomato;
+}
+.wrap-good {
+  border-left: 12px solid tomato;
 }
 
 h2 {
@@ -117,7 +215,8 @@ h3 {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-end;
-  gap: 0.2rem 0.5rem;
+  place-items: center;
+  gap: 0.2rem 1rem;
 }
 
 .buttons button {
@@ -128,6 +227,7 @@ h3 {
   font-family: consolas;
   word-spacing: -3px;
   padding: 0.4rem 0rem;
+  margin-top: 0.3rem;
   transition: 0.3s all ease-in-out;
 }
 
@@ -135,5 +235,10 @@ h3 {
   background-color: blueviolet;
   padding: 0.4rem 0.4rem;
   color: white;
+}
+
+.opMessage {
+  font-family: "Roboto";
+  font-size: 1rem;
 }
 </style>

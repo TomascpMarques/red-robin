@@ -73,7 +73,13 @@
             <div class="hrzl"></div>
             <div class="cont-novo">
               <h3 class="paths-title">Conteudo do repositório:</h3>
-              <span @click="pop_up = true">Novo Ficheiro</span>
+              <span
+                @click="
+                  pop_up = true;
+                  refreshToken();
+                "
+                >Novo Ficheiro</span
+              >
             </div>
             <div class="paths-cont">
               <div

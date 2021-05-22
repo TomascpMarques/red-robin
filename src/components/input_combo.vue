@@ -21,6 +21,7 @@
       :max="[[max]]"
       v-bind:class="['input-comobo-input', inputErro ? 'bad' : '']"
       autocomplete="off"
+      :spellcheck="spell"
     />
     <div class="error-message" v-if="estado">
       <p>
@@ -63,6 +64,7 @@ export default {
     "max",
     "min",
     "step",
+    "spell",
   ],
   data() {
     return {
