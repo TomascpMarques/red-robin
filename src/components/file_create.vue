@@ -93,6 +93,11 @@ export default {
                 this.result = false;
                 this.nomeFile = "";
                 this.localFicheiro = "";
+                setTimeout(() => {
+                  this.$router.push({
+                    path: "/docs",
+                  });
+                }, 2000);
               }
               if (value.toString() === "erro") {
                 this.operacao = result[value];

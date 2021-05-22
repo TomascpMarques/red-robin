@@ -30,9 +30,36 @@ export default {
       log_tip: "",
       disabledButton: true,
       pop_up: false,
+      apagar: false,
     };
   },
   methods: {
+    setupApagarFicheiroMeta() {
+      this.apagar = !this.apagar;
+    },
+    apagarMetaDataFile(nome, path) {
+      var file = {
+        nome: nome,
+        autor: this.$store.state.usr_perfil.user,
+        reponome: path[1],
+        path: path,
+      };
+      console.log("=>", file);
+      api.callEndPoint(apiServices.hosts.documentacao, {
+        name: "ApagarFicheiroMetaData",
+        params: [file, this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
+      }).then((obj) => {
+        if (obj.ApagarFicheiroMetaData.sucesso === true) {
+          this.loginSucesso("Ficheiro apagado com sucesso");
+        }
+        if (obj.ApagarFicheiroMetaData.erro !== null) {
+          this.loginErro(obj.ApagarFicheiroMetaData.erro);
+        }
+      });
+      this.$router.push({
+        path: "/docs",
+      });
+    },
     lenLessThanTwo(path) {
       return path.split("/").slice(1).length < 2;
     },

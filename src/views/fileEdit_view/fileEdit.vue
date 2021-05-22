@@ -71,15 +71,22 @@
               </div>
             </div>
             <div class="hrzl"></div>
+            <h3 class="paths-title">Conteudo do repositório:</h3>
             <div class="cont-novo">
-              <h3 class="paths-title">Conteudo do repositório:</h3>
               <span
                 @click="
                   pop_up = true;
                   refreshToken();
                 "
-                >Novo Ficheiro</span
               >
+                Novo Ficheiro
+              </span>
+              <span
+                @click="setupApagarFicheiroMeta()"
+                v-bind:class="[apagar ? 'but-active' : '']"
+              >
+                Apagar Ficheiro
+              </span>
             </div>
             <div class="paths-cont">
               <div
@@ -110,7 +117,17 @@
                           }"
                         ></div>
                         <li @click="log(file.path, file.nome)">
-                          {{ file.nome }}
+                          <div class="file-options">
+                            {{ file.nome }}
+                            <span
+                              v-if="apagar"
+                              @click="
+                                apagar = !apagar;
+                                apagarMetaDataFile(file.nome, file.path);
+                              "
+                              >apagar ficheiro</span
+                            >
+                          </div>
                         </li>
                       </div>
                     </ul>

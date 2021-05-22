@@ -364,6 +364,10 @@ li {
     transform: scale(0.9);
 }
 
+.but-active {
+    border-bottom: 2px solid blueviolet;
+}
+
 .close-but {
     font-size: 0.9rem;
     padding: 0.2rem;
@@ -401,12 +405,13 @@ li {
     justify-content: flex-start;
     place-items: center;
     gap: .1rem 0;
-    margin-bottom: .3rem;
+    margin-bottom: .4rem;
+    padding-left: .6rem;
 }
 
 .cont-novo span {
-    margin-right: .6rem;
-    margin-left: 1.1rem;
+    margin: .2rem .15rem;
+    margin-top: .2rem;
     font-family: Consolas;
     font-style: italic;
     font-weight: bold;
@@ -463,4 +468,40 @@ li {
     flex-direction: column;
     place-items: center;
     justify-content: center;
+}
+
+.file-options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    place-items: center;
+    gap: .15rem .6rem;
+}
+
+.file-options span {
+    font-variant: small-caps;
+    font-size: .9rem;
+    font-weight: bold;
+    word-spacing: -0.5px;
+    font-style: italic;
+    margin-top: .2rem;
+    color: darkgray;
+    visibility: collapse;
+    opacity: 0;
+    text-decoration: none;
+    transition: .3s all ease-in-out;
+    text-align: center;
+}
+
+.file-options:hover span {
+    opacity: 1;
+    visibility: visible;
+}
+
+.file-options span:hover {
+    color: white;
+    background-color: salmon;
+    padding: .2rem .3rem;
+    border-radius: 6px;
 }
