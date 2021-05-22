@@ -1,32 +1,135 @@
 <template>
   <div>
-    <div class="repo" @click="toPageCriarRepo('asdasd')">
-      <div class="titulo">
+    <div class="repo">
+      <div class="titulo" @click="show = !show">
         <!-- <img src="../assets/files.svg" alt="" /> -->
         <span class="decor"></span>
         <h4>Criar Um Novo Repositório</h4>
+      </div>
+      <div class="body" v-if="show">
+        <h3>Novo Repositório</h3>
+        <inputCombo
+          :input_tit="'Nome do Repositorio'"
+          :place="'Nome do Repositório'"
+          :tipo="'text'"
+          v-model="nomeRepo"
+        />
+        <inputCombo
+          :input_tit="'Tema do Repositorio'"
+          :place="'Tema do Repositório'"
+          :tipo="'text'"
+          v-model="tema"
+        />
+        <button @click="criarRepo()">Criar Repo</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import router from "../router/index.js";
+import * as api from "../api/apiCalls.js";
+import * as apiServices from "../api/apiServices.js";
+import store from "../store/index.js";
 
+import inputCombo from "../components/input_combo.vue";
 export default {
   name: "newRepo",
+  components: {
+    inputCombo,
+  },
+  data() {
+    return {
+      show: false,
+      nomeRepo: "",
+      tema: "",
+    };
+  },
+  store: store,
   methods: {
-    toPageCriarRepo(nome) {
-      router.push({
-        name: "Vizualisar Ficheiro(s)",
-        params: { tipo: "Repo", valor: "/repo/" + nome },
-      });
+    criarRepo() {
+      if (!this.nomeRepo.length) {
+        console.log("O nome do repo não deve ser null");
+        this.nomeRepo = "Prenche isto aqui sff";
+
+        return null;
+      }
+      if (!this.tema.length) {
+        console.log("O tema do repo não deve ser null");
+        this.tema = "Prenche isto aqui sff";
+        return null;
+      }
+      var repo = {
+        nome: this.nomeRepo,
+        tema: this.tema,
+        autor: this.$store.state.usr_perfil.user,
+      };
+      console.log(repo);
+      api
+        .callEndPoint(apiServices.hosts.documentacao, {
+          name: "CriarRepositorio",
+          params: [repo, this.$store.state.usr_token],
+        })
+        .then((obj) => {
+          //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
+          //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
+          obj.CriarRepositorio.forEach((result) => {
+            //  Itera por todos as keys do objeto
+            console.log(result);
+            Object.keys(result).forEach((value) => {
+              if (value.toString() === "resultado" && result[value] !== null) {
+                console.log("Sucesso ao criar REPO");
+                return null;
+              }
+              if (value.toString() === "erro" && result[value] !== null) {
+                console.log("Erro ao criar REPO");
+                return null;
+              }
+            });
+          });
+        });
     },
   },
 };
 </script>
 
 <style scoped>
+button {
+  margin: 0.4rem 0.2rem;
+  font-family: "Roboto";
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: gainsboro;
+  border-radius: 5px;
+  border: none;
+  letter-spacing: 1px;
+  padding: 0.4rem 0.7rem;
+  transition: 0.3s all ease-in,
+    0.83s padding cubic-bezier(0.76, 0.2, 0.07, 1.07);
+}
+
+button:hover {
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+  padding: 0.4rem 26%;
+  border-radius: 3px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  place-items: center;
+  justify-content: left;
+  text-align: left;
+}
+
+h3 {
+  margin: 0;
+  margin-top: 1rem;
+  padding: 0;
+}
+
 .repo {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="['wrap', result === true ? 'wrap-good' : 'wrap-erro']">
+  <div v-bind:class="['wrap', result ? 'wrap-erro' : 'wrap-good']">
     <div class="padd">
       <div class="title">
         <h2>Ficheiro</h2>
@@ -140,6 +140,8 @@ export default {
                 this.criarFicheiroMeta();
               } else {
                 console.log("Erro");
+                this.operacao = "Erro, o ficheiro já existe";
+                this.result = false;
               }
             });
           });

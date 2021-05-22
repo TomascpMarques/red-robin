@@ -208,6 +208,7 @@ export default {
             //  Se foi devolvida uma token
             if (y.toString() === "token") {
               console.log("Sucesso");
+              this.$store.commit("storeJWToken", x[y]);
             } else {
               this.loginErro(obj.Login[0].erro);
             }
