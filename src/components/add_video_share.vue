@@ -1,7 +1,7 @@
 <template>
   <div class="main-wrapp">
     <div class="title" @click="show_opt = !show_opt">
-      <h3>Adicionar Video</h3>
+      <h4>Adicionar Video</h4>
     </div>
     <transition
       enter-active-class="animate__animated animate__fadeIn"
@@ -193,6 +193,7 @@ button:hover {
   box-shadow: 7px 7px 7px 1px lightgray;
   margin-right: 0.7rem;
   height: min-content;
+  transition: 0.3s all ease-in-out;
 }
 
 h3 {
@@ -200,7 +201,27 @@ h3 {
   margin: 0;
   letter-spacing: 1px;
   color: var(--blue);
-  font-size: 1.4rem;
   margin-bottom: 0.3rem;
+  font-size: 1.4rem;
+}
+
+h4 {
+  padding: 0;
+  margin: 0;
+  letter-spacing: 1px;
+  color: var(--blue);
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  font-family: Consolas;
+  word-spacing: -2px;
+  transition: 0.3s all ease-in-out;
+}
+
+.main-wrapp:hover {
+  transform: scale(0.93);
+}
+
+.main-wrapp:hover h4 {
+  cursor: pointer;
 }
 </style>

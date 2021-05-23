@@ -44,6 +44,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 25vw;
+}
+
 .button-max {
   color: lightgray;
   font-style: italic;
