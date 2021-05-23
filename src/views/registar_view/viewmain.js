@@ -108,8 +108,8 @@ export default {
             especialidades: this.especialidades.split(", ")
           }, store.state.usr_token],
         }).then((obj) => {
-          console.log(obj);
-          if (!obj.CriarRegistoUser[0].insserido) {
+          console.log("Lê OBJ: ", obj);
+          if (obj.CriarRegistoUser[0].insserido) {
             this.showUserInfo = true;
             this.log_mssUserInf = "A informação do utilizador não foi insserida com sucesso, devido a sobreposição de dados";
             this.log_titUserInf = "Informação de User";

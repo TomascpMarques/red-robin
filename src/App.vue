@@ -34,7 +34,7 @@
           <div class="item-menu" v-if="loggedIn">
             <span>
               <router-link class="span-link" to="/registar">
-                Registar Novo Utilizador
+                Registar Utilizador
               </router-link>
             </span>
           </div>
@@ -45,13 +45,13 @@
               </router-link>
             </span>
           </div>
-          <!-- <div class="item-menu" v-if="loggedIn">
+          <div class="item-menu" v-if="loggedIn">
             <span>
-              <router-link class="span-link" to="/file">
-                Visualisar Ficheiros
+              <router-link class="span-link" to="/videoshare">
+                Partilhar Video
               </router-link>
             </span>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="wrapper-title">MENU</div>
@@ -292,7 +292,7 @@ body {
   visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   place-items: center;
   padding: 0.7rem;
@@ -329,6 +329,12 @@ body {
   justify-content: flex-end;
   flex-direction: row;
   min-width: 11.5vh;
+  background-color: transparent;
+  transition: 0.6s all cubic-bezier(0.63, 0.01, 0, 0.84);
+}
+
+.item-menu:hover {
+  transform: scale(1.06);
 }
 
 .icon-menu {

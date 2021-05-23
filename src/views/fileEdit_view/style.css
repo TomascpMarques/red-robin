@@ -397,6 +397,10 @@ li {
     transition: .3s all ease-out, .18s scale ease-out;
 }
 
+.refresh:hover {
+    transform: scale(1.06);
+}
+
 .cont-novo {
     display: flex;
     flex-direction: row;

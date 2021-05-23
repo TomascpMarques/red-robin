@@ -1,0 +1,42 @@
+.page-wrap {
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 1.3rem;
+    margin-bottom: 4%;
+}
+
+h1 {
+    font-size: 1.55rem;
+    letter-spacing: 1px;
+    padding: 0;
+    margin: 0;
+}
+
+.page-tit {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    place-items: center;
+    gap: .8rem;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    border-left: 10px solid var(--orange);
+    background-color: var(--white);
+    box-shadow: var(--wrapper-shadow);
+    margin-bottom: 1.2rem;
+}
+
+.page-tit img {
+    width: 2.1rem;
+}
+
+.hrzl {
+    width: 100%;
+    height: 2px;
+    background-color: #d3d3d3;
+    opacity: 0.4;
+    margin-bottom: 1rem;
+}

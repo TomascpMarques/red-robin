@@ -78,6 +78,9 @@ export default {
             Object.keys(result).forEach((value) => {
               if (value.toString() === "resultado" && result[value] !== null) {
                 console.log("Sucesso ao criar REPO");
+                this.nomeRepo = "";
+                this.tema = "";
+                this.show = !this.show;
                 return null;
               }
               if (value.toString() === "erro" && result[value] !== null) {
