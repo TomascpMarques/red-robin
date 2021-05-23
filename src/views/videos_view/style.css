@@ -40,3 +40,11 @@ h1 {
     opacity: 0.4;
     margin-bottom: 1rem;
 }
+
+.page-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: .15rem .7rem;
+    gap: 1.5rem 1.1rem;
+}
