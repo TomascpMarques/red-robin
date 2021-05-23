@@ -1,6 +1,6 @@
 import message from "../../components/message_popup.vue";
-import * as helpers from "../../api/helperFuncs.js";
 import * as api from "../../api/apiCalls.js";
+import * as helpers from "../../api/helperFuncs.js";
 import * as apiServices from "../../api/apiServices.js";
 import store from "../../store/index.js";
 import router from "../../router/index.js";

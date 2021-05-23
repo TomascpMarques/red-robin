@@ -4,6 +4,7 @@
       <h1>Video Share</h1>
     </div>
     <div class="page-body">
+      <newVideoShare> </newVideoShare>
       <videoShow
         :title="'Task Force Doomer Playlist Remastered Vol.1-3 + Extras'"
         :url="'ERFdlAxW_nk'"
