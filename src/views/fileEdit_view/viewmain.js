@@ -79,14 +79,15 @@ export default {
       this.editorContent = this.getFileContents(path);
     },
     getRepoFromList() {
-      this.repo = this.$store.state.usr_repos.filter((x) => {
+      this.repo = this.$store.state.all_usr_repos.filter((x) => {
         return x.nome === this.$route.params.valor.split("/")[
           this.$route.params.valor.split("/").length - 1
         ];
       })[0];
     },
     getRepoStrucFromPaths() {
-      this.repo.ficheiros.forEach(ficheiro => {
+      this.repo.ficheiros.forEach((ficheiro) => {
+        console.log("File erro here?: ", ficheiro);
         var tempFile = ficheiro;
         var ficheiroPathNoName = tempFile.path.splice(0, tempFile.path.length - 1).join("/");
         try {
