@@ -17,7 +17,9 @@
         :input_tit="'Tema do Repositorio'"
         :place="'Tema do Repositório'"
         :tipo="'text'"
+        :erro="msg"
         v-model="tema"
+        @input="msg = ''"
       />
       <button @click="criarRepo()">Criar Repo</button>
     </div>
@@ -41,6 +43,7 @@ export default {
       show: false,
       nomeRepo: "",
       tema: "",
+      msg: "",
     };
   },
   store: store,
@@ -84,7 +87,8 @@ export default {
                 return null;
               }
               if (value.toString() === "erro" && result[value] !== null) {
-                console.log("Erro ao criar REPO");
+                console.log(result[value]);
+                this.msg = result[value].toString();
                 return null;
               }
             });

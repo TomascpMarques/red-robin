@@ -94,7 +94,11 @@ export default {
             //  Se foi devolvida uma token
             if (value.toString() === "user") {
               this.$store.commit("storePerfilUser", result[value]);
-              this.getRepos();
+              try {
+                this.getRepos();
+              } finally {
+                this.getAllRepos();
+              }
             } else {
               this.loginErro("Não foi possível buscar o perfil desse utilizador");
             }
@@ -123,6 +127,20 @@ export default {
             }
           });
         });
+      });
+    },
+    getAllRepos() {
+      api.callEndPoint(apiServices.hosts.documentacao, {
+        name: "BuscarTodosOsReposNotTokenUsr",
+        params: [this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
+      }).then((obj) => {
+        console.log(obj.BuscarTodosOsReposNotTokenUsr);
+        if (obj.BuscarTodosOsReposNotTokenUsr[0].repos !== null) {
+          this.$store.commit("storeAllUrsRepos", obj.BuscarTodosOsReposNotTokenUsr[0].repos);
+        }
+        if (obj.BuscarTodosOsReposNotTokenUsr[0].erro !== null) {
+          console.log(obj.BuscarTodosOsReposNotTokenUsr[0].erro);
+        }
       });
     },
     initLogin() {

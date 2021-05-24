@@ -65,8 +65,11 @@ export default {
             if (value.toString() === "repos") {
               console.log(this.repos);
               this.repos = result[value];
-              this.repoFilesAnimationSetUp(result[value]);
-              this.$store.commit("storeUrsRepos", result[value]);
+              console.log("->", this.repos);
+              this.repos.push(...(this.$store.state.all_usr_repos));
+              console.log("->", this.repos, "|->", this.$store.state.all_usr_repos);
+              this.repoFilesAnimationSetUp(this.repos);
+              this.$store.commit("storeUrsRepos", this.repos);
             }
           });
         });

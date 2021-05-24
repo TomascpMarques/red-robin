@@ -11,7 +11,10 @@
         :input_tit="'Nome do Repositorio'"
         :place="'Nome do Repositório'"
         :tipo="'text'"
+        :estado="msg"
+        :erro="msg"
         v-model="nomeRepo"
+        @input="msg = ''"
       />
       <button @click="apagarRepo()">Apagar Repo</button>
     </div>
@@ -35,6 +38,7 @@ export default {
       show: false,
       nomeRepo: "",
       tema: "",
+      msg: "",
     };
   },
   store: store,
@@ -64,6 +68,7 @@ export default {
           }
           if (obj.DropRepositorio[0].erro !== null) {
             console.log("Erro: ", obj.DropRepositorio[0].erro);
+            this.msg = obj.DropRepositorio[0].erro;
           }
         });
     },
@@ -90,7 +95,7 @@ button:hover {
   background-color: blueviolet;
   color: white;
   cursor: pointer;
-  padding: 0.4rem 26%;
+  padding: 0.4rem 24%;
   border-radius: 3px;
 }
 

@@ -10,6 +10,7 @@ export default createStore({
     usr_token: "",
     usr_perfil: {},
     usr_repos: [],
+    all_usr_repos: [],
     usr_creds: {}
   },
   mutations: {
@@ -24,6 +25,9 @@ export default createStore({
     },
     storeUrsRepos(state, repo) {
       state.usr_repos = repo;
+    },
+    storeAllUrsRepos(state, repo) {
+      state.all_usr_repos = repo;
     },
     apagarJWToken(state) {
       state.usr_token = "";

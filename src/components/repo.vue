@@ -2,7 +2,12 @@
   <div class="repo">
     <div class="titulo" @click="toRepo(titulo)">
       <!-- <img src="../assets/files.svg" alt="" /> -->
-      <span class="decor"></span>
+      <span
+        v-bind:class="{
+          decor: true,
+          'decor-usr': $store.state.usr_perfil.user === autor,
+        }"
+      ></span>
       <h2>{{ titulo }}</h2>
       <h4>Nome Repositório</h4>
     </div>
@@ -104,6 +109,10 @@ export default {
   border-radius: 100%;
   border: 3px solid lightgray;
   transition: 0.3s all ease-in-out;
+}
+
+.decor-usr {
+  border-color: var(--orange);
 }
 
 h2 {
