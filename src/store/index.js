@@ -35,6 +35,15 @@ export default createStore({
     apagarUserProfile(state) {
       state.usr_perfil = "";
     },
+    apagarUsrCreds(state) {
+      state.usr_creds = null;
+    },
+    apagarAllUsrRepos(state) {
+      state.all_usr_repos = null;
+    },
+    apagarUsrRepos(state) {
+      state.usr_repos = null;
+    },
     limparSessionStorage() {
       window.sessionStorage.clear();
     }

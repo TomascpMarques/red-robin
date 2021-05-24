@@ -51,28 +51,35 @@ export default {
         name: "BuscarUserRepos",
         params: [this.$store.state.usr_perfil.user, this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
       }).then((obj) => {
+        if (obj.BuscarUserRepos[0].repos !== null) {
+          const temp = Array.from(obj.BuscarUserRepos[0].repos);
+          this.$store.commit("storeUrsRepos", temp);
+          this.repos = Array.from(temp);
+          this.repos.push(...this.$store.state.all_usr_repos);
+        }
         //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
         //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
-        obj.BuscarUserRepos.forEach((result) => {
-          console.log(result);
-          //  Itera por todos as keys do objeto
-          Object.keys(result).forEach((value) => {
-            //  Se o número de repos encontrados for maior que 0 (encontrou algo)
-            if (value.toString() === "encontrados" && result[value] <= 0) {
-              console.log("-> ", value, result[value]);
-            }
-            // Atribui o valor dos repos encontrados a uma local variable
-            if (value.toString() === "repos") {
-              console.log(this.repos);
-              this.repos = result[value];
-              console.log("->", this.repos);
-              this.repos.push(...(this.$store.state.all_usr_repos));
-              console.log("->", this.repos, "|->", this.$store.state.all_usr_repos);
-              this.repoFilesAnimationSetUp(this.repos);
-              this.$store.commit("storeUrsRepos", this.repos);
-            }
-          });
-        });
+        // obj.BuscarUserRepos.forEach((result) => {
+        //   console.log(result);
+        // //  Itera por todos as keys do objeto
+        // Object.keys(result).forEach((value) => {
+        //   //  Se o número de repos encontrados for maior que 0 (encontrou algo)
+        //   if (value.toString() === "encontrados" && result[value] <= 0) {
+        //     console.log("-> ", value, result[value]);
+        //   }
+        //   // Atribui o valor dos repos encontrados a uma local variable
+        //   if (value.toString() === "repos") {
+        //     var reps = result[value];
+        //     console.log("Repos after docs create: ", this.$store.state.usr_repos, this.$store.state.all_usr_repos);
+        //     this.repos = reps;
+        //     this.repos.push(...(this.$store.state.all_usr_repos));
+        //     this.repoFilesAnimationSetUp(this.repos);
+        //     console.log("result[value] of get repos in docs: ", result[value]);
+        //     this.$store.commit("storeUrsRepos", result[value]);
+        //     console.log("Repos after docs setup files anim: ", this.$store.state.usr_repos, this.$store.state.all_usr_repos);
+        //   }
+        // });
+        // });
       });
     }
   },
