@@ -79,6 +79,8 @@ export default {
       this.editorContent = this.getFileContents(path);
     },
     getRepoFromList() {
+      // Se o autor do repo em questão for diferente do user
+      // Muda a lista de repos a usar
       if (this.$route.params.usr !== this.$store.state.usr_perfil.user) {
         this.repo = this.$store.state.other_usr_repos.filter((x) => {
           return x.nome === this.$route.params.valor.split("/")[
