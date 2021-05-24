@@ -32,6 +32,7 @@ import * as apiServices from "../api/apiServices.js";
 import store from "../store/index.js";
 
 import inputCombo from "../components/input_combo.vue";
+import router from "../router/index.js";
 export default {
   name: "newRepo",
   components: {
@@ -45,6 +46,7 @@ export default {
     };
   },
   store: store,
+  router: router,
   methods: {
     criarRepo() {
       if (!this.nomeRepo.length) {
@@ -77,10 +79,10 @@ export default {
             console.log(result);
             Object.keys(result).forEach((value) => {
               if (value.toString() === "resultado" && result[value] !== null) {
-                console.log("Sucesso ao criar REPO");
                 this.nomeRepo = "";
                 this.tema = "";
                 this.show = !this.show;
+                router.go();
                 return null;
               }
               if (value.toString() === "erro" && result[value] !== null) {

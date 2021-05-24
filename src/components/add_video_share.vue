@@ -42,6 +42,7 @@
           v-model="vid_tema"
         />
         <button @click="initVideoCreate()">Criar Share</button>
+        <br />
         <div class="msg" v-if="msg">
           <h4>Operação:</h4>
           <span>{{ msg }}</span>
@@ -148,7 +149,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-content: flex-start;
-  place-items: center;
+  padding: 0.3rem;
+  flex-wrap: wrap;
 }
 
 button {

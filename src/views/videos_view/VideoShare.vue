@@ -3,18 +3,21 @@
     <div class="page-tit">
       <h1>Video Share</h1>
     </div>
-    {{ teste }}
     <div class="page-body">
       <div class="left">
         <newVideoShare />
-        <searchVideoShare @test="updateparent" />
+        <searchVideoShare
+          @videoSearchResult="updateparent"
+          @videoSearchResultAll="updateparent"
+        />
       </div>
       <div class="right">
-        <div v-for="vid in teste" :key="vid">
+        <div v-for="vid in videos" :key="vid">
           <video-show
             :title="vid.titulo"
-            :lol="vid.url"
+            :video="vid.url"
             :desc="vid.descricao"
+            :tema="vid.tema"
           />
         </div>
         <!-- <videoShow

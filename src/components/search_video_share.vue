@@ -14,16 +14,7 @@
           :estado="tit_erro"
           :erro="tit_erro"
           :tipo="'text'"
-          v-model="vid_tit"
-        />
-        <inputCombo
-          :input_tit="'URL do video'"
-          :place="'URL do Video'"
-          :tipo="'text'"
-          :spell="false"
-          :estado="url_erro"
-          :erro="url_erro"
-          v-model="vid_url"
+          v-model="vid.titulo"
         />
         <inputCombo
           :input_tit="'Descrição do video'"
@@ -31,7 +22,7 @@
           :estado="desc_erro"
           :erro="desc_erro"
           :tipo="'text'"
-          v-model="vid_desc"
+          v-model="vid.descricao"
         />
         <inputCombo
           :input_tit="'Tema do video'"
@@ -39,7 +30,7 @@
           :estado="tema_erro"
           :erro="tema_erro"
           :tipo="'text'"
-          v-model="vid_tema"
+          v-model="vid.tema"
         />
         <inputCombo
           v-model="quantidade"
@@ -51,6 +42,7 @@
         />
         <button @click="initVideoSearch()">Procurar Video</button>
         <button @click="allSearch()">Mostrar Todos</button>
+        <br />
         <div class="msg" v-if="msg">
           <h4>Operação:</h4>
           <span>{{ msg }}</span>
@@ -78,8 +70,8 @@ export default {
   data() {
     return {
       msg: "",
+      vid: {},
       vid_tit: "",
-      vid_url: "",
       vid_desc: "",
       vid_tema: "",
       url_erro: "",
@@ -92,12 +84,10 @@ export default {
     };
   },
   methods: {
-    searchVideo() {
+    allSearch() {
       var struct = {
-        params: {
-          tema: this.vid_tema,
-        },
-        quanti: this.quantidade,
+        params: {},
+        quanti: 0,
       };
       // criador: this.$store.state.usr_perfil.user,
       console.log(struct);
@@ -108,9 +98,8 @@ export default {
         })
         .then((obj) => {
           if (obj.GetVideoShares[0].sucesso === true) {
-            this.videos = obj.GetVideoShares[0].shares;
-            console.log("videos: ", this.videos);
-            this.$emit("test", this.videos);
+            console.log("videos search all: ", obj.GetVideoShares[0].shares);
+            this.$emit("videoSearchResultAll", obj.GetVideoShares[0].shares);
             return null;
           }
 
@@ -122,6 +111,49 @@ export default {
           } finally {
             if (obj.GetVideoShares[0].aviso !== null) {
               console.log(obj.GetVideoShares[0].aviso);
+              this.msg = obj.GetVideoShares[0].aviso;
+            }
+          }
+        });
+    },
+    verifSearchParam(param) {
+      var struct = {};
+      Object.keys(param).forEach((key) => {
+        if (param[key].length > 1) {
+          struct[key] = param[key];
+        }
+      });
+      console.log(struct);
+      return struct;
+    },
+    searchVideo() {
+      var struct = {
+        params: this.verifSearchParam(this.vid),
+        quanti: this.quantidade,
+      };
+      // criador: this.$store.state.usr_perfil.user,
+      console.log("|->", struct);
+      api
+        .callEndPoint(apiServices.hosts.videoshare, {
+          name: "GetVideoShares",
+          params: [struct, this.$store.state.usr_token],
+        })
+        .then((obj) => {
+          if (obj.GetVideoShares[0].sucesso === true) {
+            console.log("vid search singular: ", obj.GetVideoShares[0].shares);
+            this.$emit("videoSearchResult", obj.GetVideoShares[0].shares);
+            return null;
+          }
+
+          // No caso de ocorrer um na procura erro
+          try {
+            if (obj.GetVideoShares[0].error !== null) {
+              this.msg = obj.GetVideoShares[0].error;
+            }
+          } finally {
+            if (obj.GetVideoShares[0].aviso !== null) {
+              console.log(obj.GetVideoShares[0].aviso);
+              this.msg = obj.GetVideoShares[0].aviso;
             }
           }
         });
@@ -138,7 +170,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-content: flex-start;
-  place-items: center;
+  padding: 0.3rem;
+  flex-wrap: wrap;
 }
 
 button {

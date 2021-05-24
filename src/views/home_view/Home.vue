@@ -45,7 +45,13 @@
       Bem vindo,<span class="nome-tit">{{ nome }}</span>
     </h1>
     <div class="disposicao">
-      <usrcard :nome="nome" :user="user" :status="status" :email="email" />
+      <div>
+        <usrcard :nome="nome" :user="user" :status="status" :email="email" />
+        <div class="logbutton">
+          <button @click="initLogOut()">Logout</button>
+          <span class="legenda">Terminar Sessão</span>
+        </div>
+      </div>
       <div class="side-content">
         <!-- {{ $store.state.usr_repos }} -->
         <contentBox :titulo="'Contribuições'">
@@ -104,10 +110,6 @@
             </ul>
           </div>
         </content-box>
-        <div class="logbutton">
-          <button @click="initLogOut()">Logout</button>
-          <span class="legenda">Terminar Sessão</span>
-        </div>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@
         <div v-bind:class="{ 'video-player': true }">
           <iframe
             v-bind:class="{ 'max-height': maxvideo }"
-            :src="`https://www.youtube.com/embed/${lol}`"
+            :src="`https://www.youtube.com/embed/${video}`"
             :title="title"
             frameborder="0"
             allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
@@ -17,6 +17,9 @@
         <div class="info" v-bind:class="{ blur: maxvideo }">
           <span class="title">
             {{ title }}
+          </span>
+          <span class="button-max">
+            {{ tema }}
           </span>
           <span class="desc">
             {{ desc }}
@@ -30,7 +33,7 @@
 <script>
 export default {
   name: "videoShow",
-  props: ["title", "lol", "desc"],
+  props: ["title", "video", "desc", "tema"],
   data() {
     return {
       maxvideo: false,
@@ -101,7 +104,7 @@ export default {
 }
 
 .bar {
-  width: 2.3rem;
+  min-width: 10px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: #e1871e;
