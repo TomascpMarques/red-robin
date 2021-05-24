@@ -41,7 +41,11 @@
           </transition>
         </div>
       </div>
-      <newRepo> </newRepo>
+      <div>
+        <newRepo> </newRepo>
+        <br />
+        <delRepo> </delRepo>
+      </div>
     </div>
   </div>
 </template>

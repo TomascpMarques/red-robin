@@ -3,23 +3,17 @@
     <div class="titulo" @click="show = !show">
       <!-- <img src="../assets/files.svg" alt="" /> -->
       <span class="decor"></span>
-      <h4>Criar Um Novo Repositório</h4>
+      <h4>Apagar Um Repositório</h4>
     </div>
     <div class="body" v-if="show">
-      <h3>Novo Repositório</h3>
+      <h3>Apagar Repositório</h3>
       <inputCombo
         :input_tit="'Nome do Repositorio'"
         :place="'Nome do Repositório'"
         :tipo="'text'"
         v-model="nomeRepo"
       />
-      <inputCombo
-        :input_tit="'Tema do Repositorio'"
-        :place="'Tema do Repositório'"
-        :tipo="'text'"
-        v-model="tema"
-      />
-      <button @click="criarRepo()">Criar Repo</button>
+      <button @click="apagarRepo()">Apagar Repo</button>
     </div>
   </div>
 </template>
@@ -32,7 +26,7 @@ import store from "../store/index.js";
 import inputCombo from "../components/input_combo.vue";
 import router from "../router/index.js";
 export default {
-  name: "newRepo",
+  name: "delRepo",
   components: {
     inputCombo,
   },
@@ -46,49 +40,31 @@ export default {
   store: store,
   router: router,
   methods: {
-    criarRepo() {
-      this.nomeRepo.replace(/\W+/gm, "");
+    apagarRepo() {
       if (!this.nomeRepo.length) {
         console.log("O nome do repo não deve ser null");
         this.nomeRepo = "Prenche isto aqui sff";
         return null;
       }
-      if (!this.tema.length) {
-        console.log("O tema do repo não deve ser null");
-        this.tema = "Prenche isto aqui sff";
-        return null;
-      }
       var repo = {
         nome: this.nomeRepo,
-        tema: this.tema,
-        autor: this.$store.state.usr_perfil.user,
       };
       console.log(repo);
       api
         .callEndPoint(apiServices.hosts.documentacao, {
-          name: "CriarRepositorio",
-          params: [repo, this.$store.state.usr_token],
+          name: "DropRepositorio",
+          params: [
+            repo,
+            this.$store.state.usr_token ? this.$store.state.usr_token : "",
+          ],
         })
         .then((obj) => {
-          //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
-          //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
-          obj.CriarRepositorio.forEach((result) => {
-            //  Itera por todos as keys do objeto
-            console.log(result);
-            Object.keys(result).forEach((value) => {
-              if (value.toString() === "resultado" && result[value] !== null) {
-                this.nomeRepo = "";
-                this.tema = "";
-                this.show = !this.show;
-                router.go();
-                return null;
-              }
-              if (value.toString() === "erro" && result[value] !== null) {
-                console.log("Erro ao criar REPO");
-                return null;
-              }
-            });
-          });
+          if (obj.DropRepositorio[0].ok === true) {
+            router.go();
+          }
+          if (obj.DropRepositorio[0].erro !== null) {
+            console.log("Erro: ", obj.DropRepositorio[0].erro);
+          }
         });
     },
   },

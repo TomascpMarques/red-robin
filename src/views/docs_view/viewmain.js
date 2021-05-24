@@ -3,6 +3,7 @@ import message from "../../components/message_popup.vue";
 import repo from "../../components/repo.vue";
 import repoFiles from "../../components/repo_files.vue";
 import newRepo from "../../components/new_repo.vue";
+import delRepo from "../../components/apagar_repo.vue";
 
 import * as api from "../../api/apiCalls.js";
 import * as apiServices from "../../api/apiServices.js";
@@ -15,6 +16,7 @@ export default {
     message,
     repo,
     newRepo,
+    delRepo
   },
   data() {
     return {
