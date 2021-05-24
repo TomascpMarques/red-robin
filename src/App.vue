@@ -288,8 +288,7 @@ body {
 .links-menu {
   opacity: 0;
   position: fixed;
-  top: 6%;
-  visibility: hidden;
+  visibility: collapse;
   display: flex;
   flex-direction: column;
   justify-content: right;
@@ -303,20 +302,19 @@ body {
   background-color: var(--white);
   border-top: 3px solid #e2e2e2;
   box-shadow: var(--wrapper-shadow);
-  transition: 0.3s all ease-in-out;
+  transition: 0.2s all ease-in-out;
 }
 
 .arrow-wrapper:hover .links-menu {
   opacity: 1;
   visibility: visible;
-  position: absolute;
-  top: 6%;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: right;
   padding: 0.7rem;
-  margin-top: 0.7rem;
+  margin-top: 2rem;
   border-radius: 3px;
   background-color: #ffff;
   border-top: 3px solid #e2e2e2;
@@ -330,7 +328,7 @@ body {
   flex-direction: row;
   min-width: 11.5vh;
   background-color: transparent;
-  transition: 0.6s all cubic-bezier(0.63, 0.01, 0, 0.84);
+  transition: 0.4s all cubic-bezier(0.63, 0.01, 0, 0.84);
 }
 
 .item-menu:hover {

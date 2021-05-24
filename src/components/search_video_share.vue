@@ -1,7 +1,7 @@
 <template>
   <div class="main-wrapp">
     <div class="title" @click="show_opt = !show_opt">
-      <h4>Adicionar Video</h4>
+      <h4>Procurar Video</h4>
     </div>
     <transition
       enter-active-class="animate__animated animate__fadeIn"
@@ -41,7 +41,16 @@
           :tipo="'text'"
           v-model="vid_tema"
         />
-        <button @click="initVideoCreate()">Criar Share</button>
+        <inputCombo
+          v-model="quantidade"
+          :tipo="'number'"
+          :step="1"
+          :min="0"
+          :place="'Numero de Videos'"
+          :input_tit="'Numero de Videos'"
+        />
+        <button @click="initVideoSearch()">Procurar Video</button>
+        <button @click="allSearch()">Mostrar Todos</button>
         <div class="msg" v-if="msg">
           <h4>Operação:</h4>
           <span>{{ msg }}</span>
@@ -60,7 +69,7 @@ import store from "../store/index.js";
 
 import inputCombo from "./input_combo.vue";
 export default {
-  name: "addVideoShare",
+  name: "searchVideoShare",
   router: router,
   store: store,
   components: {
@@ -76,68 +85,49 @@ export default {
       url_erro: "",
       tit_erro: "",
       desc_erro: "",
+      quantidade: 0,
       tema_erro: "",
       show_opt: false,
+      videos: {},
     };
   },
   methods: {
-    addVideo() {
-      var video = {
-        url: this.vid_url,
-        tema: this.vid_tema,
-        titulo: this.vid_tit,
-        descricao: this.vid_desc,
-        criador: this.$store.state.usr_perfil.user,
+    searchVideo() {
+      var struct = {
+        params: {
+          tema: this.vid_tema,
+        },
+        quanti: this.quantidade,
       };
-      console.log(video);
+      // criador: this.$store.state.usr_perfil.user,
+      console.log(struct);
       api
         .callEndPoint(apiServices.hosts.videoshare, {
-          name: "CriarVideoShare",
-          params: [video, this.$store.state.usr_token],
+          name: "GetVideoShares",
+          params: [struct, this.$store.state.usr_token],
         })
         .then((obj) => {
-          if (obj.CriarVideoShare[0].sucesso === true) {
-            this.msg = "Adicionado com sucesso";
-            setTimeout(() => {
-              router.go();
-            }, 2000);
-          } else if (obj.CriarVideoShare[0].err !== null) {
-            this.msg = obj.CriarVideoShare[0].err;
+          if (obj.GetVideoShares[0].sucesso === true) {
+            this.videos = obj.GetVideoShares[0].shares;
+            console.log("videos: ", this.videos);
+            this.$emit("test", this.videos);
+            return null;
+          }
+
+          // No caso de ocorrer um na procura erro
+          try {
+            if (obj.GetVideoShares[0].error !== null) {
+              this.msg = obj.GetVideoShares[0].error;
+            }
+          } finally {
+            if (obj.GetVideoShares[0].aviso !== null) {
+              console.log(obj.GetVideoShares[0].aviso);
+            }
           }
         });
     },
-    checkInputs() {
-      if (this.vid_tit.length < 4) {
-        this.tit_erro = "Prenche isto aqui sff";
-        return false;
-      } else {
-        this.tit_erro = "";
-      }
-      if (this.vid_url.length < 4) {
-        this.url_erro = "Prenche isto aqui sff";
-        return false;
-      } else {
-        this.url_erro = "";
-      }
-      if (this.vid_desc.length < 4) {
-        this.desc_erro = "Prenche isto aqui sff";
-        return false;
-      } else {
-        this.desc_erro = "";
-      }
-      if (this.vid_tema.length < 4) {
-        this.tema_erro = "Prenche isto aqui sff";
-        return false;
-      } else {
-        this.tema_erro = "";
-      }
-      return true;
-    },
-    initVideoCreate() {
-      if (!this.checkInputs()) {
-        return null;
-      }
-      this.addVideo();
+    initVideoSearch() {
+      this.searchVideo();
     },
   },
 };
@@ -152,6 +142,7 @@ export default {
 }
 
 button {
+  margin-bottom: 0.4rem;
   background-color: #e6e6e6;
   padding: 0.3rem 0.4rem;
   border: none;

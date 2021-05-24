@@ -1,30 +1,26 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="wrap" v-bind:class="{ 'blk-out': maxvideo }">
-        <div class="bar"></div>
-        <div class="main">
-          <span class="button-max" @click="maxvideo = !maxvideo">
-            Maximizar
+  <div class="container">
+    <div class="wrap" v-bind:class="{ 'blk-out': maxvideo }">
+      <div class="bar"></div>
+      <div class="main">
+        <span class="button-max" @click="maxvideo = !maxvideo"> Aumentar </span>
+        <div v-bind:class="{ 'video-player': true }">
+          <iframe
+            v-bind:class="{ 'max-height': maxvideo }"
+            :src="`https://www.youtube.com/embed/${lol}`"
+            :title="title"
+            frameborder="0"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="info" v-bind:class="{ blur: maxvideo }">
+          <span class="title">
+            {{ title }}
           </span>
-          <div v-bind:class="{ 'video-player': true }">
-            <iframe
-              v-bind:class="{ 'max-height': maxvideo }"
-              :src="'https://www.youtube.com/embed/' + url"
-              :title="title"
-              frameborder="0"
-              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="info" v-bind:class="{ blur: maxvideo }">
-            <span class="title">
-              {{ title }}
-            </span>
-            <span class="desc">
-              {{ desc }}
-            </span>
-          </div>
+          <span class="desc">
+            {{ desc }}
+          </span>
         </div>
       </div>
     </div>
@@ -34,7 +30,7 @@
 <script>
 export default {
   name: "videoShow",
-  props: ["title", "url", "desc"],
+  props: ["title", "lol", "desc"],
   data() {
     return {
       maxvideo: false,
@@ -45,7 +41,7 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 25vw;
+  max-width: 400px;
 }
 
 .button-max {
@@ -63,7 +59,8 @@ export default {
   justify-content: center;
   box-shadow: 0px 0px 10px 3px lightgray;
   border-radius: 10px;
-  max-width: 30vw;
+  max-width: 100%;
+  margin: 0.3rem;
   background-color: white;
   transition: 0.3s all ease-in-out;
 }
@@ -95,7 +92,7 @@ export default {
 .main {
   padding: 0.8rem;
   padding-top: 0.25rem;
-  max-width: 35vw;
+
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -132,11 +129,12 @@ export default {
 }
 
 .desc {
-  font-family: consolas;
-  font-weight: 600;
-  font-style: italic;
+  font-family: "Nunito";
+  font-weight: 500;
   font-size: 1rem;
-  text-align: center;
+  letter-spacing: 1px;
+  text-align: justify;
+  text-justify: inter-word;
   padding: 0 0.2rem;
 }
 

@@ -115,6 +115,7 @@ h4 {
   flex-wrap: nowrap;
   justify-content: flex-start;
   gap: 1rem;
+  text-rendering: optimizeLegibility;
 }
 
 .item {
