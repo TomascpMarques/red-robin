@@ -38,7 +38,7 @@ export default {
       store.commit("apagarUserProfile");
       store.commit("apagarJWToken");
       store.commit("apagarUsrCreds");
-      store.commit("apagarAllUsrRepos");
+      store.commit("apagarOtherUrsRepos");
       store.commit("apagarUsrRepos");
       store.commit("limparSessionStorage");
       location.reload();

@@ -136,8 +136,8 @@ export default {
       }).then((obj) => {
         console.log(obj.BuscarTodosOsReposNotTokenUsr);
         if (obj.BuscarTodosOsReposNotTokenUsr[0].repos !== null) {
-          this.$store.commit("storeAllUrsRepos", obj.BuscarTodosOsReposNotTokenUsr[0].repos);
-          console.log("Repos after login: ", this.$store.state.usr_repos, this.$store.state.all_usr_repos);
+          this.$store.commit("storeOtherUrsRepos", obj.BuscarTodosOsReposNotTokenUsr[0].repos);
+          console.log("Repos after login: ", this.$store.state.usr_repos, this.$store.state.other_usr_repos);
         }
         if (obj.BuscarTodosOsReposNotTokenUsr[0].erro !== null) {
           console.log(obj.BuscarTodosOsReposNotTokenUsr[0].erro);

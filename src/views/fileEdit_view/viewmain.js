@@ -79,11 +79,21 @@ export default {
       this.editorContent = this.getFileContents(path);
     },
     getRepoFromList() {
-      this.repo = this.$store.state.all_usr_repos.filter((x) => {
-        return x.nome === this.$route.params.valor.split("/")[
-          this.$route.params.valor.split("/").length - 1
-        ];
-      })[0];
+      if (this.$route.params.usr !== this.$store.state.usr_perfil.user) {
+        this.repo = this.$store.state.other_usr_repos.filter((x) => {
+          return x.nome === this.$route.params.valor.split("/")[
+            this.$route.params.valor.split("/").length - 1
+          ];
+        })[0];
+        return null;
+      } else {
+        this.repo = this.$store.state.usr_repos.filter((x) => {
+          return x.nome === this.$route.params.valor.split("/")[
+            this.$route.params.valor.split("/").length - 1
+          ];
+        })[0];
+        return null;
+      }
     },
     getRepoStrucFromPaths() {
       this.repo.ficheiros.forEach((ficheiro) => {

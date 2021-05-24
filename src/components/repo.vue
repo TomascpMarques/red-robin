@@ -1,6 +1,6 @@
 <template>
   <div class="repo">
-    <div class="titulo" @click="toRepo(titulo)">
+    <div class="titulo" @click="toRepo(titulo, autor)">
       <!-- <img src="../assets/files.svg" alt="" /> -->
       <span
         v-bind:class="{
@@ -45,10 +45,10 @@ export default {
   name: "repo",
   props: ["criacao", "contrib", "autor", "tema", "titulo"],
   methods: {
-    toRepo(nome) {
+    toRepo(nome, autor) {
       router.push({
         name: "Vizualisar Ficheiro(s)",
-        params: { tipo: "Repo", valor: "/repo/" + nome },
+        params: { tipo: "Repo", usr: autor, valor: "/repo/" + nome },
       });
     },
   },

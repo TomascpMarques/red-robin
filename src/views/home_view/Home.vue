@@ -82,6 +82,7 @@
                     name: 'Vizualisar Ficheiro(s)',
                     params: {
                       tipo: 'Repo',
+                      usr: item.autor,
                       valor: '/repo/' + item.nome,
                     },
                   }"
