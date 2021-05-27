@@ -23,8 +23,8 @@
             :criacao="cntrb.criacao"
             :tema="cntrb.tema"
             :contrib="
-              cntrb.contribuidores.lenght <= 0
-                ? cntrb.contribuidores
+              cntrb.contribuidores.join(', ').length > 1
+                ? cntrb.contribuidores.join(', ')
                 : 'Sem contribuidores'
             "
             :autor="cntrb.autor"

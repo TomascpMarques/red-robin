@@ -81,9 +81,28 @@ export default {
         // });
         // });
       });
-    }
+    },
+    getAllRepos() {
+      api.callEndPoint(apiServices.hosts.documentacao, {
+        name: "BuscarTodosOsReposNotTokenUsr",
+        params: [this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
+      }).then((obj) => {
+        console.log(obj.BuscarTodosOsReposNotTokenUsr);
+        if (obj.BuscarTodosOsReposNotTokenUsr[0].repos !== null) {
+          this.$store.commit("storeOtherUrsRepos", obj.BuscarTodosOsReposNotTokenUsr[0].repos);
+          console.log("Repos after login: ", this.$store.state.usr_repos, this.$store.state.other_usr_repos);
+        }
+        if (obj.BuscarTodosOsReposNotTokenUsr[0].erro !== null) {
+          console.log(obj.BuscarTodosOsReposNotTokenUsr[0].erro);
+        }
+      });
+    },
   },
   created() {
-    this.getRepos();
+    try {
+      this.getAllRepos();
+    } finally {
+      this.getRepos();
+    }
   },
 };
