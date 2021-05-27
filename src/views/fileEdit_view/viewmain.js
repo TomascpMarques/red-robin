@@ -79,6 +79,10 @@ export default {
       this.editorContent = this.getFileContents(path);
     },
     getRepoFromList() {
+      console.log("Current user: ", this.$store.state.usr_perfil.user);
+      console.log("Current repo user: ", this.$route.params.usr);
+      console.log("repo is diferent: ", this.$route.params.usr !== this.$store.state.usr_perfil.user);
+      console.log("other users repos: ", this.$store.state.other_usr_repos);
       // Se o autor do repo em questão for diferente do user
       // Muda a lista de repos a usar
       if (this.$route.params.usr !== this.$store.state.usr_perfil.user) {
@@ -87,14 +91,16 @@ export default {
             this.$route.params.valor.split("/").length - 1
           ];
         })[0];
-        return null;
+        console.log("QAWDAWFAWFAWFGAWGAWGAWGAWGAWGAEGEWG");
+        return true;
       } else {
         this.repo = this.$store.state.usr_repos.filter((x) => {
           return x.nome === this.$route.params.valor.split("/")[
             this.$route.params.valor.split("/").length - 1
           ];
         })[0];
-        return null;
+        console.log("11111111111111111111111111111111111111111");
+        return true;
       }
     },
     getRepoStrucFromPaths() {
@@ -261,13 +267,32 @@ export default {
           });
         });
       });
-    }
+    },
+    getAllRepos() {
+      api.callEndPoint(apiServices.hosts.documentacao, {
+        name: "BuscarTodosOsReposNotTokenUsr",
+        params: [this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
+      }).then((obj) => {
+        console.log(obj.BuscarTodosOsReposNotTokenUsr);
+        if (obj.BuscarTodosOsReposNotTokenUsr[0].repos !== null) {
+          this.$store.commit("storeOtherUrsRepos", obj.BuscarTodosOsReposNotTokenUsr[0].repos);
+          console.log("Repos after login: ", this.$store.state.usr_repos, this.$store.state.other_usr_repos);
+        }
+        if (obj.BuscarTodosOsReposNotTokenUsr[0].erro !== null) {
+          console.log(obj.BuscarTodosOsReposNotTokenUsr[0].erro);
+        }
+      });
+    },
   },
   created() {
     try {
-      this.getRepoFromList();
+      this.getAllRepos();
     } finally {
-      this.getRepoStrucFromPaths();
+      try {
+        this.getRepoFromList();
+      } finally {
+        this.getRepoStrucFromPaths();
+      }
     }
   }
 };

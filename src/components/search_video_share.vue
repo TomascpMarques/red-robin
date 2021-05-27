@@ -129,7 +129,7 @@ export default {
     searchVideo() {
       var struct = {
         params: this.verifSearchParam(this.vid),
-        quanti: this.quantidade,
+        quanti: Number(this.quantidade),
       };
       // criador: this.$store.state.usr_perfil.user,
       console.log("|->", struct);

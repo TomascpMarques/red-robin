@@ -104,6 +104,7 @@ export default {
             }, 2000);
           } else if (obj.CriarVideoShare[0].err !== null) {
             this.msg = obj.CriarVideoShare[0].err;
+            console.log(obj.CriarVideoShare[0].err);
           }
         });
     },

@@ -42,7 +42,7 @@
       </transition>
     </div>
     <h1>
-      Bem vindo,<span class="nome-tit">{{ nome }}</span>
+      Bem vindo,<span class="nome-tit">{{ nomeSimples(nome) }}</span>
     </h1>
     <div class="disposicao">
       <div>

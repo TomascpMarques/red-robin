@@ -31,6 +31,9 @@ export default {
     this.getPerfilUser();
   },
   methods: {
+    nomeSimples(nome) {
+      return (nome.split(" ")[0] + " " + nome.split(" ")[nome.split(" ").length - 1]);
+    },
     initLogOut() {
       this.sess = !this.sess;
     },
