@@ -1,4 +1,3 @@
-import store from "../../store/index.js";
 import message from "../../components/message_popup.vue";
 import repo from "../../components/repo.vue";
 import repoFiles from "../../components/repo_files.vue";
@@ -8,9 +7,13 @@ import delRepo from "../../components/apagar_repo.vue";
 import * as api from "../../api/apiCalls.js";
 import * as apiServices from "../../api/apiServices.js";
 
+import store from "../../store/index.js";
+import router from "../../router/index.js";
+
 export default {
   name: "Documentação & Notas",
   store: store,
+  router: router,
   components: {
     repoFiles,
     message,
@@ -31,7 +34,7 @@ export default {
     },
     reload() {
       this.disabledButton = !this.disabledButton;
-      this.getRepos();
+      this.initRepoFetch();
       setTimeout(() => {
         this.disabledButton = !this.disabledButton;
       }, 5000);
@@ -97,12 +100,15 @@ export default {
         }
       });
     },
+    initRepoFetch() {
+      try {
+        this.getAllRepos();
+      } finally {
+        this.getRepos();
+      }
+    }
   },
   created() {
-    try {
-      this.getAllRepos();
-    } finally {
-      this.getRepos();
-    }
+    this.initRepoFetch();
   },
 };

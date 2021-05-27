@@ -104,25 +104,29 @@ export default {
       }
     },
     getRepoStrucFromPaths() {
-      this.repo.ficheiros.forEach((ficheiro) => {
-        console.log("File erro here?: ", ficheiro);
-        var tempFile = ficheiro;
-        var ficheiroPathNoName = tempFile.path.splice(0, tempFile.path.length - 1).join("/");
-        try {
-          if (this.fileStruct[ficheiroPathNoName].length > 0) {
-            // Verifica se o path já foi registado
-          }
-        } catch {
-          // Apanha o erro se não existir o path e cria o mesmo
-          this.fileStruct[ficheiroPathNoName] = [];
-        };
-        // Adiciona o nome de ficheiro ao array
-        var filePathCombo = {
-          nome: ficheiro.nome,
-          path: (ficheiroPathNoName + "/" + ficheiro.nome).split("/")
-        };
-        this.fileStruct[ficheiroPathNoName].push(filePathCombo);
-      });
+      try {
+        this.repo.ficheiros.forEach((ficheiro) => {
+          console.log("File erro here?: ", ficheiro);
+          var tempFile = ficheiro;
+          var ficheiroPathNoName = tempFile.path.splice(0, tempFile.path.length - 1).join("/");
+          try {
+            if (this.fileStruct[ficheiroPathNoName].length > 0) {
+              // Verifica se o path já foi registado
+            }
+          } catch {
+            // Apanha o erro se não existir o path e cria o mesmo
+            this.fileStruct[ficheiroPathNoName] = [];
+          };
+          // Adiciona o nome de ficheiro ao array
+          var filePathCombo = {
+            nome: ficheiro.nome,
+            path: (ficheiroPathNoName + "/" + ficheiro.nome).split("/")
+          };
+          this.fileStruct[ficheiroPathNoName].push(filePathCombo);
+        });
+      } catch {
+        console.log("No files in repo");
+      }
     },
     getFileContents(path) {
       var file = {
