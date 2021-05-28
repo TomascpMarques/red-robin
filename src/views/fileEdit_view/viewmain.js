@@ -73,16 +73,11 @@ export default {
       return path.split("/").slice(1).join(" / ");
     },
     log(path, nome) {
-      console.log(path);
       this.fileEscolhido = nome;
       this.fileEscolhidoPath = path;
       this.editorContent = this.getFileContents(path);
     },
     getRepoFromList() {
-      console.log("Current user: ", this.$store.state.usr_perfil.user);
-      console.log("Current repo user: ", this.$route.params.usr);
-      console.log("repo is diferent: ", this.$route.params.usr !== this.$store.state.usr_perfil.user);
-      console.log("other users repos: ", this.$store.state.other_usr_repos);
       // Se o autor do repo em questão for diferente do user
       // Muda a lista de repos a usar
       if (this.$route.params.usr !== this.$store.state.usr_perfil.user) {
@@ -91,7 +86,6 @@ export default {
             this.$route.params.valor.split("/").length - 1
           ];
         })[0];
-        console.log("QAWDAWFAWFAWFGAWGAWGAWGAWGAWGAEGEWG");
         return true;
       } else {
         this.repo = this.$store.state.usr_repos.filter((x) => {
@@ -99,7 +93,6 @@ export default {
             this.$route.params.valor.split("/").length - 1
           ];
         })[0];
-        console.log("11111111111111111111111111111111111111111");
         return true;
       }
     },
