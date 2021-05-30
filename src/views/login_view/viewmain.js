@@ -67,7 +67,7 @@ export default {
       this.login = false;
       this.params_errados = true;
     },
-    loginSucesso(token) {
+    loginSucesso(token, tokenReload) {
       var creds = {
         pass: this.encrypt_pass,
         user: this.user,
@@ -159,7 +159,7 @@ export default {
             Object.keys(x).forEach((y) => {
               //  Se foi devolvida uma token
               if (y.toString() === "token") {
-                this.loginSucesso(obj.Login[0].token);
+                this.loginSucesso(obj.Login[0].token, obj.Login[0].reload);
                 this.getPerfilUser(this.name);
                 setTimeout(function () {
                   // Previne mudar de route se o user já mudou antes do timer

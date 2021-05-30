@@ -32,6 +32,9 @@ export default createStore({
     apagarJWToken(state) {
       state.usr_token = "";
     },
+    apagarJWTReloadToken(state) {
+      state.usr_reload_token = "";
+    },
     apagarUserProfile(state) {
       state.usr_perfil = "";
     },

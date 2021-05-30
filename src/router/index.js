@@ -9,6 +9,7 @@ import ModUser from "../views/usermod_view/UserMod.vue";
 import Docs from "../views/docs_view/Docs.vue";
 import EditFiles from "../views/fileEdit_view/fileEdit.vue";
 import VideoShare from "../views/videos_view/VideoShare.vue";
+import GerirEquipamento from "../views/equipamento_view/gerirEquipamento.vue";
 
 import * as api from "../api/apiCalls.js";
 import * as apiServices from "../api/apiServices.js";
@@ -95,9 +96,7 @@ const routes = [
         // assim envia a string "empty", se o utilizador não estiver autenticado
         params: [store.state.usr_token ? store.state.usr_token : "empty"],
       }).then((obj) => {
-        /* const repoSearched = to.params.valor.split("/").lastItem;
-        const repos = store.state.usr_perfil.contribuicoes.map(x => x.reponome); */
-        if (obj.VerificarTokenUser[0] === "OK"/*  && repos.find(x => x === repoSearched) */) {
+        if (obj.VerificarTokenUser[0] === "OK") {
           next();
         } else next({ path: "/no_repo", name: "O Repositório Não Existe" });
       });
@@ -107,6 +106,22 @@ const routes = [
     name: "Partilha de Video",
     path: "/videoshare",
     component: VideoShare,
+    beforeEnter(to, from, next) {
+      api.callEndPoint(apiServices.hosts.autenticacao, {
+        name: "VerificarTokenUser",
+        // assim envia a string "empty", se o utilizador não estiver autenticado
+        params: [store.state.usr_token ? store.state.usr_token : "empty"],
+      }).then((obj) => {
+        if (obj.VerificarTokenUser[0] === "OK") {
+          next();
+        } else next({ path: "/bery_bad_baddie", name: "Sem permissões" });
+      });
+    },
+  },
+  {
+    name: "Gestão de Equipamento",
+    path: "/equipamento",
+    component: GerirEquipamento,
     beforeEnter(to, from, next) {
       api.callEndPoint(apiServices.hosts.autenticacao, {
         name: "VerificarTokenUser",

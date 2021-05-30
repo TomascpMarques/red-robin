@@ -24,7 +24,7 @@
       </div>
       <div class="login-form">
         <div class="inner-log-form">
-          <img class="logo-login"  src="../../assets/logo.svg" alt="" />
+          <img class="logo-login" src="../../assets/logo.svg" alt="" />
           <div class="inputs">
             <transition
               mode="in-out"

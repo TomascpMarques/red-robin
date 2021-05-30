@@ -52,6 +52,13 @@
               </router-link>
             </span>
           </div>
+          <div class="item-menu" v-if="loggedIn">
+            <span>
+              <router-link class="span-link" to="/equipamento">
+                Gestão de equipamento
+              </router-link>
+            </span>
+          </div>
         </div>
       </div>
       <div class="wrapper-title">MENU</div>
