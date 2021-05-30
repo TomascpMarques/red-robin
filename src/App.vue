@@ -294,7 +294,7 @@ body {
 
 .links-menu {
   opacity: 0;
-  position: fixed;
+  position: absolute;
   visibility: collapse;
   display: flex;
   flex-direction: column;
@@ -315,7 +315,7 @@ body {
 .arrow-wrapper:hover .links-menu {
   opacity: 1;
   visibility: visible;
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;

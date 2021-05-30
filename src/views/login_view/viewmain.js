@@ -67,7 +67,7 @@ export default {
       this.login = false;
       this.params_errados = true;
     },
-    loginSucesso(token, tokenReload) {
+    loginSucesso(token) {
       var creds = {
         pass: this.encrypt_pass,
         user: this.user,
@@ -152,6 +152,7 @@ export default {
           name: "Login",
           params: [this.user, this.encrypt_pass],
         }).then((obj) => {
+          console.log(obj);
           //  Resolve a promessa da api.callEndPoints e carrega a token para o vueX
           //  Assim evita criar cookies. Itera pelos valores recebidos, verifica que açõe tomar
           obj.Login.forEach((x) => {
@@ -159,7 +160,7 @@ export default {
             Object.keys(x).forEach((y) => {
               //  Se foi devolvida uma token
               if (y.toString() === "token") {
-                this.loginSucesso(obj.Login[0].token, obj.Login[0].reload);
+                this.loginSucesso(obj.Login[0].token);
                 this.getPerfilUser(this.name);
                 setTimeout(function () {
                   // Previne mudar de route se o user já mudou antes do timer

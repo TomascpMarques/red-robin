@@ -83,12 +83,13 @@ export default {
 .titulo {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: left;
   place-items: center;
   padding: 0.6rem 0.6rem;
   padding-bottom: 0;
   margin-top: auto;
-  gap: 0.7rem;
+  gap: 0 0.7rem;
   margin-right: 0.5rem;
   width: fit-content;
   transition: 0.2s all ease-in;

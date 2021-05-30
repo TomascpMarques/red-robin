@@ -5,6 +5,10 @@
     </div>
     <div class="page-body">
       <div class="explorador">
+        {{ test }}
+        <inpSimples :titulo="'Quantidade'" plcholder="" v-model="test" />
+        <inpCategorie />
+        <br />
         <span
           >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
           debitis ducimus sunt magni corrupti quidem voluptas fuga, eligendi
