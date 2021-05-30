@@ -1,12 +1,13 @@
 <template>
   <div class="main-wrap">
-    <span>{{ titulo }}</span>
+    <span>{{ nome }}</span>
     <div class="decor"></div>
     <input
       type="text"
       name="inp"
       :placeholder="plcholder || 'Edit me!'"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="sendValue()"
+      v-model="conteudoInp"
     />
   </div>
 </template>
@@ -14,9 +15,18 @@
 <script>
 export default {
   name: "inpValSimples",
-  props: ["titulo", "plcholder", "modelvalue"],
+  props: ["titulo", "plcholder"],
   data() {
-    return {};
+    return {
+      nome: this.titulo,
+      conteudoInp: "",
+    };
+  },
+  methods: {
+    sendValue(event) {
+      console.log(this.conteudoInp);
+      this.$emit("conteudo", { cont: this.conteudoInp, key: this.titulo });
+    },
   },
 };
 </script>
@@ -32,17 +42,21 @@ export default {
   padding: 0.15rem 0rem;
   border: none;
   border-bottom: 2px solid gainsboro;
+  margin: 0.5rem;
+  box-shadow: 6px 6px 6px 0px gainsboro;
+  padding: 0.5rem;
+  border-radius: 7px;
   max-width: fit-content;
 }
 
 .decor {
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.5rem;
+  height: 0.5rem;
   padding: 0;
   margin: 0;
   border: none;
-  border-top: 3px solid var(--blue);
-  border-right: 3px solid var(--blue);
+  border-top: 2px solid var(--blue);
+  border-right: 2px solid var(--blue);
   transform: rotateZ(45deg);
   margin-right: 0.1rem;
 }
@@ -53,6 +67,7 @@ export default {
   font-family: "Roboto";
   font-kerning: auto;
   width: fit-content;
+  font-weight: bold;
 }
 
 .main-wrap input {
@@ -67,13 +82,13 @@ export default {
 }
 
 input:focus::placeholder {
-  transform: translateX(105%);
+  transform: translatey(-105%);
 }
 
 input::placeholder {
   font-family: "Roboto";
   color: gray;
   letter-spacing: 1px;
-  transition: 1.2s all ease-out;
+  transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
 }
 </style>

@@ -3,11 +3,12 @@
     <div class="page-tit">
       <h1>Hello mein friend</h1>
     </div>
+    {{ test }}
     <div class="page-body">
       <div class="explorador">
-        {{ test }}
-        <inpSimples :titulo="'Quantidade'" plcholder="" v-model="test" />
         <inpCategorie />
+        <br />
+        <button @click="getAllRepos()">Try me</button>
         <br />
         <span
           >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
