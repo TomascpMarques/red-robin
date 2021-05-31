@@ -1,22 +1,24 @@
 <template>
   <div class="main-wrap">
-    <span>{{ nome }}</span>
-    <div class="decor"></div>
-    <input
-      type="text"
-      name="inp"
-      :placeholder="plcholder || 'Edit me!'"
-      @input="sendValue()"
-      v-model="conteudoInp"
-    />
-    <button @click="emmitDel()">Apagar</button>
+    <div class="cont">
+      <span>{{ nome }}</span>
+      <div class="decor"></div>
+      <input
+        type="text"
+        name="inp"
+        :placeholder="plcholder || 'Edit me!'"
+        @input="sendValue()"
+        v-model="conteudoInp"
+      />
+    </div>
+    <button @click="emmitDel()">apagar</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "inpValSimples",
-  props: ["titulo", "plcholder", "id"],
+  props: ["titulo", "plcholder", "id", "cmpname"],
   data() {
     return {
       nome: this.titulo,
@@ -26,20 +28,51 @@ export default {
   methods: {
     sendValue(event) {
       console.log(this.conteudoInp);
-      this.$emit("conteudo", { cont: this.conteudoInp, key: this.titulo });
+      this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
-      this.$emit("delete", { id: this.id, key: this.titulo });
+      this.$emit("delete", {
+        name: this.cmpname,
+        id: this.id,
+        key: this.titulo,
+      });
     },
   },
 };
 </script>
 
 <style scoped>
+.cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-content: flex-start;
+  place-items: center;
+  gap: 0.3rem;
+  margin-left: 0.3rem;
+  width: 80%;
+  max-height: min-content;
+}
+
+button {
+  border: none;
+  font-family: "Roboto";
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  color: gainsboro;
+  transition: 0.3s all ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+  color: gray;
+}
+
 .main-wrap {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-content: flex-start;
   place-items: center;
   gap: 0.3rem;
@@ -50,7 +83,7 @@ export default {
   box-shadow: 6px 6px 6px 0px gainsboro;
   padding: 0.5rem;
   border-radius: 7px;
-  max-width: fit-content;
+  max-height: min-content;
 }
 
 .decor {
@@ -81,7 +114,7 @@ export default {
   font-size: 1rem;
   font-family: "Roboto";
   color: #252525;
-  width: 60%;
+  width: 100%;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
 }
 

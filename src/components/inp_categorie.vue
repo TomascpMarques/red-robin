@@ -24,6 +24,7 @@
         v-for="cmpnt in componentes"
         :key="cmpnt"
         v-bind:is="cmpnt.name"
+        :cmpname="cmpnt.name"
         :titulo="key"
         :id="cmpnt.id"
         @conteudo="setComponentValueInArray"
@@ -68,7 +69,17 @@ export default {
     },
     apagarInput(vals) {
       console.log(vals);
-      this.componentes.splice(vals.id, 1);
+      console.log(this.componentes);
+      this.componentes.forEach((x) => {
+        if (x.id === vals.id) {
+          console.log("<<", this.valores);
+          this.componentes.splice(this.componentes.indexOf(x), 1);
+          console.log("<<>>", vals.key, x);
+          this.valores[x.key] = null;
+          delete this.valores[x.key];
+          console.log("<<", this.valores);
+        }
+      });
     },
   },
 };
@@ -128,7 +139,7 @@ select {
   border-radius: 6px;
   display: flex;
   flex-direction: row;
-  align-content: left;
+  align-content: center;
   justify-content: left;
   flex-wrap: wrap;
   gap: 0.5rem;
