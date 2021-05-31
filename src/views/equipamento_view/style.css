@@ -62,6 +62,8 @@ h4 {
 }
 
 .explorador {
+    border-top: 10px solid var(--blue);
+    border-radius: 4px;
     background-color: white;
     padding: .5rem;
     height: fit-content;

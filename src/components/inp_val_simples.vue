@@ -42,7 +42,7 @@ export default {
   padding: 0.15rem 0rem;
   border: none;
   border-bottom: 2px solid gainsboro;
-  margin: 0.5rem;
+  margin: 0.1rem;
   box-shadow: 6px 6px 6px 0px gainsboro;
   padding: 0.5rem;
   border-radius: 7px;

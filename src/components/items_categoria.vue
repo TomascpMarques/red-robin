@@ -5,9 +5,7 @@
         @click="showBody = !showBody"
         v-bind:class="[showBody ? 'decor-down' : 'decor-up']"
       ></div>
-      <h2>
-        Categoria: <span class="blue">{{ categoria }}</span>
-      </h2>
+      <h2 class="blue">{{ categoria }}</h2>
       <span>{{ items.length }} items</span>
     </div>
     <transition
@@ -71,6 +69,8 @@ export default {
 .title span {
   margin-top: 0.3rem;
   cursor: default;
+  color: lightgray;
+  font-weight: bold;
 }
 
 .decor-up {
@@ -83,7 +83,7 @@ export default {
   border-right: 3px solid lightgray;
   border-color: #c3c3c3;
   transform: rotateZ(45deg);
-  transition: 0.3s all ease-in-out;
+  transition: 0.25s all ease-in-out;
   -webkit-transform-origin: 50% 50%;
 }
 
@@ -97,7 +97,7 @@ export default {
   border-right: 3px solid lightgray;
   border-color: #c3c3c3;
   transform: rotateZ(135deg);
-  transition: 0.3s all ease-in-out;
+  transition: 0.25s all ease-in-out;
   -webkit-transform-origin: 50% 50%;
 }
 
@@ -123,13 +123,15 @@ h2 {
   margin-left: 6px;
 }
 
-.mpt-space {
-  width: 400px;
-  height: 250px;
-  background-color: yellowgreen;
-}
-
 .blue {
   color: var(--blue);
+  letter-spacing: 0px;
+}
+
+.blue::after {
+  content: " utilização";
+  color: darkgray;
+  font-size: 1.1rem;
+  letter-spacing: 0.25px;
 }
 </style>

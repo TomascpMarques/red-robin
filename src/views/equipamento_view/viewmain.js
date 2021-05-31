@@ -36,6 +36,7 @@ export default {
       });
     },
     setUpCategories() {
+      this.itemsCategories = {};
       this.items.forEach(element => {
         try {
           // Adiciona outro item a uma categoria existente

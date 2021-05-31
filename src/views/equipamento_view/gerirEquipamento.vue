@@ -5,16 +5,9 @@
     </div>
     <div class="page-body">
       <div class="explorador">
+        <h1>Ações</h1>
         <inpCategorie />
-        <br />
-        <button @click="getAllRepos()">Try me</button>
-        <br />
-        <span
-          >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
-          debitis ducimus sunt magni corrupti quidem voluptas fuga, eligendi
-          dignissimos atque eius harum aspernatur? Distinctio, a odit rem
-          accusamus eligendi esse.
-        </span>
+        <!-- <button @click="getAllRepos()">Try me</button> -->
       </div>
       <div class="editor">
         <div v-if="!items">
