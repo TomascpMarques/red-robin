@@ -207,6 +207,7 @@ body {
 }
 
 #app {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;

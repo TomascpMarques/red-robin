@@ -1,9 +1,8 @@
 <template>
   <div class="page-wrap">
     <div class="page-tit">
-      <h1>Hello mein friend</h1>
+      <h1>Equipamento</h1>
     </div>
-    {{ test }}
     <div class="page-body">
       <div class="explorador">
         <inpCategorie />
@@ -18,12 +17,14 @@
         </span>
       </div>
       <div class="editor">
-        <span
-          >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
-          debitis ducimus sunt magni corrupti quidem voluptas fuga, eligendi
-          dignissimos atque eius harum aspernatur? Distinctio, a odit rem
-          accusamus eligendi esse.
-        </span>
+        <div v-if="!items">
+          <h3>Wow Such Empty...</h3>
+        </div>
+        <div v-if="items">
+          <div v-for="x in itemsCategories" :key="x">
+            <itemsCategoria :categoria="x[0].meta.estado" :items="x" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
