@@ -9,7 +9,12 @@
         <select v-model="option">
           <option value="InpSimples">Simples</option>
         </select>
-        <input type="text" placeholder="Valor Propriedade" v-model="key" />
+        <input
+          type="text"
+          placeholder="Valor Propriedade"
+          v-model="key"
+          @input="mss = ''"
+        />
         <button class="but-class" @click="criarComponenteRunTime(option)">
           Criar Opção
         </button>
@@ -17,6 +22,13 @@
       </div>
       {{ valores }}
       <span class="desc">
+        <transition
+          enter-active-class="animate__animated animate__zoomIn"
+          leave-active-class="animate__animated animate__zoomOut"
+        >
+          <span class="message" v-if="mss"> {{ mss }}</span>
+        </transition>
+        <br />
         Novos Valores: <i v-if="!componentes.length">Empty</i>
       </span>
 
@@ -45,16 +57,22 @@ export default {
     return {
       temp: Object,
       key: "",
+      keys: [],
       option: "",
       valores: {},
       componentes: [],
       show: false,
+      mss: "",
     };
   },
   methods: {
     criarComponenteRunTime(opt) {
+      if (this.keys.includes(this.key)) {
+        this.mss = "Essa propriedade já existe";
+        return null;
+      }
       if (!this.key || !this.option.length) {
-        console.log("sem key para o novo elemento");
+        this.mss = "Sem key para a nova propriedade";
         return null;
       }
       this.componentes.push({
@@ -62,22 +80,18 @@ export default {
         id: this.componentes.length - 1 + 1,
         key: this.key,
       });
+      this.keys.push(this.key);
     },
     setComponentValueInArray(conteudo) {
-      console.log("->", conteudo);
       this.valores[conteudo.key] = conteudo.cont;
     },
     apagarInput(vals) {
-      console.log(vals);
-      console.log(this.componentes);
       this.componentes.forEach((x) => {
         if (x.id === vals.id) {
-          console.log("<<", this.valores);
           this.componentes.splice(this.componentes.indexOf(x), 1);
-          console.log("<<>>", vals.key, x);
           this.valores[x.key] = null;
           delete this.valores[x.key];
-          console.log("<<", this.valores);
+          this.keys.splice(this.keys.indexOf(x.key), 1);
         }
       });
     },
@@ -86,12 +100,23 @@ export default {
 </script>
 
 <style scoped>
+.message {
+  color: var(--orange);
+  letter-spacing: 0.1px;
+  word-spacing: -3px;
+  font-family: consolas;
+}
+
+.message::first-letter {
+  text-transform: capitalize;
+}
+
 .exp {
   max-height: min-content;
 }
 
 .desc {
-  color: lightgray;
+  color: var(--blue);
   margin: 0;
   padding: 0;
   font-size: 1rem;
@@ -199,5 +224,6 @@ h3 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  height: min-content;
 }
 </style>

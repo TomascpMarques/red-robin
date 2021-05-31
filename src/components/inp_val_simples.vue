@@ -1,17 +1,19 @@
 <template>
-  <div class="main-wrap">
-    <div class="cont">
-      <span>{{ nome }}</span>
-      <div class="decor"></div>
-      <input
-        type="text"
-        name="inp"
-        :placeholder="plcholder || 'Edit me!'"
-        @input="sendValue()"
-        v-model="conteudoInp"
-      />
+  <div>
+    <div class="main-wrap">
+      <div class="cont">
+        <button @click="emmitDel()">apagar</button>
+        <span>{{ nome }}</span>
+        <div class="decor"></div>
+        <input
+          type="text"
+          name="inp"
+          :placeholder="plcholder || 'Edit me!'"
+          @input="sendValue()"
+          v-model="conteudoInp"
+        />
+      </div>
     </div>
-    <button @click="emmitDel()">apagar</button>
   </div>
 </template>
 
@@ -60,8 +62,13 @@ button {
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   font-weight: bold;
-  color: gainsboro;
+  color: lightgray;
   transition: 0.3s all ease-in-out;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.5rem;
+  height: fit-content;
+  padding: 0.1rem;
 }
 
 button:hover {
@@ -76,14 +83,12 @@ button:hover {
   align-content: flex-start;
   place-items: center;
   gap: 0.3rem;
-  padding: 0.15rem 0rem;
   border: none;
   border-bottom: 2px solid gainsboro;
   margin: 0.1rem;
   box-shadow: 6px 6px 6px 0px gainsboro;
-  padding: 0.5rem;
   border-radius: 7px;
-  max-height: min-content;
+  padding: 0.7rem 0.3rem;
 }
 
 .decor {
