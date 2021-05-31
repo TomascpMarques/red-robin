@@ -8,6 +8,7 @@
       <div class="opcoes">
         <select v-model="option">
           <option value="InpSimples">Simples</option>
+          <option value="InpLista">Lista</option>
         </select>
         <input
           type="text"
@@ -48,10 +49,12 @@
 
 <script>
 import InpSimples from "./inp_val_simples.vue";
+import InpLista from "./inp_val_list.vue";
 export default {
   name: "inpCategorie",
   components: {
     InpSimples,
+    InpLista,
   },
   data() {
     return {
@@ -83,6 +86,7 @@ export default {
       this.keys.push(this.key);
     },
     setComponentValueInArray(conteudo) {
+      console.log("!> ", conteudo);
       this.valores[conteudo.key] = conteudo.cont;
     },
     apagarInput(vals) {

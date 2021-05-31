@@ -5,12 +5,13 @@
         <button @click="emmitDel()">apagar</button>
         <span>{{ nome }}</span>
         <div class="decor"></div>
-        <input
+        <textarea
           type="text"
           name="inp"
-          :placeholder="plcholder || 'Edit me!'"
+          :placeholder="plcholder || 'Separa com «;»'"
           @input="sendValue()"
           v-model="conteudoInp"
+          resizable="false"
         />
       </div>
     </div>
@@ -19,7 +20,7 @@
 
 <script>
 export default {
-  name: "inpValSimples",
+  name: "inpValLista",
   props: ["titulo", "plcholder", "id", "cmpname"],
   data() {
     return {
@@ -29,7 +30,8 @@ export default {
   },
   methods: {
     sendValue(event) {
-      console.log(this.conteudoInp);
+      this.conteudoInp = this.conteudoInp.split(";");
+      // console.log(this.conteudoInp);
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
@@ -53,7 +55,11 @@ export default {
   gap: 0.3rem;
   margin-left: 0.3rem;
   width: 80%;
+  max-height: -webkit-min-content;
+  max-height: -moz-min-content;
   max-height: min-content;
+  align-items: baseline;
+  width: 100%;
 }
 
 button {
@@ -96,8 +102,8 @@ button:hover {
   padding: 0;
   margin: 0;
   border: none;
-  border-top: 2px solid var(--blue);
-  border-right: 2px solid var(--blue);
+  border-top: 2px solid var(--orange);
+  border-right: 2px solid var(--orange);
   transform: rotateZ(45deg);
   margin-right: 0.1rem;
 }
@@ -111,15 +117,19 @@ button:hover {
   font-weight: bold;
 }
 
-.main-wrap input {
+.main-wrap textarea {
+  resize: none;
   padding: 0.13rem 0.2rem;
   border: none;
   outline: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: "Roboto";
   color: #252525;
-  width: max-content;
+  width: 70%;
+  height: 100px;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  border: 2px solid gainsboro;
+  border-radius: 3px;
 }
 
 input:focus::placeholder {
