@@ -8,7 +8,7 @@
         <textarea
           type="text"
           name="inp"
-          :placeholder="plcholder || 'Separa com «;»'"
+          :placeholder="plcholder || 'Separa com ;'"
           @input="sendValue()"
           v-model="conteudoInp"
           resizable="false"
@@ -31,7 +31,6 @@ export default {
   methods: {
     sendValue(event) {
       this.conteudoInp = this.conteudoInp.split(";");
-      // console.log(this.conteudoInp);
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {

@@ -53,6 +53,69 @@ h4 {
     margin-bottom: 1.2rem;
 }
 
+.decor-up {
+    z-index: 3;
+    margin-left: 0.4rem;
+    margin-right: 0.3rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-top: 3px solid lightgray;
+    border-right: 3px solid lightgray;
+    border-color: #c3c3c3;
+    transform: rotateZ(45deg);
+    transition: 0.25s all ease-in-out;
+    transform-origin: 50% 50%;
+}
+
+.decor-down {
+    z-index: 3;
+    margin-left: 0.4rem;
+    margin-right: 0.3rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-top: 3px solid lightgray;
+    border-right: 3px solid lightgray;
+    border-color: #c3c3c3;
+    transform: rotateZ(135deg);
+    transition: 0.25s all ease-in-out;
+    transform-origin: 50% 50%;
+}
+
+.decor-down:hover {
+    border-color: var(--blue);
+    cursor: pointer;
+}
+
+.decor-up:hover {
+    border-color: var(--blue);
+    cursor: pointer;
+}
+
+.titulo {
+    padding: .5rem;
+    background-color: white;
+    border-radius: 6px;
+    border: 3px solid var(--blue);
+    margin-bottom: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    place-items: center;
+    gap: .5rem;
+}
+
+.titulo h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.7rem;
+}
+
+.titulo h1::after {
+    content: ' coleção';
+    font-size: 1.1rem;
+    color: darkgray;
+}
+
 .page-body {
     padding: .4rem;
     display: grid;

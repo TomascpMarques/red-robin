@@ -86,7 +86,6 @@ export default {
       this.keys.push(this.key);
     },
     setComponentValueInArray(conteudo) {
-      console.log("!> ", conteudo);
       this.valores[conteudo.key] = conteudo.cont;
     },
     apagarInput(vals) {

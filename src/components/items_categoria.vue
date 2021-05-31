@@ -15,8 +15,8 @@
       <div class="body" v-if="showBody">
         <div v-for="item in items" :key="item">
           <test :titulo="item.body.nome">
-            <ul v-for="x in item" :key="x">
-              <li>{{ x }}</li>
+            <ul v-for="prop in item" :key="prop">
+              <li>{{ prop }}</li>
             </ul>
           </test>
         </div>
@@ -46,7 +46,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
+  margin-left: 1rem;
 }
 
 .title {
@@ -58,7 +59,7 @@ export default {
   align-items: center;
   gap: 0.5rem;
   background-color: white;
-  border-left: 10px solid var(--blue);
+  border-left: 7px solid var(--orange);
   color: #202020;
   padding: 0.55rem 0.3rem;
   border-radius: 6px;
@@ -101,7 +102,12 @@ export default {
   -webkit-transform-origin: 50% 50%;
 }
 
-.decor:hover {
+.decor-down:hover {
+  border-color: var(--blue);
+  cursor: pointer;
+}
+
+.decor-up:hover {
   border-color: var(--blue);
   cursor: pointer;
 }
@@ -129,7 +135,7 @@ h2 {
 }
 
 .blue::after {
-  content: " utilização";
+  content: " estado";
   color: darkgray;
   font-size: 1.1rem;
   letter-spacing: 0.25px;

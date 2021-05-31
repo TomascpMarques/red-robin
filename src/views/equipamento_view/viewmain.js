@@ -17,36 +17,42 @@ export default {
     return {
       items: [],
       itemsCategories: {},
+      showColecoes: {}
     };
   },
   methods: {
     getAllRepos() {
       api.callEndPoint(apiServices.hosts.gestao, {
-        name: "BuscarTodosOsRegistosBD",
-        params: ["equipamento", this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
+        name: "BuscarTodosRegistosBD",
+        params: [this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
       }).then((obj) => {
-        console.log(obj.BuscarTodosOsRegistosBD);
-        if (obj.BuscarTodosOsRegistosBD[0].registos.length > 0) {
-          this.items = obj.BuscarTodosOsRegistosBD[0].registos;
+        // console.log(obj.BuscarTodosRegistosBD);
+        if (Object.keys(obj.BuscarTodosRegistosBD[0].registos).length > 0) {
+          this.items = obj.BuscarTodosRegistosBD[0].registos;
           this.setUpCategories();
         }
-        if (obj.BuscarTodosOsRegistosBD[0].erro !== null) {
-          console.log(obj.BuscarTodosOsRegistosBD[0].erro);
+        if (obj.BuscarTodosRegistosBD[0].erro !== null) {
+          console.log(obj.BuscarTodosRegistosBD[0].erro);
         }
       });
     },
     setUpCategories() {
       this.itemsCategories = {};
-      this.items.forEach(element => {
-        try {
-          // Adiciona outro item a uma categoria existente
-          this.itemsCategories[element.meta.estado].push(element);
-        } catch {
-          // Adiciona uma nova categoria
-          this.itemsCategories[element.meta.estado] = [];
-          this.itemsCategories[element.meta.estado].push(element);
-        }
+      Object.keys(this.items).forEach(x => {
+        this.itemsCategories[x] = {};
+        this.showColecoes[x] = false;
+        this.items[x].forEach(y => {
+          try {
+            // tenta adicionar o item à coleção e estado correto se existir
+            this.itemsCategories[x][y.meta.estado].push(y);
+          } catch {
+            // Cria o estado do item. para se poder adicionar o mesmo
+            this.itemsCategories[x][y.meta.estado] = [];
+            this.itemsCategories[x][y.meta.estado].push(y);
+          }
+        });
       });
+      console.log("ItemCategories", this.itemsCategories);
     }
   },
   created() {
