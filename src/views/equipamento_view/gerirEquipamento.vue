@@ -32,17 +32,22 @@
                 {{ Object.keys(itemsCategories).toString() }}
               </h1>
             </div>
-            <div
-              class="show_estados"
-              v-if="showColecoes[Object.keys(itemsCategories).toString()]"
+            <transition
+              enter-active-class="animate__animated animate__zoomIn"
+              leave-active-class="animate__animated animate__zoomOut"
             >
-              <div v-for="estado in colecao" :key="estado">
-                <itemsCategoria
-                  :categoria="estado[0].meta.estado"
-                  :items="estado"
-                />
+              <div
+                class="show_estados"
+                v-if="showColecoes[Object.keys(itemsCategories).toString()]"
+              >
+                <div v-for="estado in colecao" :key="estado">
+                  <itemsCategoria
+                    :categoria="estado[0].meta.estado"
+                    :items="estado"
+                  />
+                </div>
               </div>
-            </div>
+            </transition>
           </div>
         </div>
       </div>

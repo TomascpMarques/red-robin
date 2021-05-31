@@ -1,8 +1,8 @@
 <template>
   <div class="main-wrap">
     <div class="title">
-      <h3>Novo Valor</h3>
-      <button @click="show = !show">Show!</button>
+      <h3>Criar Item</h3>
+      <button @click="show = !show">Go!</button>
     </div>
     <div class="body" v-if="show">
       <div class="opcoes">
@@ -17,7 +17,7 @@
           @input="mss = ''"
         />
         <button class="but-class" @click="criarComponenteRunTime(option)">
-          Criar Opção
+          Novo Valor
         </button>
         <button class="but-class">Criar Item</button>
       </div>
