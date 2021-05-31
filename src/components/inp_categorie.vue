@@ -21,7 +21,14 @@
         </button>
         <button class="but-class">Criar Item</button>
       </div>
-      {{ valores }}
+
+      <div class="valor-pre">
+        <span @click="mostrarPreView = !mostrarPreView">Mostrar Preview</span>
+        <div v-if="mostrarPreView">
+          <section>{{ valores }}</section>
+        </div>
+      </div>
+
       <span class="desc">
         <transition
           enter-active-class="animate__animated animate__zoomIn"
@@ -66,6 +73,7 @@ export default {
       componentes: [],
       show: false,
       mss: "",
+      mostrarPreView: false,
     };
   },
   methods: {
@@ -197,7 +205,7 @@ h3 {
   letter-spacing: 2px;
   background-color: #e0e0e0;
   border-radius: 4px;
-  transition: 0.3s all cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: 0.8s all cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .title button:hover {
   padding: 0.25rem 1rem;
@@ -228,5 +236,45 @@ h3 {
   flex-direction: column;
   flex-wrap: wrap;
   height: min-content;
+}
+
+.valor-pre {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  justify-content: left;
+  padding: 0.5rem 0.4rem;
+  max-width: 100%;
+}
+
+.valor-pre span {
+  cursor: pointer;
+  border-bottom: 2px solid blueviolet;
+  padding: 0.3rem 0.5rem;
+  transition: 0.2s all ease-in;
+  font-family: "Roboto";
+}
+
+.valor-pre span:hover {
+  color: var(--blue);
+}
+
+.valor-pre div {
+  margin: 0.3rem;
+  /* background-color: rgb(231, 231, 231); */
+  /* color: black; */
+  background-color: #404040;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  padding-bottom: 0.5rem;
+  font-family: consolas;
+  word-spacing: -4px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  place-items: center;
+  justify-content: flex-start;
+  transition: 0.3s all ease-in-out;
 }
 </style>

@@ -5,7 +5,7 @@
         @click="showBody = !showBody"
         v-bind:class="[showBody ? 'decor-down' : 'decor-up']"
       ></div>
-      <h2 class="blue">{{ categoria }}</h2>
+      <h2 class="black">{{ categoria }}</h2>
       <span>{{ items.length }} items</span>
     </div>
     <transition
@@ -129,12 +129,12 @@ h2 {
   margin-left: 6px;
 }
 
-.blue {
-  color: var(--blue);
+.black {
+  color: #303030;
   letter-spacing: 0px;
 }
 
-.blue::after {
+.black::after {
   content: " estado";
   color: darkgray;
   font-size: 1.1rem;

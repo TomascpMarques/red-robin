@@ -7,10 +7,7 @@
       <div class="explorador">
         <h1>Ações</h1>
         <inpCategorie />
-        {{ items }}
-        <br />
-        <br />
-        <button @click="getAllRepos()">Try me</button>
+        <button @click="getAllRepos()" class="update">Atualizar Lista</button>
       </div>
       <div class="editor">
         <div v-if="!items">

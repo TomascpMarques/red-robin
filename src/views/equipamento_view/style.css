@@ -142,3 +142,21 @@ h4 {
         gap: 1rem;
     }
 }
+
+.update {
+    border: none;
+    border-radius: 4px;
+    padding: .4rem .5rem;
+    background-color: blueviolet;
+    color: white;
+    font-family: "Roboto";
+    font-weight: bold;
+    letter-spacing: 1.1px;
+    font-size: .9rem;
+    transition: .7s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.update:hover {
+    transform: translateX(3px);
+    padding: .4rem 1.3rem;
+}

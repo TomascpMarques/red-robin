@@ -8,7 +8,7 @@
         <textarea
           type="text"
           name="inp"
-          :placeholder="plcholder || 'Separa com ;'"
+          :placeholder="plcholder || 'Separa com virgula'"
           @input="sendValue()"
           v-model="conteudoInp"
           resizable="false"
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     sendValue(event) {
-      this.conteudoInp = this.conteudoInp.split(";");
+      this.conteudoInp = this.conteudoInp.split(",");
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
@@ -100,11 +100,11 @@ button:hover {
   height: 0.5rem;
   padding: 0;
   margin: 0;
-  border: none;
-  border-top: 2px solid var(--orange);
-  border-right: 2px solid var(--orange);
-  transform: rotateZ(45deg);
+  border: 1px solid var(--orange);
+  border-radius: 1000px;
+  background-color: var(--orange);
   margin-right: 0.1rem;
+  margin-left: 0.3rem;
 }
 
 .main-wrap span {

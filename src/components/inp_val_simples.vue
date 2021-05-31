@@ -48,12 +48,14 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  justify-content: flex-start;
   place-items: center;
   gap: 0.3rem;
   margin-left: 0.3rem;
   width: 80%;
+  max-height: -webkit-min-content;
+  max-height: -moz-min-content;
   max-height: min-content;
+  align-items: baseline;
 }
 
 button {
@@ -66,9 +68,7 @@ button {
   transition: 0.3s all ease-in-out;
   padding: 0;
   margin: 0;
-  margin-right: 0.5rem;
   height: fit-content;
-  padding: 0.1rem;
 }
 
 button:hover {
@@ -91,18 +91,16 @@ button:hover {
 }
 
 .decor {
-  width: 0.5rem;
-  height: 0.5rem;
   padding: 0;
   margin: 0;
-  border: none;
-  border-top: 2px solid var(--blue);
-  border-right: 2px solid var(--blue);
-  transform: rotateZ(45deg);
+  border: 5px solid var(--blue);
+  background-color: var(--blue);
+  border-radius: 100px;
   margin-right: 0.1rem;
+  margin-left: 0.3rem;
 }
 
-.main-wrap span {
+.cont span {
   font-size: 1rem;
   letter-spacing: 0.6px;
   font-family: "Roboto";
@@ -112,13 +110,11 @@ button:hover {
 }
 
 .main-wrap input {
-  padding: 0.13rem 0.2rem;
   border: none;
   outline: none;
   font-size: 1rem;
   font-family: "Roboto";
   color: #252525;
-  width: max-content;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
 }
 
