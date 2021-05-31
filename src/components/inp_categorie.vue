@@ -8,28 +8,27 @@
       <div class="opcoes">
         <select v-model="option">
           <option value="InpSimples">Simples</option>
-          <option value="InpSimples">Simples</option>
-          <option value="InpSimples">Simples</option>
-          <option value="InpSimples">Simples</option>
-          <option value="InpSimples">Simples</option>
-          <option value="InpSimples">Simples</option>
         </select>
         <input type="text" placeholder="Valor Propriedade" v-model="key" />
         <button class="but-class" @click="criarComponenteRunTime(option)">
           Criar Opção
         </button>
+        <button class="but-class">Criar Item</button>
       </div>
       {{ valores }}
       <span class="desc">
         Novos Valores: <i v-if="!componentes.length">Empty</i>
       </span>
-      <div class="exp" v-for="cmpnt in componentes" :key="cmpnt">
-        <component
-          v-bind:is="cmpnt.name"
-          :titulo="key"
-          @conteudo="setComponentValueInArray"
-        />
-      </div>
+
+      <component
+        v-for="cmpnt in componentes"
+        :key="cmpnt"
+        v-bind:is="cmpnt.name"
+        :titulo="key"
+        :id="cmpnt.id"
+        @conteudo="setComponentValueInArray"
+        @delete="apagarInput"
+      />
     </div>
   </div>
 </template>
@@ -53,18 +52,23 @@ export default {
   },
   methods: {
     criarComponenteRunTime(opt) {
-      if (!this.key) {
+      if (!this.key || !this.option.length) {
         console.log("sem key para o novo elemento");
         return null;
       }
       this.componentes.push({
         name: opt,
-        id: this.componentes.length + 1,
+        id: this.componentes.length - 1 + 1,
+        key: this.key,
       });
     },
     setComponentValueInArray(conteudo) {
       console.log("->", conteudo);
       this.valores[conteudo.key] = conteudo.cont;
+    },
+    apagarInput(vals) {
+      console.log(vals);
+      this.componentes.splice(vals.id, 1);
     },
   },
 };
@@ -177,13 +181,12 @@ h3 {
 }
 
 .but-class:hover {
-  padding: 0.25rem 01rem;
+  background-color: #9e3bfa;
 }
 
 .body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 0.5rem;
 }
 </style>

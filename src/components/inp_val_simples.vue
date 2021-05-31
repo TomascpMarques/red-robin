@@ -9,13 +9,14 @@
       @input="sendValue()"
       v-model="conteudoInp"
     />
+    <button @click="emmitDel()">Apagar</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "inpValSimples",
-  props: ["titulo", "plcholder"],
+  props: ["titulo", "plcholder", "id"],
   data() {
     return {
       nome: this.titulo,
@@ -26,6 +27,9 @@ export default {
     sendValue(event) {
       console.log(this.conteudoInp);
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.titulo });
+    },
+    emmitDel() {
+      this.$emit("delete", { id: this.id, key: this.titulo });
     },
   },
 };
