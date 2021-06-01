@@ -68,6 +68,9 @@ export default {
   max-height: -moz-min-content;
   max-height: min-content;
   align-items: baseline;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 button {

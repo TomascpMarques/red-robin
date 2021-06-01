@@ -32,7 +32,7 @@
 
       <div class="valor-pre">
         <span @click="mostrarPreView = !mostrarPreView">Mostrar Preview</span>
-        <div v-if="mostrarPreView">
+        <div v-if="mostrarPreView" :value="valores">
           {{ JSON.stringify(valores, null, 4) }}
         </div>
       </div>
@@ -91,6 +91,7 @@ export default {
   methods: {
     test() {
       console.log("aaaaaaaaaaaaaaaaaaaaa");
+      console.log(this.valores);
     },
     criarComponenteRunTime(opt) {
       if (this.keys.includes(this.key)) {
@@ -293,5 +294,8 @@ h3 {
   justify-content: flex-start;
   white-space: pre-wrap;
   transition: 0.3s all ease-in-out;
+  max-height: 20vw;
+  overflow-y: scroll;
+  max-width: 100%;
 }
 </style>

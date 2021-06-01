@@ -133,7 +133,9 @@ export default {
   place-items: center;
   gap: 0.3rem;
   margin-left: 0.3rem;
-
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  word-break: break-all;
   align-items: baseline;
 }
 

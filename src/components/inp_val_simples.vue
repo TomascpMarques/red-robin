@@ -3,7 +3,7 @@
     <div class="main-wrap">
       <div class="cont">
         <button @click="emmitDel()">apagar</button>
-        <span>{{ nome }}</span>
+        <span class="titl">{{ nome }}</span>
         <div class="decor"></div>
         <input
           type="text"
@@ -56,6 +56,9 @@ export default {
   max-height: -moz-min-content;
   max-height: min-content;
   align-items: baseline;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 button {
@@ -88,6 +91,7 @@ button:hover {
   box-shadow: 6px 6px 6px 0px gainsboro;
   border-radius: 7px;
   padding: 0.7rem 0.3rem;
+  width: 90%;
 }
 
 .decor {
@@ -107,6 +111,11 @@ button:hover {
   font-kerning: auto;
   width: fit-content;
   font-weight: bold;
+  word-wrap: break-word;
+  -webkit-hyphens: auto; /* iOS 4.2+ */
+  -moz-hyphens: auto; /* Firefox 5+ */
+  -ms-hyphens: auto; /* IE 10+ */
+  hyphens: auto;
 }
 
 .main-wrap input {
