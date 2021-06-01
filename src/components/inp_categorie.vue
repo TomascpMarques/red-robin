@@ -21,13 +21,8 @@
         <button class="but-class" @click="criarComponenteRunTime(option)">
           Novo Valor
         </button>
-        <button
-          class="but-class"
-          @click="test()"
-          :disabled="!componentes.length"
-        >
-          Criar Item
-        </button>
+        <!-- disabled="!componentes.length" -->
+        <button class="but-class" @click="apiCriarItem()">Criar Item</button>
         <button class="but-class" @click="(componentes = []), (valores = {})">
           Limpar Conteudo
         </button>
@@ -71,6 +66,10 @@ import InpSimples from "./inp_val_simples.vue";
 import InpLista from "./inp_val_list.vue";
 import InpObjeto from "./inp_val_obj.vue";
 import InpReferencia from "./inp_val_othrreg.vue";
+
+import * as api from "../api/apiCalls.js";
+import * as apiServices from "../api/apiServices.js";
+
 export default {
   name: "inpCategorie",
   components: {
@@ -93,9 +92,49 @@ export default {
     };
   },
   methods: {
-    test() {
-      console.log("aaaaaaaaaaaaaaaaaaaaa");
-      console.log(this.valores);
+    addItemAoSistema(registo) {
+      /**
+       * POR EDITAR
+       *  */
+      api
+        .callEndPoint(apiServices.hosts.equipamento, {
+          name: "AdicionarRegisto",
+          params: [
+            registo.meta,
+            registo.body,
+            this.$store.state.usr_token.length > 1
+              ? this.$store.state.usr_token
+              : "noToken",
+          ],
+        })
+        .then((obj) => {
+          if (obj.AdicionarRegisto[0].sucesso !== null) {
+            console.log("Registo Adicionado ");
+          } else {
+            console.log(obj.AdicionarRegisto[0]);
+          }
+        });
+    },
+    apiCriarItem() {
+      var registo = {
+        meta: {},
+        body: {},
+      };
+      var keysObg = ["quantidade", "tipo", "estado"];
+      Object.keys(this.valores).forEach((x) => {
+        console.log(keysObg.includes(x));
+        if (keysObg.includes(x)) {
+          if (x.toString() === "quantidade") {
+            registo.meta[x] = Number(this.valores[x]);
+          } else {
+            registo.meta[x] = this.valores[x];
+          }
+        } else {
+          registo.body[x] = this.valores[x];
+        }
+      });
+      console.log("->", registo);
+      this.addItemAoSistema(registo);
     },
     criarComponenteRunTime(opt) {
       if (this.keys.includes(this.key)) {

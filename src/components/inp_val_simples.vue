@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     sendValue(event) {
-      console.log(this.conteudoInp);
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {

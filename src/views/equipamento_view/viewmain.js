@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getAllRepos() {
-      api.callEndPoint(apiServices.hosts.gestao, {
+      api.callEndPoint(apiServices.hosts.equipamento, {
         name: "BuscarTodosRegistosBD",
         params: [this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
       }).then((obj) => {
@@ -52,7 +52,6 @@ export default {
           }
         });
       });
-      console.log("ItemCategories", this.itemsCategories);
     }
   },
   created() {

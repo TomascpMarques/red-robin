@@ -33,6 +33,10 @@ export function gerarAction(func) {
   return templateBase;
 };
 
+/**
+ * @param {string} str A string a ser usada para critografada, usando sha256
+ * @returns Uma string com a sha256 equivalente
+ */
 export function toSHA256(str) {
   return crypto.SHA256(str).toString();
 };
