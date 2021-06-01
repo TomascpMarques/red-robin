@@ -28,6 +28,9 @@
         >
           Criar Item
         </button>
+        <button class="but-class" @click="(componentes = []), (valores = {})">
+          Limpar Conteudo
+        </button>
       </div>
 
       <div class="valor-pre">
@@ -44,6 +47,7 @@
         >
           <span class="message" v-if="mss"> {{ mss }}</span>
         </transition>
+        <br />
         <br />
         Novos Valores: <i v-if="!componentes.length">Empty</i>
       </span>
@@ -252,6 +256,7 @@ h3 {
   flex-direction: column;
   flex-wrap: wrap;
   height: min-content;
+  width: 100%;
 }
 
 .valor-pre {
@@ -260,13 +265,13 @@ h3 {
   flex-flow: column;
   justify-content: left;
   padding: 0.5rem 0.4rem;
-  max-width: 100%;
+  max-width: 95%;
 }
 
 .valor-pre span {
   user-select: none;
   cursor: pointer;
-  border-bottom: 2px solid blueviolet;
+  border-bottom: 2px solid lightgray;
   padding: 0.3rem 0.5rem;
   transition: 0.2s all ease-in;
   font-family: "Roboto";
@@ -282,7 +287,7 @@ h3 {
   /* color: black; */
   background-color: #404040;
   color: #ffffff;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 0.3rem 0.5rem;
   padding-bottom: 0.5rem;
   font-family: consolas;
@@ -296,6 +301,25 @@ h3 {
   transition: 0.3s all ease-in-out;
   max-height: 20vw;
   overflow-y: scroll;
-  max-width: 100%;
+}
+
+.valor-pre div::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+
+.valor-pre div::-webkit-scrollbar-track {
+  background-color: #323232;
+  margin-right: 4px;
+  border-radius: 7px;
+}
+
+/* Handle */
+
+.valor-pre div::-webkit-scrollbar-thumb {
+  background-color: #656565;
+
+  margin-top: 10px;
 }
 </style>

@@ -8,36 +8,41 @@
           <div class="decor"></div>
           <div class="inputs">
             <input
-              class="number"
               type="text"
-              placeholder="Nome do valor"
+              placeholder="Nome, Nº propriedade"
               v-model="temp"
             />
-            <button @click="createInput()">Criar Valor</button>
           </div>
+          <button @click="createInput()">Criar Valor</button>
+          <button @click="apagarUltimo()">Apagar Ultimo</button>
         </div>
-        <!-- {{ numeroInps }}
-          {{ conteudoInp }} -->
-        <span class="title-inp">Valores</span>
+        <span class="title-inp">Valores:</span>
         <div class="inp-wrapper">
-          <div v-for="n in numeroInps" :key="n">
-            <div class="inps">
-              <span>Propriedade: {{ n.id }}</span>
-
-              <input
-                type="text"
-                name="inp"
-                :placeholder="'Nome'"
-                v-model="tempKey[n.id]"
-                @input="createValue(n.id, tempKey[n.id], tempVal[n.id])"
-              />
-              <input
-                type="text"
-                name="inp"
-                :placeholder="'Valor'"
-                v-model="tempVal[n.id]"
-                @input="createValue(n.id, tempKey[n.id], tempVal[n.id])"
-              />
+          <div v-for="x in tempProps" :key="x">
+            <span>Propriedade: {{ x.nome }}</span>
+            <div v-for="(y, j) in x.num" :key="y">
+              <span
+                class="apagar-prop"
+                @click="apagarProp(x.nome, tempK[j], j, x.id)"
+                v-if="tempK[j]"
+              >
+                Apagar
+              </span>
+              <div class="inps">
+                <input
+                  type="text"
+                  name="inp"
+                  :placeholder="'Nome'"
+                  v-model="tempK[j]"
+                />
+                <input
+                  type="text"
+                  name="inp"
+                  :placeholder="'Valor'"
+                  v-model="tempV[j]"
+                  @input="createValue(x.nome, tempK[j], tempV[j])"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -52,12 +57,13 @@ export default {
   props: ["titulo", "plcholder", "id", "cmpname"],
   data() {
     return {
+      tempK: [],
+      tempV: [],
       nome: this.titulo,
       conteudoInp: {},
       numeroInps: [],
       temp: "",
-      tempVal: [],
-      tempKey: [],
+      tempProps: [],
     };
   },
   methods: {
@@ -76,19 +82,37 @@ export default {
       this.conteudoInp[id] = {};
     },
     createValue(id, key, value) {
-      this.tempVal[id] = value;
-      this.tempKey[id] = key;
-      this.conteudoInp[id] = {
-        [key]: value,
-      };
+      this.conteudoInp[id][key] = value;
       this.sendValue();
     },
     createInput() {
+      if (this.temp.split(",").length < 2) {
+        return null;
+      }
+      this.tempK.push([]);
+      this.tempV.push([]);
       this.numeroInps.push({
-        id: this.temp,
+        id: this.temp.split(",")[0].trim(),
       });
-      this.setUpOBJ(this.temp);
+      this.tempProps.push({
+        id: this.tempProps.length,
+        nome: this.temp.split(",")[0].trim(),
+        num: Array(Number(this.temp.split(",")[1].trim())),
+      });
+      this.setUpOBJ(this.tempProps[this.tempProps.length - 1].nome);
       this.temp = "";
+    },
+    apagarProp(id, key, inpKeys, inNum) {
+      this.conteudoInp[id][key] = null;
+      delete this.conteudoInp[id][key];
+      this.tempProps[inNum].num.splice(inpKeys, 1);
+    },
+    apagarUltimo() {
+      this.numeroInps.pop();
+      delete this.conteudoInp[
+        Object.keys(this.conteudoInp)[Object.keys(this.conteudoInp).length - 1]
+      ];
+      this.tempProps.pop();
     },
   },
 };
@@ -96,7 +120,7 @@ export default {
 
 <style scoped>
 .inp-wrapper {
-  margin: 0.3rem;
+  margin: 0.2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -145,16 +169,17 @@ button {
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   font-weight: bold;
-  color: lightgray;
+  color: darkgray;
   transition: 0.3s all ease-in-out;
   padding: 0;
   margin: 0;
+  margin-right: 0.3rem;
   height: fit-content;
 }
 
 button:hover {
   cursor: pointer;
-  color: gray;
+  color: blueviolet;
 }
 
 .main-wrap {

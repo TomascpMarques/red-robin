@@ -53,12 +53,11 @@ export default {
   place-items: center;
   gap: 0.3rem;
   margin-left: 0.3rem;
-  width: 80%;
   max-height: -webkit-min-content;
   max-height: -moz-min-content;
   max-height: min-content;
   align-items: baseline;
-  width: 95%;
+
   flex-wrap: wrap;
   word-wrap: break-word;
   word-break: break-all;
@@ -125,18 +124,18 @@ button:hover {
   font-size: 0.9rem;
   font-family: "Roboto";
   color: #252525;
-  width: 70%;
+  max-width: 100%;
   height: 100px;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
   border: 2px solid gainsboro;
   border-radius: 3px;
 }
 
-input:focus::placeholder {
-  transform: translatey(-105%);
+textarea:focus::placeholder {
+  transform: translatey(-115%);
 }
 
-input::placeholder {
+textarea::placeholder {
   font-family: "Roboto";
   color: gray;
   letter-spacing: 1px;

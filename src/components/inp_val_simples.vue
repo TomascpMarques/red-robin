@@ -51,7 +51,6 @@ export default {
   place-items: center;
   gap: 0.3rem;
   margin-left: 0.3rem;
-  width: 80%;
   max-height: -webkit-min-content;
   max-height: -moz-min-content;
   max-height: min-content;

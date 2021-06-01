@@ -11,14 +11,7 @@
             name="inp"
             :placeholder="plcholder || 'ID do Registo'"
             @input="sendValue()"
-            v-model="conteudoInp.registo"
-          />
-          <input
-            type="text"
-            name="inp"
-            :placeholder="plcholder || 'Nome para referência'"
-            @input="sendValue()"
-            v-model="conteudoInp.key"
+            v-model="conteudoInp"
           />
         </div>
       </div>
@@ -33,16 +26,16 @@ export default {
   data() {
     return {
       nome: this.titulo,
-      conteudoInp: {
-        key: "",
-        registo: "",
-      },
+      conteudoInp: "",
     };
   },
   methods: {
     sendValue(event) {
       console.log(this.conteudoInp);
-      this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
+      this.$emit("conteudo", {
+        cont: { registo: true, id: this.conteudoInp },
+        key: this.nome,
+      });
     },
     emmitDel() {
       this.$emit("delete", {
@@ -63,7 +56,7 @@ export default {
   place-items: center;
   gap: 0.3rem;
   margin-left: 0.3rem;
-  width: 80%;
+  width: 100%;
   max-height: -webkit-min-content;
   max-height: -moz-min-content;
   max-height: min-content;
