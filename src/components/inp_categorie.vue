@@ -2,7 +2,9 @@
   <div class="main-wrap">
     <div class="title">
       <h3>Criar Item</h3>
-      <button @click="(show = !show), setupMetaReg(), (mss = '')">Go!</button>
+      <button @click="(show = !show), setupMetaReg(), (mss = '')">
+        Maximizar
+      </button>
     </div>
     <div class="body" v-if="show">
       <div class="opcoes">

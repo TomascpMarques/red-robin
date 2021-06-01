@@ -2,7 +2,7 @@
   <div class="page-wrap1">
     <div class="page-tit">
       <h3>Apagar Registo</h3>
-      <button @click="(show = !show), (mss = '')">Go!</button>
+      <button @click="(show = !show), (mss = '')">Maximizar</button>
       <span class="message" v-if="mss"> Mensagem: {{ mss }}</span>
     </div>
     <div class="page-body" v-if="show">
