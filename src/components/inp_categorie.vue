@@ -2,7 +2,7 @@
   <div class="main-wrap">
     <div class="title">
       <h3>Criar Item</h3>
-      <button @click="show = !show">Go!</button>
+      <button @click="(show = !show), setupMetaReg(), (mss = '')">Go!</button>
     </div>
     <div class="body" v-if="show">
       <div class="opcoes">
@@ -46,14 +46,13 @@
         <br />
         Novos Valores: <i v-if="!componentes.length">Empty</i>
       </span>
-
       <component
-        v-for="cmpnt in componentes"
-        :key="cmpnt"
-        v-bind:is="cmpnt.name"
-        :cmpname="cmpnt.name"
-        :titulo="key"
-        :id="cmpnt.id"
+        v-for="componente in componentes"
+        :key="componente"
+        v-bind:is="componente.name"
+        :cmpname="componente.name"
+        :titulo="chooseTitle(componente.key)"
+        :id="componente.id"
         @conteudo="setComponentValueInArray"
         @delete="apagarInput"
       />
@@ -67,6 +66,8 @@ import InpLista from "./inp_val_list.vue";
 import InpObjeto from "./inp_val_obj.vue";
 import InpReferencia from "./inp_val_othrreg.vue";
 
+import route from "../router/index.js";
+
 import * as api from "../api/apiCalls.js";
 import * as apiServices from "../api/apiServices.js";
 
@@ -78,6 +79,7 @@ export default {
     InpObjeto,
     InpReferencia,
   },
+  route: route,
   data() {
     return {
       temp: Object,
@@ -92,10 +94,30 @@ export default {
     };
   },
   methods: {
+    chooseTitle(keyParam) {
+      return this.key ? this.key : keyParam.toString();
+    },
+    setupMetaReg() {
+      this.componentes = [];
+      console.log(this.componentes);
+      // Add quantidade prefeito para a metadata
+      this.componentes.push({
+        name: "InpSimples",
+        key: "quantidade",
+        id: 0,
+      });
+      this.componentes.push({
+        name: "InpSimples",
+        key: "tipo",
+        id: 1,
+      });
+      this.componentes.push({
+        name: "InpSimples",
+        key: "estado",
+        id: 2,
+      });
+    },
     addItemAoSistema(registo) {
-      /**
-       * POR EDITAR
-       *  */
       api
         .callEndPoint(apiServices.hosts.equipamento, {
           name: "AdicionarRegisto",
@@ -109,9 +131,12 @@ export default {
         })
         .then((obj) => {
           if (obj.AdicionarRegisto[0].sucesso !== null) {
-            console.log("Registo Adicionado ");
+            this.mss = "Registo Adicionado ";
+            setTimeout(() => {
+              route.go();
+            }, 1500);
           } else {
-            console.log(obj.AdicionarRegisto[0]);
+            this.mss = obj.AdicionarRegisto[0].erro;
           }
         });
     },
@@ -122,18 +147,21 @@ export default {
       };
       var keysObg = ["quantidade", "tipo", "estado"];
       Object.keys(this.valores).forEach((x) => {
-        console.log(keysObg.includes(x));
-        if (keysObg.includes(x)) {
+        var lowerKey = x.toLowerCase();
+        if (keysObg.includes(lowerKey)) {
           if (x.toString() === "quantidade") {
-            registo.meta[x] = Number(this.valores[x]);
+            registo.meta[lowerKey] = Number(this.valores[x]);
           } else {
-            registo.meta[x] = this.valores[x];
+            registo.meta[lowerKey] = this.valores[x];
           }
         } else {
-          registo.body[x] = this.valores[x];
+          registo.body[lowerKey] = this.valores[x];
         }
       });
-      console.log("->", registo);
+      if (!Object.keys(registo.body).length) {
+        this.mss = "O registo não têm conteudo sufeciente";
+        return null;
+      }
       this.addItemAoSistema(registo);
     },
     criarComponenteRunTime(opt) {
@@ -238,6 +266,7 @@ select {
   justify-content: left;
   flex-wrap: wrap;
   gap: 0.5rem;
+  width: 97%;
 }
 
 h3 {

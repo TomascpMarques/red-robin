@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <div class="main-wrap">
-      <div class="cont">
-        <button @click="emmitDel()">apagar</button>
-        <span class="titl">{{ nome }}</span>
-        <div class="decor"></div>
-        <input
-          type="text"
-          name="inp"
-          :placeholder="plcholder || 'Edit me!'"
-          @input="sendValue()"
-          v-model="conteudoInp"
-        />
-      </div>
+  <div class="main-wrap1">
+    <div class="cont">
+      <button @click="emmitDel()">apagar</button>
+      <span class="titl">{{ nome }}</span>
+      <div class="decor"></div>
+      <input
+        type="text"
+        name="inp"
+        :placeholder="plcholder || 'Edit me!'"
+        @input="sendValue()"
+        v-model="conteudoInp"
+      />
     </div>
   </div>
 </template>
@@ -77,7 +75,7 @@ button:hover {
   color: gray;
 }
 
-.main-wrap {
+.main-wrap1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -90,6 +88,7 @@ button:hover {
   border-radius: 7px;
   padding: 0.7rem 0.3rem;
   width: 90%;
+  height: min-content;
 }
 
 .decor {
@@ -116,7 +115,7 @@ button:hover {
   hyphens: auto;
 }
 
-.main-wrap input {
+.main-wrap1 input {
   border: none;
   outline: none;
   font-size: 1rem;

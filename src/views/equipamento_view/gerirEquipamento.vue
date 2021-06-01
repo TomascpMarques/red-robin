@@ -7,6 +7,7 @@
       <div class="explorador">
         <h1>Ações</h1>
         <inpCategorie />
+        <delItemID />
         <button @click="getAllRepos()" class="update">Atualizar Lista</button>
       </div>
       <div class="editor">

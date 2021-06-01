@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="main-wrap">
+    <div class="main-wrap1">
       <div class="cont">
         <div class="rows">
           <button @click="emmitDel()">apagar</button>
@@ -19,15 +19,8 @@
         <span class="title-inp">Valores:</span>
         <div class="inp-wrapper">
           <div v-for="x in tempProps" :key="x">
-            <span>Propriedade: {{ x.nome }}</span>
+            <span class="propriedade">Propriedade: {{ x.nome }}</span>
             <div v-for="(y, j) in x.num" :key="y">
-              <span
-                class="apagar-prop"
-                @click="apagarProp(x.nome, tempK[j], j, x.id)"
-                v-if="tempK[j]"
-              >
-                Apagar
-              </span>
               <div class="inps">
                 <input
                   type="text"
@@ -42,6 +35,13 @@
                   v-model="tempV[j]"
                   @input="createValue(x.nome, tempK[j], tempV[j])"
                 />
+                <span
+                  class="apagar-prop"
+                  @click="apagarProp(x.nome, tempK[j], j, x.id)"
+                  v-if="tempK[j]"
+                >
+                  Apagar
+                </span>
               </div>
             </div>
           </div>
@@ -144,10 +144,11 @@ export default {
   flex-direction: column;
   justify-content: left;
   flex-wrap: wrap;
-  border-left: 3px solid gainsboro;
+  border-left: 3px dashed gainsboro;
   gap: 0.3rem;
   padding: 0.2rem 0.4rem;
   margin-bottom: 0.7rem;
+  margin-top: 0.5rem;
 }
 
 .cont {
@@ -169,7 +170,7 @@ button {
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   font-weight: bold;
-  color: darkgray;
+  color: lightgray;
   transition: 0.3s all ease-in-out;
   padding: 0;
   margin: 0;
@@ -182,7 +183,7 @@ button:hover {
   color: blueviolet;
 }
 
-.main-wrap {
+.main-wrap1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -194,6 +195,7 @@ button:hover {
   box-shadow: 6px 6px 6px 0px gainsboro;
   border-radius: 7px;
   padding: 0.7rem 0.3rem;
+  width: fit-content;
 }
 
 .decor {
@@ -215,7 +217,12 @@ button:hover {
   font-weight: bold;
 }
 
-.main-wrap input {
+.propriedade {
+  color: var(--blue);
+  margin: 0.3rem 0;
+}
+
+.main-wrap1 input {
   border: none;
   outline: none;
   font-size: 1rem;
@@ -242,5 +249,17 @@ input::placeholder {
   color: gray;
   letter-spacing: 1px;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.apagar-prop {
+  font-style: italic;
+  color: tomato;
+  margin: auto;
+  cursor: pointer;
+  transition: 0.16s all ease-out;
+}
+
+.apagar-prop:hover {
+  color: salmon;
 }
 </style>

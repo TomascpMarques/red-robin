@@ -5,12 +5,14 @@ import store from "../../store/index.js";
 
 import inpCategorie from "../../components/inp_categorie.vue";
 import itemsCategoria from "../../components/items_categoria.vue";
+import delItemID from "../../components/del_reg_equip.vue";
 
 export default {
   name: "equipamento",
   components: {
     inpCategorie,
     itemsCategoria,
+    delItemID,
   },
   store: store,
   data() {
