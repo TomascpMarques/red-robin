@@ -96,13 +96,11 @@ button:hover {
 }
 
 .decor {
-  width: 0.5rem;
-  height: 0.5rem;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--orange);
-  border-radius: 1000px;
-  background-color: var(--orange);
+  border: 5px solid var(--blue);
+  background-color: var(--blue);
+  border-radius: 100px;
   margin-right: 0.1rem;
   margin-left: 0.3rem;
 }

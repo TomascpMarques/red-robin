@@ -9,6 +9,7 @@
         <select v-model="option">
           <option value="InpSimples">Simples</option>
           <option value="InpLista">Lista</option>
+          <option value="InpObjeto">Estrutura</option>
         </select>
         <input
           type="text"
@@ -25,7 +26,7 @@
       <div class="valor-pre">
         <span @click="mostrarPreView = !mostrarPreView">Mostrar Preview</span>
         <div v-if="mostrarPreView">
-          <section>{{ valores }}</section>
+          <section>{{ JSON.stringify(valores, null, 4) }}</section>
         </div>
       </div>
 
@@ -57,11 +58,13 @@
 <script>
 import InpSimples from "./inp_val_simples.vue";
 import InpLista from "./inp_val_list.vue";
+import InpObjeto from "./inp_val_obj.vue";
 export default {
   name: "inpCategorie",
   components: {
     InpSimples,
     InpLista,
+    InpObjeto,
   },
   data() {
     return {
