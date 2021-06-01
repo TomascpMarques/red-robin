@@ -26,7 +26,7 @@
       <div class="valor-pre">
         <span @click="mostrarPreView = !mostrarPreView">Mostrar Preview</span>
         <div v-if="mostrarPreView">
-          <section>{{ JSON.stringify(valores, null, 4) }}</section>
+          {{ JSON.stringify(valores, null, 4) }}
         </div>
       </div>
 
@@ -278,6 +278,7 @@ h3 {
   flex-wrap: wrap;
   place-items: center;
   justify-content: flex-start;
+  white-space: pre-wrap;
   transition: 0.3s all ease-in-out;
 }
 </style>
