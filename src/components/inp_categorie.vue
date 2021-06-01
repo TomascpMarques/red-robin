@@ -10,6 +10,7 @@
           <option value="InpSimples">Simples</option>
           <option value="InpLista">Lista</option>
           <option value="InpObjeto">Estrutura</option>
+          <option value="InpReferencia">Registo</option>
         </select>
         <input
           type="text"
@@ -65,12 +66,14 @@
 import InpSimples from "./inp_val_simples.vue";
 import InpLista from "./inp_val_list.vue";
 import InpObjeto from "./inp_val_obj.vue";
+import InpReferencia from "./inp_val_othrreg.vue";
 export default {
   name: "inpCategorie",
   components: {
     InpSimples,
     InpLista,
     InpObjeto,
+    InpReferencia,
   },
   data() {
     return {
@@ -260,6 +263,7 @@ h3 {
 }
 
 .valor-pre span {
+  user-select: none;
   cursor: pointer;
   border-bottom: 2px solid blueviolet;
   padding: 0.3rem 0.5rem;

@@ -29,19 +29,15 @@
                 {{ collName }}
               </h1>
             </div>
-            <transition
-              enter-active-class="animate__animated animate__zoomIn"
-              leave-active-class="animate__animated animate__zoomOut"
-            >
-              <div class="show_estados" v-if="showColecoes[collName]">
-                <div v-for="estado in colecao" :key="estado">
-                  <itemsCategoria
-                    :categoria="estado[0].meta.estado"
-                    :items="estado"
-                  />
-                </div>
+
+            <div class="show_estados" v-if="showColecoes[collName]">
+              <div v-for="estado in colecao" :key="estado">
+                <itemsCategoria
+                  :categoria="estado[0].meta.estado"
+                  :items="estado"
+                />
               </div>
-            </transition>
+            </div>
           </div>
         </div>
       </div>

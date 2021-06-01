@@ -95,7 +95,8 @@ h4 {
     padding: .5rem;
     background-color: white;
     border-radius: 6px;
-    border: 3px solid var(--blue);
+    border-top: 5px solid blueviolet;
+    border-bottom: 4px solid rgba(211, 211, 211, 0.76);
     margin-bottom: .5rem;
     display: flex;
     flex-direction: row;

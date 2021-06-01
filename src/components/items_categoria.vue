@@ -8,20 +8,16 @@
       <h2 class="black">{{ categoria }}</h2>
       <span>{{ items.length }} items</span>
     </div>
-    <transition
-      enter-active-class="animate__animated animate__zoomIn"
-      leave-active-class="animate__animated animate__zoomOut"
-    >
-      <div class="body" v-if="showBody">
-        <div v-for="item in items" :key="item">
-          <test :titulo="item.body.nome">
-            <ul v-for="prop in item" :key="prop">
-              <li>{{ prop }}</li>
-            </ul>
-          </test>
-        </div>
+
+    <div class="body" v-if="showBody">
+      <div v-for="item in items" :key="item">
+        <test :titulo="item.body.nome">
+          <ul v-for="prop in item" :key="prop">
+            <li>{{ prop }}</li>
+          </ul>
+        </test>
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 

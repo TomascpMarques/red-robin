@@ -5,13 +5,22 @@
         <button @click="emmitDel()">apagar</button>
         <span>{{ nome }}</span>
         <div class="decor"></div>
-        <input
-          type="text"
-          name="inp"
-          :placeholder="plcholder || 'Edit me!'"
-          @input="sendValue()"
-          v-model="conteudoInp"
-        />
+        <div class="inps">
+          <input
+            type="text"
+            name="inp"
+            :placeholder="plcholder || 'ID do Registo'"
+            @input="sendValue()"
+            v-model="conteudoInp.registo"
+          />
+          <input
+            type="text"
+            name="inp"
+            :placeholder="plcholder || 'Nome para referência'"
+            @input="sendValue()"
+            v-model="conteudoInp.key"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +33,10 @@ export default {
   data() {
     return {
       nome: this.titulo,
-      conteudoInp: "",
+      conteudoInp: {
+        key: "",
+        registo: "",
+      },
     };
   },
   methods: {
@@ -116,6 +128,8 @@ button:hover {
   font-family: "Roboto";
   color: #252525;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  margin-bottom: 0.4rem;
+  border-bottom: 2px solid gainsboro;
 }
 
 input:focus::placeholder {
