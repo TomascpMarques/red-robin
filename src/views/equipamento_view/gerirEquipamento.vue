@@ -14,32 +14,26 @@
           <h3>Wow Such Empty...</h3>
         </div>
         <div v-if="items">
-          <div v-for="colecao in itemsCategories" :key="colecao">
+          <div
+            v-for="(colecao, collName) in itemsCategories"
+            :key="(colecao, collName)"
+          >
             <div class="titulo">
               <div
                 v-bind:class="[
-                  showColecoes[Object.keys(itemsCategories).toString()]
-                    ? 'decor-down'
-                    : 'decor-up',
+                  showColecoes[collName] ? 'decor-down' : 'decor-up',
                 ]"
-                @click="
-                  showColecoes[
-                    Object.keys(itemsCategories).toString()
-                  ] = !showColecoes[Object.keys(itemsCategories).toString()]
-                "
+                @click="showColecoes[collName] = !showColecoes[collName]"
               ></div>
               <h1>
-                {{ Object.keys(itemsCategories).toString() }}
+                {{ collName }}
               </h1>
             </div>
             <transition
               enter-active-class="animate__animated animate__zoomIn"
               leave-active-class="animate__animated animate__zoomOut"
             >
-              <div
-                class="show_estados"
-                v-if="showColecoes[Object.keys(itemsCategories).toString()]"
-              >
+              <div class="show_estados" v-if="showColecoes[collName]">
                 <div v-for="estado in colecao" :key="estado">
                   <itemsCategoria
                     :categoria="estado[0].meta.estado"

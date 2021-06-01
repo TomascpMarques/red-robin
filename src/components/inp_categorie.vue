@@ -20,7 +20,13 @@
         <button class="but-class" @click="criarComponenteRunTime(option)">
           Novo Valor
         </button>
-        <button class="but-class">Criar Item</button>
+        <button
+          class="but-class"
+          @click="test()"
+          :disabled="!componentes.length"
+        >
+          Criar Item
+        </button>
       </div>
 
       <div class="valor-pre">
@@ -80,6 +86,9 @@ export default {
     };
   },
   methods: {
+    test() {
+      console.log("aaaaaaaaaaaaaaaaaaaaa");
+    },
     criarComponenteRunTime(opt) {
       if (this.keys.includes(this.key)) {
         this.mss = "Essa propriedade já existe";
