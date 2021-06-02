@@ -6,6 +6,34 @@
     <div class="page-body">
       <div class="explorador">
         <h1>Ações</h1>
+        <div class="search">
+          <span>Procura customizada de registos</span>
+          <details>
+            <summary>Informação dos querys customizados</summary>
+            <details>
+              <summary>O que é extraido?</summary>
+              <p>
+                O query customizado, extrai a informação pedida dos registos que
+                validam os filtros de busca. Tanto a informação na meta-data do
+                ficheiro (quantidade, tipo, uso), como no corpo do registo.
+              </p>
+            </details>
+            <details>
+              <summary>Como, o quê, e quando extraido?</summary>
+              <p>
+                Os campos que irão ser extraidos são defenidos como listas de
+                campos. Cada lista de campos é executada no registo retornado
+                que têm o index equivalente. No entanto se só uma lista for
+                fonecida e existir mais que um registo que valide os filtros de
+                pesquisa, os campos extraidos serão os referidos na unica lista
+                existente. Se a quantidade de listas de campos a extrair não for
+                equivalente ao número de registos retornados, a ultima lista de
+                campos defenida será usada na extração de campos de todos os
+                registos restantes.
+              </p>
+            </details>
+          </details>
+        </div>
         <inpCategorie />
         <delItemID />
         <button @click="getAllRepos()" class="update">Atualizar Lista</button>
