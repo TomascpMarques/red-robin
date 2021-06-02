@@ -44,20 +44,18 @@
         >
           <span class="message" v-if="mss"> {{ mss }}</span>
         </transition>
-        <br />
-        <br />
-        Novos Valores: <i v-if="!componentes.length">Empty</i>
+        <span> Valores do Registo:</span>
+        <component
+          v-for="componente in componentes"
+          :key="componente"
+          v-bind:is="componente.name"
+          :cmpname="componente.name"
+          :titulo="chooseTitle(componente.key)"
+          :id="componente.id"
+          @conteudo="setComponentValueInArray"
+          @delete="apagarInput"
+        />
       </span>
-      <component
-        v-for="componente in componentes"
-        :key="componente"
-        v-bind:is="componente.name"
-        :cmpname="componente.name"
-        :titulo="chooseTitle(componente.key)"
-        :id="componente.id"
-        @conteudo="setComponentValueInArray"
-        @delete="apagarInput"
-      />
     </div>
   </div>
 </template>
@@ -101,7 +99,6 @@ export default {
     },
     setupMetaReg() {
       this.componentes = [];
-      console.log(this.componentes);
       // Add quantidade prefeito para a metadata
       this.componentes.push({
         name: "InpSimples",
@@ -221,6 +218,8 @@ export default {
   padding: 0;
   font-size: 1rem;
   font-weight: bold;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 
 input[type="text"] {

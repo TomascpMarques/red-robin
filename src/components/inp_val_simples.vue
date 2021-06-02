@@ -30,6 +30,7 @@ export default {
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
+      this.conteudoInp = "";
       this.$emit("delete", {
         name: this.cmpname,
         id: this.id,

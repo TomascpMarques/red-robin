@@ -2,8 +2,9 @@
   <div class="page-wrap">
     <div class="page-tit">
       <h1>Equipamento</h1>
+      <button @click="disp = !disp">Alterar Disposição</button>
     </div>
-    <div class="page-body">
+    <div :class="[disp ? 'page-body-hr' : 'page-body']">
       <div class="explorador">
         <h1>Ações</h1>
         <div class="search">
@@ -33,6 +34,21 @@
               </p>
             </details>
           </details>
+          <h2 @click="showEditors = !showEditors">Defenir Campos</h2>
+          <div class="editor-query" v-if="showEditors">
+            <inpSimples :titulo="'Coleção Alvo'" @conteudo="getColecao" />
+            <inpOBJ
+              :titulo="'Filtros do Registo'"
+              @conteudo="getFiltro"
+              :plcholder="'«campos» ,Nº Filtros'"
+            />
+            <inpLista
+              :titulo="'Campos a extrair'"
+              @conteudo="getCampos"
+              :plcholder="'ex: campo1 campo1.1, campo2 campo2.1'"
+            />
+            <button @click="initProcura()" class="procurar">Procurar</button>
+          </div>
         </div>
         <inpCategorie />
         <delItemID />

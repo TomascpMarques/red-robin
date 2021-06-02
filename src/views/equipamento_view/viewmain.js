@@ -6,6 +6,9 @@ import store from "../../store/index.js";
 import inpCategorie from "../../components/inp_categorie.vue";
 import itemsCategoria from "../../components/items_categoria.vue";
 import delItemID from "../../components/del_reg_equip.vue";
+import inpLista from "../../components/inp_val_list.vue";
+import inpOBJ from "../../components/inp_val_obj.vue";
+import inpSimples from "../../components/inp_val_simples.vue";
 
 export default {
   name: "equipamento",
@@ -13,16 +16,49 @@ export default {
     inpCategorie,
     itemsCategoria,
     delItemID,
+    inpLista,
+    inpSimples,
+    inpOBJ,
   },
   store: store,
   data() {
     return {
+      disp: false,
       items: [],
       itemsCategories: {},
-      showColecoes: {}
+      showColecoes: {},
+      showEditors: false,
+      showEditorText: false,
+      queryInp: {
+        colecao: "PC",
+        campos: {
+          "meta.tipo": "PC"
+        },
+        extrair: []
+      },
+      querytotext: "",
+      // "{\"campos\": {\"meta.tipo\": \"PC\"}, \"extrair\": [[\"estado\", \"quantidade\"]]}"
     };
   },
   methods: {
+    initProcura() {
+      this.querytotext = this.formatText();
+    },
+    getColecao(cont) {
+      this.queryInp.colecao = cont.cont;
+      this.formatText();
+    },
+    getFiltro(cont) {
+      this.queryInp.campos = cont.cont[Object.keys(cont.cont)[0]];
+      this.formatText();
+    },
+    getCampos(cont) {
+      this.queryInp.extrair = cont.cont.map(x => x.split(",").map(y => y.trim()).map(i => i.split(" ")));
+      console.log(this.queryInp.extrair);
+    },
+    formatText() {
+      return JSON.stringify(this.queryInp, null, 3);
+    },
     getAllRepos() {
       api.callEndPoint(apiServices.hosts.equipamento, {
         name: "BuscarTodosRegistosBD",

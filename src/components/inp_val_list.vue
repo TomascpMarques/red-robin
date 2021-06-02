@@ -5,6 +5,7 @@
         <button @click="emmitDel()">apagar</button>
         <span>{{ nome }}</span>
         <div class="decor"></div>
+        {{ conteudoInp }}
         <textarea
           type="text"
           name="inp"
@@ -12,6 +13,7 @@
           @input="sendValue()"
           v-model="conteudoInp"
           resizable="false"
+          spellcheck="false"
         />
       </div>
     </div>
@@ -119,16 +121,34 @@ button:hover {
 .main-wrap textarea {
   resize: none;
   padding: 0.13rem 0.2rem;
+  padding-right: 0.4rem;
   border: none;
   outline: none;
   font-size: 0.9rem;
   font-family: "Roboto";
   color: #252525;
-  max-width: 100%;
-  height: 100px;
+  width: 100%;
+  min-height: 60px;
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
   border: 2px solid gainsboro;
   border-radius: 3px;
+}
+
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+
+textarea::-webkit-scrollbar-track {
+  background-color: gainsboro;
+}
+
+/* Handle */
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: darkgray;
+  border-radius: none;
 }
 
 textarea:focus::placeholder {

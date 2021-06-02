@@ -9,7 +9,7 @@
           <div class="inputs">
             <input
               type="text"
-              placeholder="Nome, Nº propriedade"
+              :placeholder="plcholder || 'Nome, Nº propriedade'"
               v-model="temp"
             />
           </div>
@@ -72,6 +72,7 @@ export default {
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
+      this.conteudoInp = {};
       this.$emit("delete", {
         name: this.cmpname,
         id: this.id,
