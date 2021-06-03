@@ -43,7 +43,7 @@ export default {
   methods: {
     initProcura() {
       console.log(this.queryInp);
-      // this.apiGetQueryCustom();
+      this.apiGetQueryCustom();
     },
     apiGetQueryCustom() {
       api.callEndPoint(apiServices.hosts.equipamento, {
@@ -66,7 +66,11 @@ export default {
       const mainKey = Object.keys(cont.cont)[0];
       Object.keys(cont.cont[mainKey]).forEach(key => {
         if (["estado", "tipo", "quantidade"].indexOf(key) !== -1) {
-          this.queryInp.data.campos["meta." + key] = cont.cont[mainKey][key];
+          if (key === "quantidade") {
+            this.queryInp.data.campos["meta." + key] = Number(cont.cont[mainKey][key]);
+          } else {
+            this.queryInp.data.campos["meta." + key] = (cont.cont[mainKey][key]).toUpperCase();
+          }
         } else {
           this.queryInp.data.campos["body." + key] = cont.cont[mainKey][key];
         }
