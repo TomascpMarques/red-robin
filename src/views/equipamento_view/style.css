@@ -328,3 +328,52 @@ details[open] summary {
 .message::first-letter {
     text-transform: capitalize;
 }
+
+.show-custom-search {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.inner-custom {
+    width: 100%;
+}
+
+.inner-custom h1::after {
+    content: ' query custom';
+    font-size: 1rem;
+    color: darkgrey;
+}
+
+.inner-custom h1 {
+    cursor: pointer;
+    background-color: white;
+    padding: .3rem .7rem;
+    border-left: 10px solid var(--orange);
+    border-radius: 6px;
+    margin-bottom: .7rem;
+}
+
+.reg-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.custom-reg {
+    min-width: 25%;
+    padding: .2rem .2rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px 2px lightgray;
+    border-left: 7px solid var(--blue);
+}
+
+.custom-reg ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: .3rem;
+    padding: 0;
+    margin: .6rem 1.2rem;
+}

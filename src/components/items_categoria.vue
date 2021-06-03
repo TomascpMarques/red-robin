@@ -12,9 +12,14 @@
     <div class="body" v-if="showBody">
       <div v-for="item in items" :key="item">
         <test :titulo="item.body.nome">
-          <ul v-for="prop in item" :key="prop">
-            <li>{{ prop }}</li>
-          </ul>
+          <div class="list">
+            <ul v-for="(prop, key) in item" :key="prop">
+              <li>
+                <b>{{ key }}</b
+                >: {{ prop }}
+              </li>
+            </ul>
+          </div>
         </test>
       </div>
     </div>
@@ -38,6 +43,12 @@ export default {
 </script>
 
 <style scoped>
+.list ul {
+  list-style: none;
+  padding: 0.1rem;
+  margin: 0.3rem;
+}
+
 .main-wrap {
   display: flex;
   flex-direction: column;

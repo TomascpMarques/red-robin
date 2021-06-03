@@ -62,12 +62,35 @@
         <div v-if="!items">
           <h3>Wow Such Empty...</h3>
         </div>
-        <div>
-          <ul v-for="x in itemsCategoriesCustom" :key="x">
-            <ul v-for="i in x" :key="i">
-              <li>{{ i }}</li>
-            </ul>
-          </ul>
+        <div class="show-custom-search" v-if="showcustom">
+          <div v-for="x in itemsCategoriesCustom" :key="x">
+            <div
+              class="inner-custom"
+              v-for="titulo in Object.keys(x)"
+              :key="titulo"
+            >
+              <h1 @click="showcustom = !showcustom">
+                {{ titulo }}
+              </h1>
+              <div class="reg-list" v-for="i in x" :key="i">
+                <div class="custom-reg" v-for="(reg, k) in i" :key="reg">
+                  <h2>Registo {{ k + 1 }}</h2>
+                  <ul>
+                    <div
+                      class="custom-list"
+                      v-for="(item, key) in reg"
+                      :key="item"
+                    >
+                      <li>
+                        <b>{{ key }}</b>
+                        : {{ item }}
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div v-if="items">
           <div

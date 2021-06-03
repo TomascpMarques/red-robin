@@ -23,10 +23,34 @@ export default {
   store: store,
   data() {
     return {
+      showcustom: false,
       disp: false,
       items: [],
       itemsCategories: {},
-      itemsCategoriesCustom: {},
+      itemsCategoriesCustom: {
+        registos: {
+          PC: [
+            {
+              estado: "EM USO",
+              nome: "teste",
+              quantidade: 0,
+              tipo: "PC",
+              wow: {
+                que: "fixe"
+              }
+            },
+            {
+              estado: "EM USO",
+              nome: "wwww",
+              quantidade: 1,
+              tipo: "PC",
+              wwwww: {
+                wwww: "wwww"
+              }
+            }
+          ]
+        }
+      },
       showColecoes: {},
       showEditors: false,
       showEditorText: false,
@@ -45,6 +69,7 @@ export default {
       this.mss = "";
       console.log(this.queryInp);
       this.apiGetQueryCustom();
+      this.showcustom = !this.showcustom;
     },
     apiGetQueryCustom() {
       api.callEndPoint(apiServices.hosts.equipamento, {
@@ -52,7 +77,7 @@ export default {
         params: [this.queryInp.data, this.queryInp.colecao, this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
       }).then((obj) => {
         if (Object.keys(obj.QueryRegistoJSON[0].registos).length > 0) {
-          this.itemsCategoriesCustom = obj.QueryRegistoJSON[0].registos;
+          this.itemsCategoriesCustom = obj.QueryRegistoJSON[0];
           console.log(obj.QueryRegistoJSON[0].registos);
           this.mss = "Registo(s) encontrados!";
         } else {
