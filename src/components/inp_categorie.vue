@@ -98,6 +98,7 @@ export default {
       return this.key ? this.key : keyParam.toString();
     },
     setupMetaReg() {
+      this.key = "";
       this.componentes = [];
       // Add quantidade prefeito para a metadata
       this.componentes.push({

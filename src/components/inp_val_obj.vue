@@ -17,7 +17,6 @@
           <button @click="apagarUltimo()">Apagar Ultimo</button>
         </div>
         <span class="title-inp">Valores:</span>
-        {{ conteudoInp }}
         <div class="inp-wrapper">
           <div v-for="x in tempProps" :key="x">
             <span class="propriedade">Propriedade: {{ x.nome }}</span>
@@ -27,19 +26,19 @@
                   type="text"
                   name="inp"
                   :placeholder="'Nome'"
-                  v-model="tempK[j]"
+                  v-model="tempK[x.id][j]"
                 />
                 <input
                   type="text"
                   name="inp"
                   :placeholder="'Valor'"
-                  v-model="tempV[j]"
-                  @input="createValue(x.nome, tempK[j], tempV[j])"
+                  v-model="tempV[x.id][j]"
+                  @input="createValue(x.nome, tempK[x.id][j], tempV[x.id][j])"
                 />
                 <span
                   class="apagar-prop"
-                  @click="apagarProp(x.nome, tempK[j], j, x.id)"
-                  v-if="tempK[j]"
+                  @click="apagarProp(x.nome, tempK[x.id][j], j, x.id)"
+                  v-if="tempK[x.id][j]"
                 >
                   Apagar
                 </span>
@@ -69,7 +68,6 @@ export default {
   },
   methods: {
     sendValue(event) {
-      console.log(this.conteudoInp);
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
@@ -94,6 +92,7 @@ export default {
       }
       this.tempK.push([]);
       this.tempV.push([]);
+
       this.numeroInps.push({
         id: this.temp.split(",")[0].trim(),
       });
@@ -113,6 +112,8 @@ export default {
       this.conteudoInp[id][key] = null;
       delete this.conteudoInp[id][key];
       this.tempProps[inNum].num.splice(inpKeys, 1);
+      this.tempK[inNum].splice(inpKeys, 1);
+      this.tempV[inNum].splice(inpKeys, 1);
     },
     apagarUltimo() {
       this.numeroInps.pop();
@@ -120,6 +121,11 @@ export default {
         Object.keys(this.conteudoInp)[Object.keys(this.conteudoInp).length - 1]
       ];
       this.tempProps.pop();
+      if (this.tempProps.length < 1) {
+        this.conteudoInp = {};
+        this.tempK = [];
+        this.tempV = [];
+      }
     },
   },
 };

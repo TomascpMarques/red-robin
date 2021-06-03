@@ -73,9 +73,10 @@ export default {
       });
     },
     dropProp(cont) {
-      console.log("->> ", cont);
       if (["estado", "tipo", "quantidade"].indexOf(cont.key.toString()) !== -1) {
         delete this.queryInp.data.campos["meta." + cont.key];
+      } else {
+        delete this.queryInp.data.campos["body." + cont.key];
       }
     },
     apagarFiltros(cont) {
