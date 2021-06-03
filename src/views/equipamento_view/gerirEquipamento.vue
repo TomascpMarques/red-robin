@@ -34,12 +34,16 @@
               </p>
             </details>
           </details>
+          <span class="message" v-if="mss"> {{ mss }}</span>
           <h2 @click="showEditors = !showEditors">Defenir Campos</h2>
           <div class="editor-query" v-if="showEditors">
+            {{ queryInp }}
             <inpSimples :titulo="'Coleção Alvo'" @conteudo="getColecao" />
             <inpOBJ
               :titulo="'Filtros do Registo'"
               @conteudo="getFiltro"
+              @delete="apagarFiltros"
+              @dropProp="dropProp"
               :plcholder="'«campos» ,Nº Filtros'"
             />
             <inpLista
@@ -57,6 +61,13 @@
       <div class="editor">
         <div v-if="!items">
           <h3>Wow Such Empty...</h3>
+        </div>
+        <div>
+          <ul v-for="x in itemsCategoriesCustom" :key="x">
+            <ul v-for="i in x" :key="i">
+              <li>{{ i }}</li>
+            </ul>
+          </ul>
         </div>
         <div v-if="items">
           <div

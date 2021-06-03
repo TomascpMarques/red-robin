@@ -17,6 +17,7 @@
           <button @click="apagarUltimo()">Apagar Ultimo</button>
         </div>
         <span class="title-inp">Valores:</span>
+        {{ conteudoInp }}
         <div class="inp-wrapper">
           <div v-for="x in tempProps" :key="x">
             <span class="propriedade">Propriedade: {{ x.nome }}</span>
@@ -72,6 +73,7 @@ export default {
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {
+      this.tempProps = [];
       this.conteudoInp = {};
       this.$emit("delete", {
         name: this.cmpname,
@@ -104,6 +106,10 @@ export default {
       this.temp = "";
     },
     apagarProp(id, key, inpKeys, inNum) {
+      this.$emit("dropProp", {
+        cont: this.conteudoInp[id][key],
+        key: key,
+      });
       this.conteudoInp[id][key] = null;
       delete this.conteudoInp[id][key];
       this.tempProps[inNum].num.splice(inpKeys, 1);

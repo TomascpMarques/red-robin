@@ -26,35 +26,64 @@ export default {
       disp: false,
       items: [],
       itemsCategories: {},
+      itemsCategoriesCustom: {},
       showColecoes: {},
       showEditors: false,
       showEditorText: false,
+      mss: "",
       queryInp: {
-        colecao: "PC",
-        campos: {
-          "meta.tipo": "PC"
+        colecao: "",
+        data: {
+          campos: {},
+          extrair: null
         },
-        extrair: []
       },
-      querytotext: "",
-      // "{\"campos\": {\"meta.tipo\": \"PC\"}, \"extrair\": [[\"estado\", \"quantidade\"]]}"
     };
   },
   methods: {
     initProcura() {
-      this.querytotext = this.formatText();
+      console.log(this.queryInp);
+      // this.apiGetQueryCustom();
+    },
+    apiGetQueryCustom() {
+      api.callEndPoint(apiServices.hosts.equipamento, {
+        name: "QueryRegistoJSON",
+        params: [this.queryInp.data, this.queryInp.colecao, this.$store.state.usr_token.length > 1 ? this.$store.state.usr_token : "noToken"],
+      }).then((obj) => {
+        if (Object.keys(obj.QueryRegistoJSON[0].registos).length > 0) {
+          this.itemsCategoriesCustom = obj.QueryRegistoJSON[0].registos;
+          console.log(obj.QueryRegistoJSON[0].registos);
+          this.mss = "Registo(s) encontrados!";
+        } else {
+          this.mss = "Nenhum registo encontrado...";
+        }
+      });
     },
     getColecao(cont) {
-      this.queryInp.colecao = cont.cont;
-      this.formatText();
+      this.queryInp.colecao = cont.cont.toString().toUpperCase();
     },
     getFiltro(cont) {
-      this.queryInp.campos = cont.cont[Object.keys(cont.cont)[0]];
-      this.formatText();
+      const mainKey = Object.keys(cont.cont)[0];
+      Object.keys(cont.cont[mainKey]).forEach(key => {
+        if (["estado", "tipo", "quantidade"].indexOf(key) !== -1) {
+          this.queryInp.data.campos["meta." + key] = cont.cont[mainKey][key];
+        } else {
+          this.queryInp.data.campos["body." + key] = cont.cont[mainKey][key];
+        }
+      });
+    },
+    dropProp(cont) {
+      console.log("->> ", cont);
+      if (["estado", "tipo", "quantidade"].indexOf(cont.key.toString()) !== -1) {
+        delete this.queryInp.data.campos["meta." + cont.key];
+      }
+    },
+    apagarFiltros(cont) {
+      console.log(cont);
+      this.queryInp.data.campos = {};
     },
     getCampos(cont) {
-      this.queryInp.extrair = cont.cont.map(x => x.split(",").map(y => y.trim()).map(i => i.split(" ")));
-      console.log(this.queryInp.extrair);
+      this.queryInp.data.extrair = cont.cont.map(x => x.trim()).map(x => x.split(/\s/gm));
     },
     formatText() {
       return JSON.stringify(this.queryInp, null, 3);

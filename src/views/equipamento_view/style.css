@@ -317,3 +317,14 @@ details[open] summary {
     background-color: #fefefe;
     margin-top: 10px;
 }
+
+.message {
+    color: var(--orange);
+    letter-spacing: 0.1px;
+    word-spacing: -3px;
+    font-family: consolas;
+}
+
+.message::first-letter {
+    text-transform: capitalize;
+}
