@@ -49,7 +49,7 @@
             <inpLista
               :titulo="'Campos a extrair'"
               @conteudo="getCampos"
-              :plcholder="'ex: campo1 campo1.1, campo2 campo2.1'"
+              :plcholder="'ex: campo1 campo1.1, campo2 campo2.1 OU vazio para retornar todos os valores'"
             />
             <button @click="initProcura()" class="procurar">Procurar</button>
           </div>

@@ -33,6 +33,9 @@ export default {
   methods: {
     sendValue(event) {
       this.conteudoInp = this.conteudoInp.split(",");
+      if (this.conteudoInp.length === 1 && this.conteudoInp[0] === "") {
+        this.conteudoInp = [[]];
+      }
       this.$emit("conteudo", { cont: this.conteudoInp, key: this.nome });
     },
     emmitDel() {

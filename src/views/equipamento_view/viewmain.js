@@ -35,13 +35,14 @@ export default {
         colecao: "",
         data: {
           campos: {},
-          extrair: null
+          extrair: [[]]
         },
       },
     };
   },
   methods: {
     initProcura() {
+      this.mss = "";
       console.log(this.queryInp);
       this.apiGetQueryCustom();
     },
@@ -88,7 +89,8 @@ export default {
       this.queryInp.data.campos = {};
     },
     getCampos(cont) {
-      this.queryInp.data.extrair = cont.cont.map(x => x.trim()).map(x => x.split(/\s/gm));
+      var temp = cont.cont.map(x => x.trim()).map(x => x.split(/\s/gm));
+      this.queryInp.data.extrair = temp;
     },
     formatText() {
       return JSON.stringify(this.queryInp, null, 3);
