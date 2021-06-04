@@ -124,7 +124,7 @@ export default {
               name: "Registar",
               params: [this.usrName, passHash, Number(this.permissoes), store.state.usr_token],
             }).then((obj) => {
-              if (obj.Registar[0].token) {
+              if (obj.Registar[0].sucesso === true) {
                 this.showUserAcc = true;
                 this.log_mssUserAcc = "O utilizador foi criado com sucesso";
                 this.log_titUserAcc = "Utilizador";

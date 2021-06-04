@@ -27,30 +27,7 @@ export default {
       disp: false,
       items: [],
       itemsCategories: {},
-      itemsCategoriesCustom: {
-        registos: {
-          PC: [
-            {
-              estado: "EM USO",
-              nome: "teste",
-              quantidade: 0,
-              tipo: "PC",
-              wow: {
-                que: "fixe"
-              }
-            },
-            {
-              estado: "EM USO",
-              nome: "wwww",
-              quantidade: 1,
-              tipo: "PC",
-              wwwww: {
-                wwww: "wwww"
-              }
-            }
-          ]
-        }
-      },
+      itemsCategoriesCustom: {},
       showColecoes: {},
       showEditors: false,
       showEditorText: false,

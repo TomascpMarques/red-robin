@@ -116,6 +116,11 @@ export default {
         key: "estado",
         id: 2,
       });
+      this.componentes.push({
+        name: "InpSimples",
+        key: "nome",
+        id: 3,
+      });
     },
     addItemAoSistema(registo) {
       api
@@ -355,7 +360,7 @@ h3 {
   margin: 0.3rem;
   /* background-color: rgb(231, 231, 231); */
   /* color: black; */
-  background-color: #404040;
+  background-color: #282c34;
   color: #ffffff;
   border-radius: 4px;
   padding: 0.3rem 0.5rem;

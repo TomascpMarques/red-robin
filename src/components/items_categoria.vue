@@ -8,15 +8,25 @@
       <h2 class="black">{{ categoria }}</h2>
       <span>{{ items.length }} items</span>
     </div>
-
+    <br />
     <div class="body" v-if="showBody">
       <div v-for="item in items" :key="item">
         <test :titulo="item.body.nome">
           <div class="list">
             <ul v-for="(prop, key) in item" :key="prop">
               <li>
-                <b>{{ key }}</b
-                >: {{ prop }}
+                <b>{{ key }}</b>
+                <div class="point"></div>
+                <div class="inner-content" v-if="verifPropIsOBJ(prop)">
+                  <div v-for="(item, key) in prop" :key="item">
+                    <ul class="inner-list">
+                      <li>
+                        <span class="key">{{ key }}:</span> {{ item }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <span v-if="!verifPropIsOBJ(prop)">{{ prop }}</span>
               </li>
             </ul>
           </div>
@@ -28,6 +38,7 @@
 
 <script>
 import test from "./content_box.vue";
+
 export default {
   name: "itemsCategoria",
   components: {
@@ -37,16 +48,78 @@ export default {
   data() {
     return {
       showBody: false,
+      registos: {},
     };
+  },
+  methods: {
+    verifPropIsOBJ(prop) {
+      return typeof prop === "object";
+    },
+    setUpRegistos() {
+      this.items.forEach((registo) => {
+        console.log("->", registo);
+        this.registos[registo._id] = registo;
+      });
+    },
+  },
+  created() {
+    this.setUpRegistos();
   },
 };
 </script>
 
 <style scoped>
+.point {
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid salmon;
+  border-right: 2px solid salmon;
+  transform: rotatez(45deg);
+}
+
+.key {
+  font-family: consolas;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+}
+
+.list {
+  padding-right: 1rem;
+  height: 25vh;
+  overflow-y: auto;
+  transition: 0.3s all ease-in-out;
+}
+
+.list::-webkit-scrollbar {
+  width: 7px;
+  transition: 0.3s all ease-in-out;
+  border-radius: 100px;
+}
+/* Track */
+.list::-webkit-scrollbar-track {
+  background-color: gainsboro;
+  border-radius: 100px;
+}
+/* Handle */
+.list::-webkit-scrollbar-thumb {
+  background-color: lightgray;
+  margin-top: 10px;
+}
+
 .list ul {
   list-style: none;
   padding: 0.1rem;
   margin: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+ul li {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  place-items: center;
+  justify-content: flex-start;
+  align-items: baseline;
 }
 
 .main-wrap {
