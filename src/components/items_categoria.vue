@@ -20,8 +20,14 @@
                 <div class="inner-content" v-if="verifPropIsOBJ(prop)">
                   <div v-for="(item, key) in prop" :key="item">
                     <ul class="inner-list">
-                      <li>
+                      <li v-if="!verifPropIsOBJ(item)">
                         <span class="key">{{ key }}:</span> {{ item }}
+                      </li>
+                      <li v-if="verifPropIsOBJ(item)">
+                        <section class="listing">
+                          <span class="list-tilte-pre">{{ key }}</span>
+                          <div v-html="contentTohtml(item)"></div>
+                        </section>
                       </li>
                     </ul>
                   </div>
@@ -49,9 +55,40 @@ export default {
     return {
       showBody: false,
       registos: {},
+      content: "<h2>Lorem ipsum<h2/>",
     };
   },
   methods: {
+    contentTohtml(obj) {
+      try {
+        this.run(obj, "");
+      } catch (except) {
+        return except;
+      }
+    },
+    run(x, template) {
+      if (x === null) {
+        template += "\n</div>";
+        throw template;
+      }
+      Object.keys(x).forEach((key) => {
+        template += '<div class="list-item">\n';
+        template += '<span class="list-key-title">\n';
+        template += `${key}: \n`;
+        template += "</span>\n";
+        console.log(typeof x[key], ":>", key);
+        if (typeof x[key] === "object") {
+          return this.run(x[key], template);
+        } else {
+          template += '<span class="list-key-value">\n';
+          template += `${x[key]}\n`;
+          template += "</span>\n";
+        }
+        template += "\n</div>";
+      });
+      template += "\n</div>";
+      return this.run(null, template);
+    },
     verifPropIsOBJ(prop) {
       return typeof prop === "object";
     },
@@ -85,9 +122,10 @@ export default {
 
 .list {
   padding-right: 1rem;
-  height: 25vh;
+  max-height: 32vh;
   overflow-y: auto;
   transition: 0.3s all ease-in-out;
+  min-width: 25vw;
 }
 
 .list::-webkit-scrollbar {
@@ -120,6 +158,7 @@ ul li {
   place-items: center;
   justify-content: flex-start;
   align-items: baseline;
+  padding: 0.2rem;
 }
 
 .main-wrap {
@@ -203,9 +242,9 @@ h2 {
   padding: 0.2rem 0.1rem;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 0.1rem;
+  gap: 0.5rem 0.2rem;
   margin-left: 6px;
 }
 
@@ -219,5 +258,54 @@ h2 {
   color: darkgray;
   font-size: 1.1rem;
   letter-spacing: 0.25px;
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 0.2rem;
+
+  border-radius: 6px;
+}
+
+.listing div {
+  padding: 0.4rem 0.3rem;
+}
+
+.listing p {
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  display: flex;
+  flex-basis: auto;
+  flex-direction: row;
+  place-items: center;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.list-key-title {
+  color: var(--blue);
+}
+
+.list-tilte-pre {
+  font-weight: bold;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid gainsboro;
+}
+
+.list-tilte-pre::after {
+  content: " estrutura";
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: darkgray;
+}
+
+.inner-list {
+  border: 2px solid gainsboro;
+  border-radius: 5px;
 }
 </style>
